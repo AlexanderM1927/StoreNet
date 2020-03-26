@@ -1,18 +1,32 @@
 package View;
 
+import Controller.ControladorLogin;
+import Model.ClienteDAO;
+import Model.EmpleadoDAO;
 import Model.Producto;
 import Model.ProductoDAO;
+import Services.Fachada;
 
 public class Main {
+    
+    private ControladorLogin controllogin;
+    private LoginUserGI login;
+    private ClienteDAO cliente;
+    private EmpleadoDAO emp;
+    
+    public Main(){
+        
+        login= new  LoginUserGI();
+        cliente = new ClienteDAO();
+        emp= new EmpleadoDAO();
+        controllogin= new ControladorLogin(login, cliente, emp, this);
+        
+        login.setVisible(true);
+    }
 
     public static void main(String[] args) {
         
-        LoginUserGI usuarioView = new LoginUserGI();
-     
-        usuarioView.setVisible(true);
-        ProductoDAO pd= new ProductoDAO();
-        Producto p= new Producto(1, "leche", 5000, "algun dia");
-        pd.insertarProducto(p);
+        Main main= new Main();
        
         }
     

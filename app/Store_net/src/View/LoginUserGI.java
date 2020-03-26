@@ -20,6 +20,11 @@ public class LoginUserGI extends javax.swing.JFrame {
      
         setDefaultCloseOperation(LoginUserGI.EXIT_ON_CLOSE);
     }
+    
+    public void AddListenerBtIngresar(ActionListener al){
+        btIngresar.setActionCommand("Ingresar");
+        btIngresar.addActionListener(al);  
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
