@@ -2,7 +2,8 @@ Vistas:
 ------------>archivos html: resources/views/
 ------------>CSS editable: resources/sass/app.scss
 Los archivos js dejarlos en public/js (Antes de borrar o editar algo de lo que ya está consultarme)
-
+Los archivos que vayas a hacer deben estar en las vistas y deben llamarse así:
+ejemplo.blade.php y para hacer que salgan ya en la página tienes que agregarlo al controlador, toma la función del index como ejemplo. Estos archivos deben de tener una plantilla similar a plantilla.blade.php, copiar y pegar cada que vayas a crear una nueva
 ____________________________________________________________________________
 Rutas:
 Para usar las rutas debes ir a:
