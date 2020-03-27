@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'WebsiteController@index');
+Route::get('/home', 'WebsiteController@home');

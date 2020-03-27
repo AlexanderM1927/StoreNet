@@ -16,4 +16,9 @@ class WebsiteController extends Controller
     {
         return view('index');
     }
+
+    public function home ()
+    {
+        return view('home');
+    }
 }
