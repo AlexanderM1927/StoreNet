@@ -27,7 +27,7 @@
                 <input class="uk-input field" type="password" placeholder="Clave" required>
                 </div>
                 </div>
-                <button class="uk-button uk-button-default">Ingresar</button><br><br>
+                <button class="uk-button uk-button-default" onclick="window.location.href='/home'">Ingresar</button><br><br>
                 <a href="#modal-center" uk-toggle>¿No tienes cuenta? lee esto</a>
                 </center>
            </form> 

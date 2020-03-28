@@ -12,18 +12,8 @@ class WebsiteController extends Controller
      * @return void
      * @author 
      **/
-    public function index ()
-    {
-        return view('index');
-    }
-
-    public function home ()
-    {
-        return view('home');
-    }
-
     public function comprar ()
     {
-        return view('comprar');
+        echo $_POST["dato"];
     }
 }
