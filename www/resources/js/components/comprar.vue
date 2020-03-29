@@ -9,10 +9,10 @@
           Agregar al carrito
         </div>
         <div class="producto-i">
-          <img v-bind:src="producto['imgUrl']"><br>
+          <img v-bind:src="producto['imgurl']"><br>
         </div>
-        <b>{{producto['name']}}</b><br>
-        <span class="precio">${{producto['precio']}}</span>
+        <b>{{producto['nombre']}}</b><br>
+        <span class="precio">${{producto['precioventa']}}</span>
         </center>
         </a>
       </li>
@@ -22,7 +22,7 @@
         <h4>Carrito</h4>
       <ul class="productosCarrito">
           <li v-for="producto in myProductos" class="productoCarrito">
-            <img v-bind:src="producto['imgUrl']" class="cuadritoImg">
+            <img v-bind:src="producto['imgurl']" class="cuadritoImg">
             <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
           </li>
         </ul>
@@ -54,24 +54,16 @@ export default {
   data() {
     return {
       aviso: 0,
-      productos: [
-        { name: 'Escoba', imgUrl: 'img/bg2.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg2.jpg', precio: '1500'}
-      ],
-      myProductos: []
+      productos: [],
+      myProductos: [],
+      datos: 'adasd'
     }
+  },
+  mounted(){
+    //axios
+    axios
+      .get('../procesarProductos/0/0')
+      .then(response => (this.productos = response.data))
   },
   methods: {
     agregar(item){
