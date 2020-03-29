@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Producto;
+use App\Cliente;
 
 class ActionController extends Controller
 {
@@ -14,17 +15,26 @@ class ActionController extends Controller
      * @author 
      **/
 
-    public function comprar ()
+    public function procesaProductos($type,$params = '0')
     {
-        echo $_POST["dato"];
-    }
-
-    public function procesaProductos ($type,$params)
-    {
-        if($type==0 && $params==0)
+        $producto = new Producto();
+        if($type==0 && $params=='0')
         {
-            $arrayProductos = DB::select("SELECT * FROM producto LIMIT 50");
-            return json_encode($arrayProductos);
+            return $producto->listarProductos();
+        }else if($type==0 && $params != '0')
+        {
+            return $producto->listarProductos_nombre($params);
+        }
+    }
+    public function procesaClientes($type,$params = '0')
+    {
+        $cliente = new Cliente();
+        if($type==0 && $params=='0')
+        {
+            return $cliente->listarClientes();
+        }else if($type==0 && $params != '0')
+        {
+            return $cliente->listarClientes_parametro($params);
         }
     }
 }

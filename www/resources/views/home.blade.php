@@ -21,9 +21,11 @@
             }
         ?>
         <div class="container">
-            <h1>Bienvenido a StoreNet</h1>
+        <h1 class="titulo-seccion">Welcome to StoreNet</h1>
             <hr>
             Esta plataforma te permitirá gestionar hasta el más mínimo detalle de tu empresa, contamos con gestionador de inventario, nominas, ventas, reportes, tickets, entre otras muchas utilidades que podrás encontrar.
+            <br>
+            Release: 0.1
             <br>
         </div>
     </body>

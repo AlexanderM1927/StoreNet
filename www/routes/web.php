@@ -19,7 +19,8 @@ Route::get('/comprar', 'WebsiteController@comprar');
 Route::get('/empleado', 'WebsiteController@empleado');
 Route::get('/cliente', 'WebsiteController@cliente');
 Route::get('/logout', 'LoginController@logout');
-Route::get('/procesarProductos/{type}/{params}', 'ActionController@procesaProductos');
+Route::get('/procesarProductos/{type}/{params?}', 'ActionController@procesaProductos');
+Route::get('/procesarClientes/{type}/{params?}', 'ActionController@procesaClientes');
 
 
 //FORMULARIOS POST

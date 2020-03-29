@@ -233,3 +233,40 @@ body {
   margin-bottom: 7px;
 }
 
+.titulo-seccion {
+  background: #DF7401;
+  color: #FFF;
+  border-bottom: 2px solid #000;
+}
+
+.tabla-clientes {
+  height: 200px;
+}
+
+.barra::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+
+.barra::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+
+.barra::-webkit-scrollbar-thumb:hover {
+  background: #000;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+
+.barra::-webkit-scrollbar-thumb:active {
+  background-color: #000;
+}
+
