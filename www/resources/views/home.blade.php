@@ -10,7 +10,16 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     </head>
     <body>
-        @include('elements.navbar')
+        <?php
+            if(!empty($usuario))
+            {
+        ?>
+        @include('elements.navbar', ['usuario' => $usuario])
+        <?php
+            }else{
+                echo '<script>window.location.href = "/";</script>';
+            }
+        ?>
         <div class="container">
             <h1>Bienvenido a StoreNet</h1>
             <hr>

@@ -13,7 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'WebsiteController@index');
+Route::get('/', 'WebsiteController@index')->name('index');
 Route::get('/home', 'WebsiteController@home');
 Route::get('/comprar', 'WebsiteController@comprar');
+Route::get('/empleado', 'WebsiteController@empleado');
+Route::get('/cliente', 'WebsiteController@cliente');
+Route::get('/logout', 'LoginController@logout');
+Route::get('/procesarProductos/{type}/{params}', 'ActionController@procesaProductos');
+
+
+//FORMULARIOS POST
+Route::post('/', 'LoginController@login');
 Route::post('/action_comprar', 'ActionController@comprar');

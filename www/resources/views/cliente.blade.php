@@ -22,7 +22,7 @@
         ?>
         <div class="container">
             <div id="v-app">
-                <!--COMPONENTE-->
+                <cliente></cliente>
             </div>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>
