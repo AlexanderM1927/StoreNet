@@ -1,6 +1,11 @@
 <template>
   <div>
-    <center><h1 class="title">Tienda online</h1></center>
+    <center><div class="uk-margin">
+                <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: cart"></span>
+                <input class="uk-input field" type="text" v-on:keyup="buscar" v-model="buscador" placeholder="¿Buscas algo en especial?">
+                </div>
+                </div></center>
     <ul class="productos">
       <li class="producto" v-for="producto in productos">
         <a href="#" @click="agregar(producto)">
@@ -56,6 +61,7 @@ export default {
       aviso: 0,
       productos: [],
       myProductos: [],
+      buscador: '',
       datos: 'adasd'
     }
   },
@@ -66,6 +72,11 @@ export default {
       .then(response => (this.productos = response.data))
   },
   methods: {
+    buscar(){
+      axios
+      .get('../procesarProductos/0/'+this.buscador)
+      .then(response => (this.productos = response.data))
+    },
     agregar(item){
       this.myProductos.push(item)
       if(this.aviso==0)

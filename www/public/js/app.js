@@ -1916,13 +1916,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cliente',
   data: function data() {
     return {
-      nombre: 'x'
+      nombre: '',
+      clientes: []
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('../procesarClientes/0/0').then(function (response) {
+      return _this.clientes = response.data;
+    });
   },
   methods: {}
 });
@@ -1988,6 +2036,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'comprar',
@@ -1996,6 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
       aviso: 0,
       productos: [],
       myProductos: [],
+      buscador: '',
       datos: 'adasd'
     };
   },
@@ -2008,6 +2062,13 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    buscar: function buscar() {
+      var _this2 = this;
+
+      axios.get('../procesarProductos/0/' + this.buscador).then(function (response) {
+        return _this2.productos = response.data;
+      });
+    },
     agregar: function agregar(item) {
       this.myProductos.push(item);
 
@@ -30238,9 +30299,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  " + _vm._s(_vm.nombre) + "\n")])
+  return _c("div", [
+    _c("h1", { staticClass: "titulo-seccion" }, [
+      _vm._v("Gestión de clientes")
+    ]),
+    _vm._v("\n  ¿Deseas filtrar la tabla?:\n              "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-overflow-auto tabla-clientes barra" }, [
+      _c(
+        "table",
+        { staticClass: "uk-table uk-table-small uk-table-divider" },
+        [
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._l(_vm.clientes, function(cliente) {
+            return _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(cliente["id"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(cliente["nombres"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(cliente["apellidos"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(cliente["mail"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(cliente["direccion"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(cliente["telefono"]))]),
+                _vm._v(" "),
+                _vm._m(3, true)
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-inline" }, [
+      _c("span", {
+        staticClass: "uk-form-icon",
+        attrs: { "uk-icon": "icon: cog" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "uk-input field",
+        attrs: { type: "text", placeholder: "Busqueda...", required: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-inline" }, [
+      _c("span", {
+        staticClass: "uk-form-icon",
+        attrs: { "uk-icon": "icon: tag" }
+      }),
+      _vm._v(" "),
+      _c("select", { staticClass: "uk-input field", attrs: { required: "" } }, [
+        _c("option", { attrs: { value: "0" } }, [_vm._v("id")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "1" } }, [_vm._v("nombres")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("apellidos")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("mail")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_c("b", [_vm._v("id")])]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombres")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Apellidos")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Mail")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Direccion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Editar")]),
+      _vm._v(" / "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Eliminar")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -30266,7 +30436,37 @@ var render = function() {
     "div",
     [
       _c("center", [
-        _c("h1", { staticClass: "title" }, [_vm._v("Tienda online")])
+        _c("div", { staticClass: "uk-margin" }, [
+          _c("div", { staticClass: "uk-inline" }, [
+            _c("span", {
+              staticClass: "uk-form-icon",
+              attrs: { "uk-icon": "icon: cart" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.buscador,
+                  expression: "buscador"
+                }
+              ],
+              staticClass: "uk-input field",
+              attrs: { type: "text", placeholder: "¿Buscas algo en especial?" },
+              domProps: { value: _vm.buscador },
+              on: {
+                keyup: _vm.buscar,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.buscador = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
