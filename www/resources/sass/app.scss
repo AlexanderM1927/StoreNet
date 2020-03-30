@@ -222,6 +222,13 @@ html, body {
     border-bottom: 2px solid #000;
 }
 
+.subtitulo-seccion
+{
+    background:#DF7401;
+    color:#FFF;
+    border-bottom: 2px solid #000;
+}
+
 .tabla-clientes{
     height:200px;
 }
@@ -246,4 +253,24 @@ html, body {
 /* Cambiamos el fondo cuando esté en active */
 .barra::-webkit-scrollbar-thumb:active {
     background-color: #000;
+}
+
+.creadorForm {
+    background:#f0f0f0 !important;
+    color:#000;
+    border-radius: 0px 0px 4px 4px;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.creadorForm .title{
+    font-size: 25px;
+    color: #FFF;
+    background:#DF7401;
+    padding:5px;
+}
+
+.creadorForm .content{
+    padding:10px;
 }

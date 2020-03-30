@@ -18,11 +18,13 @@ Route::get('/home', 'WebsiteController@home');
 Route::get('/comprar', 'WebsiteController@comprar');
 Route::get('/empleado', 'WebsiteController@empleado');
 Route::get('/cliente', 'WebsiteController@cliente');
+Route::get('/clienteRegistrado', 'WebsiteController@clienteRegistrado')->name('clienteRegistrado');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/procesarProductos/{type}/{params?}', 'ActionController@procesaProductos');
-Route::get('/procesarClientes/{type}/{params?}', 'ActionController@procesaClientes');
+Route::get('/procesarClientes/{type}/{params?}/{data?}', 'ActionController@procesaClientes');
 
 
 //FORMULARIOS POST
 Route::post('/', 'LoginController@login');
 Route::post('/action_comprar', 'ActionController@comprar');
+Route::post('/procesarClientes/{type}', 'ActionController@procesaClientes'); //Agregar cliente

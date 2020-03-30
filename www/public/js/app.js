@@ -1956,23 +1956,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cliente',
   data: function data() {
     return {
       nombre: '',
-      clientes: []
+      clientes: [],
+      datos: '',
+      tipo: 'nombres',
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      metodo: 'Agregar cliente'
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('../procesarClientes/0/0').then(function (response) {
+    axios.get('../procesarClientes/0').then(function (response) {
       return _this.clientes = response.data;
     });
   },
-  methods: {}
+  methods: {
+    buscar: function buscar() {
+      var _this2 = this;
+
+      axios.get('../procesarClientes/0/' + this.tipo + '/' + this.datos) //Filtros
+      .then(function (response) {
+        return _this2.clientes = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -30299,85 +30366,301 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", { staticClass: "titulo-seccion" }, [
-      _vm._v("Gestión de clientes")
-    ]),
-    _vm._v("\n  ¿Deseas filtrar la tabla?:\n              "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("div", { staticClass: "uk-overflow-auto tabla-clientes barra" }, [
-      _c(
-        "table",
-        { staticClass: "uk-table uk-table-small uk-table-divider" },
-        [
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._l(_vm.clientes, function(cliente) {
-            return _c("tbody", [
-              _c("tr", [
-                _c("td", [_vm._v(_vm._s(cliente["id"]))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(cliente["nombres"]))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(cliente["apellidos"]))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(cliente["mail"]))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(cliente["direccion"]))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(cliente["telefono"]))]),
-                _vm._v(" "),
-                _vm._m(3, true)
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "titulo-seccion" }, [
+        _vm._v("Gestión de clientes")
+      ]),
+      _vm._v("\n  ¿Deseas filtrar la tabla?:\n              "),
+      _c("div", { staticClass: "uk-inline" }, [
+        _c("span", {
+          staticClass: "uk-form-icon",
+          attrs: { "uk-icon": "icon: cog" }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datos,
+              expression: "datos"
+            }
+          ],
+          staticClass: "uk-input field",
+          attrs: { type: "text", placeholder: "Busqueda...", required: "" },
+          domProps: { value: _vm.datos },
+          on: {
+            keyup: _vm.buscar,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.datos = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-inline" }, [
+        _c("span", {
+          staticClass: "uk-form-icon",
+          attrs: { "uk-icon": "icon: tag" }
+        }),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.tipo,
+                expression: "tipo"
+              }
+            ],
+            staticClass: "uk-input field",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.tipo = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.buscar
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "id" } }, [_vm._v("id")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "nombres" } }, [_vm._v("nombres")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "mail" } }, [_vm._v("mail")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-overflow-auto tabla-clientes barra" }, [
+        _c(
+          "table",
+          { staticClass: "uk-table uk-table-small uk-table-divider" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.clientes, function(cliente) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(cliente["id"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(cliente["nombres"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(cliente["apellidos"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(cliente["mail"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(cliente["direccion"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(cliente["telefono"]))]),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ])
               ])
-            ])
-          })
-        ],
-        2
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("center", [
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "uk-button uk-button-primary uk-margin-small-right",
+            attrs: { type: "button", "uk-toggle": "target: #modal-center" }
+          },
+          [_vm._v(_vm._s(_vm.metodo))]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "uk-flex-top",
+          attrs: { id: "modal-center", "uk-modal": "" }
+        },
+        [
+          _c("div", { staticClass: "creadorForm" }, [
+            _c("h3", { staticClass: "title" }, [_vm._v(_vm._s(_vm.metodo))]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "content" },
+              [
+                _c("center", [
+                  _c(
+                    "form",
+                    { attrs: { action: "procesarClientes/1", method: "POST" } },
+                    [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrf }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: user" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "nombres",
+                              placeholder: "Nombres",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: user" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "apellidos",
+                              placeholder: "Apellidos",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: mail" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "mail",
+                              name: "mail",
+                              placeholder: "Correo eléctronico",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: lock" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "password",
+                              name: "password",
+                              placeholder: "Clave",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: location" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "direccion",
+                              placeholder: "Direccion",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: phone" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "telefono",
+                              placeholder: "Telefono",
+                              required: ""
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        { staticClass: "uk-button uk-button-default" },
+                        [_vm._v("Agregar")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "uk-modal-close-default",
+                      attrs: { type: "button", "uk-close": "" }
+                    },
+                    [_vm._v("Cerrar")]
+                  )
+                ])
+              ],
+              1
+            )
+          ])
+        ]
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-inline" }, [
-      _c("span", {
-        staticClass: "uk-form-icon",
-        attrs: { "uk-icon": "icon: cog" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "uk-input field",
-        attrs: { type: "text", placeholder: "Busqueda...", required: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-inline" }, [
-      _c("span", {
-        staticClass: "uk-form-icon",
-        attrs: { "uk-icon": "icon: tag" }
-      }),
-      _vm._v(" "),
-      _c("select", { staticClass: "uk-input field", attrs: { required: "" } }, [
-        _c("option", { attrs: { value: "0" } }, [_vm._v("id")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("nombres")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2" } }, [_vm._v("apellidos")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "3" } }, [_vm._v("mail")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
