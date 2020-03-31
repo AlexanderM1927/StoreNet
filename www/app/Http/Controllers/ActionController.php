@@ -109,7 +109,7 @@ class ActionController extends Controller
         {
             $id = $params;
             $empleado->eliminarEmpleado($id,$idafiliado);
-            return $empleado->listarEmpleados();
+            return $empleado->listarEmpleados($idafiliado);
         }
     }
 }

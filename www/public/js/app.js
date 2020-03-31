@@ -2600,7 +2600,7 @@ __webpack_require__.r(__webpack_exports__);
     eliminar: function eliminar(empleado) {
       var _this5 = this;
 
-      axios.get('../procesarEmpleados/3/' + empleado['id'] + '/' + empelado['idafiliado']) //Filtros
+      axios.get('../procesarEmpleados/3/' + empleado['idafiliado'] + '/' + empleado['id']) //Filtros
       .then(function (response) {
         return _this5.empleados = response.data;
       });

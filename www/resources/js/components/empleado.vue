@@ -295,7 +295,7 @@ export default {
     eliminar(empleado)
     {
       axios
-      .get('../procesarEmpleados/3/'+empleado['id']+'/'+empelado['idafiliado']) //Filtros
+      .get('../procesarEmpleados/3/'+empleado['idafiliado']+'/'+empleado['id']) //Filtros
       .then(response => (this.empleados = response.data))
       swal("El empleado ha sido eliminado", "", "success");
     },
