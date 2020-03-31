@@ -53,6 +53,7 @@
 
 <script>
 import $ from 'jquery'
+import swal from 'sweetalert'
 
 export default {
   name: 'comprar',
@@ -81,7 +82,7 @@ export default {
       this.myProductos.push(item)
       if(this.aviso==0)
       {
-        alert('La cantidad es equivalente a la cantidad de veces que selecciones el producto')
+        swal("Cantidad", "La cantidad de elementos equivale a las veces que lo seleccionas", "info");
         this.aviso++
       }
     },
@@ -93,7 +94,7 @@ export default {
     },
     realizarCompra()
     {
-      alert('x');
+      swal('x');
     }
   }
 };

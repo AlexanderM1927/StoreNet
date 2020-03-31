@@ -27,6 +27,17 @@ class Cliente
         DB::insert('INSERT INTO cliente (nombres, apellidos, mail, password, direccion, telefono) values (?, ?, ?, ?, ?, ?)', [ $nombres,
          $apellidos, $mail, $password, $direccion, $telefono]);
     }
+
+    public function modificarCliente($id,$nombres,$apellidos,$mail,$password,$direccion,$telefono)
+    {
+        DB::update('UPDATE cliente SET nombres = ?, apellidos = ?, mail = ?, password = ?, direccion = ?, telefono = ?  WHERE id = ?', [ $nombres,
+         $apellidos, $mail, $password, $direccion, $telefono, $id ]);
+    }
+
+    public function eliminarCliente($id)
+    {
+        DB::delete('DELETE FROM cliente WHERE id = ?', [ $id ]);
+    }
     
 
 }
