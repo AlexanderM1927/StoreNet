@@ -12,7 +12,7 @@
         </center>
         <hr>
         <li class="uk-parent">
-            <a href="#"><span class="uk-margin-small-right" uk-icon="icon: world"></span>AJUSTES GENERALES</a>
+            <a href="#"><span class="uk-margin-small-right" uk-icon="icon: world"></span>Ajustes generales</a>
             <ul class="uk-nav-sub">
                 <li><a href="#">Agregar almacen</a></li>
             </ul>

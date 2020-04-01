@@ -216,7 +216,6 @@ export default {
     {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
-      this.idafiliado= ""
       this.rango= ""
       this.sueldo= ""
       this.nombres = ""
@@ -236,7 +235,6 @@ export default {
     modificar(empleado)
     {
       this.id = empleado['id']
-      this.idafiliado= empleado['idafiliado']
       this.rango= empleado['rango']
       this.sueldo= empleado['sueldo']
       this.nombres = empleado['nombres']
@@ -258,7 +256,7 @@ export default {
     insertar()
     {
       axios
-      .get('../procesarEmpleados/1/'+this.idafiliado+'/'+JSON.stringify({
+      .post('../procesarEmpleados/1/',{
                                     idafiliado: this.idafiliado,
                                     rango: this.rango,
                                     sueldo: this.sueldo,
@@ -267,8 +265,8 @@ export default {
                                     mail: this.mail,
                                     password: this.password,
                                     direccion: this.direccion,
-                                    telefono: this.telefono,
-                                    })) //Filtros
+                                    telefono: this.telefono
+                                    })
       .then(response => (this.empleados = response.data))
       this.limipiar();
       swal("El empleado ha sido agregado", "", "success");
@@ -276,9 +274,9 @@ export default {
     actualizar()
     {
       axios
-      .get('../procesarEmpleados/2/'+this.idafiliado+'/'+JSON.stringify({
-                                    id: this.id,
+      .post('../procesarEmpleados/2/',{
                                     idafiliado: this.idafiliado,
+                                    id: this.id,
                                     rango: this.rango,
                                     sueldo: this.sueldo,
                                     nombres: this.nombres,
@@ -286,8 +284,8 @@ export default {
                                     mail: this.mail,
                                     password: this.password,
                                     direccion: this.direccion,
-                                    telefono: this.telefono,
-                                    })) //Filtros
+                                    telefono: this.telefono
+                                    })
       .then(response => (this.empleados = response.data))
       this.limipiar();
       swal("El empleado ha sido actualizado", "", "success");

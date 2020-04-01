@@ -27,8 +27,10 @@
         <h4>Carrito</h4>
       <ul class="productosCarrito">
           <li v-for="producto in myProductos" class="productoCarrito">
-            <img v-bind:src="producto['imgurl']" class="cuadritoImg">
-            <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            <div v-if="producto['cantidad']===0">
+              <img v-bind:src="producto['imgurl']" class="cuadritoImg">
+              <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            </div>
           </li>
         </ul>
       </center>
@@ -69,13 +71,13 @@ export default {
   mounted(){
     //axios
     axios
-      .get('../procesarProductos/0/0')
+      .get('../procesarProductos/0/0/0')
       .then(response => (this.productos = response.data))
   },
   methods: {
     buscar(){
       axios
-      .get('../procesarProductos/0/'+this.buscador)
+      .get('../procesarProductos/0/nombres/'+this.buscador)
       .then(response => (this.productos = response.data))
     },
     agregar(item){

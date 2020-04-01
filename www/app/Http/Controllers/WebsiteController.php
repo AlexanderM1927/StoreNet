@@ -40,13 +40,8 @@ class WebsiteController extends Controller
         return view('cliente')->with('usuario',session('usuario'));
     }
 
-    public function clienteRegistrado ()
+    public function producto ()
     {
-        return view('cliente')->with('usuario',session('usuario'))->with('clienteRegistrado', 'Se ha agregado el cliente correctamente');
-    }
-
-    public function clienteModificado ()
-    {
-        return view('cliente')->with('usuario',session('usuario'))->with('clienteModificado', 'Se ha modificado el cliente correctamente');
+        return view('producto')->with('usuario',session('usuario'));
     }
 }

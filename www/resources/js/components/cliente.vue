@@ -212,13 +212,13 @@ export default {
     insertar()
     {
       axios
-      .get('../procesarClientes/1/'+JSON.stringify({nombres: this.nombres,
+      .post('../procesarClientes/1/',{nombres: this.nombres,
                                     apellidos: this.apellidos,
                                     mail: this.mail,
                                     password: this.password,
                                     direccion: this.direccion,
                                     telefono: this.telefono,
-                                    })) //Filtros
+                                    }) //Filtros
       .then(response => (this.clientes = response.data))
       this.limipiar();
       swal("El cliente ha sido agregado", "", "success");
@@ -226,14 +226,14 @@ export default {
     actualizar()
     {
       axios
-      .get('../procesarClientes/2/'+JSON.stringify({id: this.id,
+      .post('../procesarClientes/2/',{id: this.id,
                                     nombres: this.nombres,
                                     apellidos: this.apellidos,
                                     mail: this.mail,
                                     password: this.password,
                                     direccion: this.direccion,
                                     telefono: this.telefono,
-                                    })) //Filtros
+                                    })
       .then(response => (this.clientes = response.data))
       this.limipiar();
       swal("El cliente ha sido actualizado", "", "success");
