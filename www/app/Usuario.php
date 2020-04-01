@@ -11,9 +11,9 @@ class Usuario
     private $password;
     private $direccion;
     private $telefono;
-    private $idafiliado=0;
-    private $rango=0;
-    private $sueldo=0;
+    private $idafiliado;
+    private $rango;
+    private $sueldo;
 
     public function setCliente($array)
     {
@@ -24,6 +24,9 @@ class Usuario
         $this->password=$array->password;
         $this->direccion=$array->direccion;
         $this->telefono=$array->telefono;
+        $this->idafiliado=0;
+        $this->rango=0;
+        $this->sueldo=0;
     }
 
     public function setEmpleado($array)

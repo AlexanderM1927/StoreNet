@@ -27,8 +27,10 @@
         <h4>Carrito</h4>
       <ul class="productosCarrito">
           <li v-for="producto in myProductos" class="productoCarrito">
-            <img v-bind:src="producto['imgurl']" class="cuadritoImg">
-            <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            <div v-if="producto['cantidad']===0">
+              <img v-bind:src="producto['imgurl']" class="cuadritoImg">
+              <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            </div>
           </li>
         </ul>
       </center>
@@ -53,6 +55,7 @@
 
 <script>
 import $ from 'jquery'
+import swal from 'sweetalert'
 
 export default {
   name: 'comprar',
@@ -68,20 +71,20 @@ export default {
   mounted(){
     //axios
     axios
-      .get('../procesarProductos/0/0')
+      .get('../procesarProductos/0/0/0')
       .then(response => (this.productos = response.data))
   },
   methods: {
     buscar(){
       axios
-      .get('../procesarProductos/0/'+this.buscador)
+      .get('../procesarProductos/0/nombres/'+this.buscador)
       .then(response => (this.productos = response.data))
     },
     agregar(item){
       this.myProductos.push(item)
       if(this.aviso==0)
       {
-        alert('La cantidad es equivalente a la cantidad de veces que selecciones el producto')
+        swal("Cantidad", "La cantidad de elementos equivale a las veces que lo seleccionas", "info");
         this.aviso++
       }
     },
@@ -93,7 +96,7 @@ export default {
     },
     realizarCompra()
     {
-      alert('x');
+      swal('x');
     }
   }
 };

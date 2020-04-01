@@ -25,7 +25,7 @@ class LoginController extends Controller
             foreach($arrayEmpleados as $empleado)
             {
                 $usuario = new Usuario();
-                $usuario->setCliente($empleado);
+                $usuario->setEmpleado($empleado);
                 session(['usuario' => $usuario]);
                 return view('home')->with('usuario',$usuario);
             }
