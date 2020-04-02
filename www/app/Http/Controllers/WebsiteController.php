@@ -14,16 +14,34 @@ class WebsiteController extends Controller
      **/
     public function index ()
     {
-        return view('index');
+        if(empty(session('usuario')))
+            return view('index');
+        else
+            return view('home')->with('usuario',session('usuario'));
     }
 
     public function home ()
     {
-        return view('home');
+        return view('home')->with('usuario',session('usuario'));
     }
 
     public function comprar ()
     {
-        return view('comprar');
+        return view('comprar')->with('usuario',session('usuario'));
+    }
+
+    public function empleado ()
+    {
+        return view('empleado')->with('usuario',session('usuario'));
+    }
+
+    public function cliente ()
+    {
+        return view('cliente')->with('usuario',session('usuario'));
+    }
+
+    public function producto ()
+    {
+        return view('producto')->with('usuario',session('usuario'));
     }
 }

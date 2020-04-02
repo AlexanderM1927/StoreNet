@@ -8,6 +8,7 @@
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
     <?php
@@ -22,7 +23,7 @@
         ?>
         <div class="container">
             <div id="v-app">
-                <!--COMPONENTE-->
+                <cliente></cliente>
             </div>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <center><h1 class="title">Tienda online</h1></center>
+    <center><div class="uk-margin">
+                <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: cart"></span>
+                <input class="uk-input field" type="text" v-on:keyup="buscar" v-model="buscador" placeholder="¿Buscas algo en especial?">
+                </div>
+                </div></center>
     <ul class="productos">
       <li class="producto" v-for="producto in productos">
         <a href="#" @click="agregar(producto)">
@@ -9,10 +14,10 @@
           Agregar al carrito
         </div>
         <div class="producto-i">
-          <img v-bind:src="producto['imgUrl']"><br>
+          <img v-bind:src="producto['imgurl']"><br>
         </div>
-        <b>{{producto['name']}}</b><br>
-        <span class="precio">${{producto['precio']}}</span>
+        <b>{{producto['nombre']}}</b><br>
+        <span class="precio">${{producto['precioventa']}}</span>
         </center>
         </a>
       </li>
@@ -22,8 +27,10 @@
         <h4>Carrito</h4>
       <ul class="productosCarrito">
           <li v-for="producto in myProductos" class="productoCarrito">
-            <img v-bind:src="producto['imgUrl']" class="cuadritoImg">
-            <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            <div v-if="producto['cantidad']===0">
+              <img v-bind:src="producto['imgurl']" class="cuadritoImg">
+              <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
+            </div>
           </li>
         </ul>
       </center>
@@ -48,37 +55,36 @@
 
 <script>
 import $ from 'jquery'
+import swal from 'sweetalert'
 
 export default {
   name: 'comprar',
   data() {
     return {
       aviso: 0,
-      productos: [
-        { name: 'Escoba', imgUrl: 'img/bg2.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/background.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg3.jpg', precio: '1500'},
-        { name: 'Escoba', imgUrl: 'img/bg2.jpg', precio: '1500'}
-      ],
-      myProductos: []
+      productos: [],
+      myProductos: [],
+      buscador: '',
+      datos: 'adasd'
     }
   },
+  mounted(){
+    //axios
+    axios
+      .get('../procesarProductos/0/0/0')
+      .then(response => (this.productos = response.data))
+  },
   methods: {
+    buscar(){
+      axios
+      .get('../procesarProductos/0/nombres/'+this.buscador)
+      .then(response => (this.productos = response.data))
+    },
     agregar(item){
       this.myProductos.push(item)
       if(this.aviso==0)
       {
-        alert('La cantidad es equivalente a la cantidad de veces que selecciones el producto')
+        swal("Cantidad", "La cantidad de elementos equivale a las veces que lo seleccionas", "info");
         this.aviso++
       }
     },
@@ -90,7 +96,7 @@ export default {
     },
     realizarCompra()
     {
-      alert('x');
+      swal('x');
     }
   }
 };

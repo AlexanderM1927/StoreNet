@@ -1,0 +1,10 @@
+-> Finalizar compras
+	-> Mis compras
+	-> Mis pedidos
+		-> Devoluciones
+			-> Inventario
+				-> Estadisticas
+					->Liquidar nominas
+						->Gestionar afiliados
+							->Mis ajustes
+								->Mi nomina

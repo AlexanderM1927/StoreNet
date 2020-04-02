@@ -8,6 +8,7 @@
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
     <?php
@@ -15,16 +16,17 @@
             {
         ?>
         @include('elements.navbar', ['usuario' => $usuario])
+        
+        <div class="container">
+            <div id="v-app">
+                <producto id="empleado" idafiliado="<?=$usuario->getIdAfiliado()?>"></producto>
+            </div>
+        </div>
         <?php
             }else{
                 echo '<script>window.location.href = "/";</script>';
             }
         ?>
-        <div class="container">
-            <div id="v-app">
-                <!--COMPONENTE-->
-            </div>
-        </div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

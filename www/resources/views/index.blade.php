@@ -11,23 +11,35 @@
     </head>
     <body>
         <div class="loginForm">
+        <?php
+        if(!empty($errorLogin))
+        {
+            ?>
+            <div class="uk-alert-danger" style="margin-bottom:-40px;" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p><?=$errorLogin?></p>
+            </div>
+            <?php
+        }
+        ?>
         <h1 class="title">Log-in</h1>
         <div class="content">
-           <form>
+           <form action="" method="POST">
+                @csrf
                <center>
                 <div class="uk-margin">
                 <div class="uk-inline">
                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                <input class="uk-input field" type="mail" placeholder="Correo eléctronico" required>
+                <input class="uk-input field" type="mail" name="mail" placeholder="Correo eléctronico" required>
                 </div>
                 </div>
                 <div class="uk-margin">
                 <div class="uk-inline">
                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                <input class="uk-input field" type="password" placeholder="Clave" required>
+                <input class="uk-input field" name="password" type="password" placeholder="Clave" required>
                 </div>
                 </div>
-                <button class="uk-button uk-button-default" onclick="window.location.href='/home'">Ingresar</button><br><br>
+                <button class="uk-button uk-button-default">Ingresar</button><br><br>
                 <a href="#modal-center" uk-toggle>¿No tienes cuenta? lee esto</a>
                 </center>
            </form> 
