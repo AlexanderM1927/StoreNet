@@ -38,10 +38,8 @@ public class LoginUserGI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jlbRegistar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -101,27 +99,11 @@ public class LoginUserGI extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("BIENVENIDO");
 
-        jlbRegistar.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jlbRegistar.setForeground(new java.awt.Color(0, 0, 51));
-        jlbRegistar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbRegistar.setText("Registrate");
-        jlbRegistar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlbRegistar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlbRegistarMouseClicked(evt);
-            }
-        });
-
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Usuario.png"))); // NOI18N
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Contraseña.png"))); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("¿No tienes una cuenta?");
 
         jLabel5.setBackground(new java.awt.Color(187, 187, 187));
         jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
@@ -177,12 +159,7 @@ public class LoginUserGI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(1, 1, 1)
-                                .addComponent(jlbRegistar)))
+                        .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(112, 112, 112))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,11 +187,7 @@ public class LoginUserGI extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                .addGap(94, 94, 94))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -240,18 +213,26 @@ public class LoginUserGI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusGained
-        if(tfUsuario.getText().equalsIgnoreCase("Ingrese un usuario...")){
-            tfUsuario.setText("");
-        }
-    }//GEN-LAST:event_tfUsuarioFocusGained
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Exit YesNo = new Exit();
+        YesNo.setVisible(true);
 
-    private void tfUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusLost
-        if(tfUsuario.getText().equalsIgnoreCase(""))
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        this.setState(LoginUserGI.ICONIFIED);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btIngresarActionPerformed
+
+    private void tfContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfContrasenaFocusLost
+        if(tfContrasena.getText().equalsIgnoreCase(""))
         {
-            tfUsuario.setText("Ingrese un usuario...");
+            tfContrasena.setText("holacomoestas");
         }
-    }//GEN-LAST:event_tfUsuarioFocusLost
+    }//GEN-LAST:event_tfContrasenaFocusLost
 
     private void tfContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfContrasenaFocusGained
         if(tfContrasena.getText().equalsIgnoreCase("holacomoestas"))
@@ -260,12 +241,18 @@ public class LoginUserGI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfContrasenaFocusGained
 
-    private void tfContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfContrasenaFocusLost
-        if(tfContrasena.getText().equalsIgnoreCase(""))
+    private void tfUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusLost
+        if(tfUsuario.getText().equalsIgnoreCase(""))
         {
-            tfContrasena.setText("holacomoestas");
+            tfUsuario.setText("Ingrese un usuario...");
         }
-    }//GEN-LAST:event_tfContrasenaFocusLost
+    }//GEN-LAST:event_tfUsuarioFocusLost
+
+    private void tfUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusGained
+        if(tfUsuario.getText().equalsIgnoreCase("Ingrese un usuario...")){
+            tfUsuario.setText("");
+        }
+    }//GEN-LAST:event_tfUsuarioFocusGained
     
     /*public void gestionMensajes(String mensaje, String titulo, int icono){
          JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
@@ -275,24 +262,6 @@ public class LoginUserGI extends javax.swing.JFrame {
     
     
      
-    private void jlbRegistarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbRegistarMouseClicked
-
-    }//GEN-LAST:event_jlbRegistarMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        this.setState(LoginUserGI.ICONIFIED);
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Exit YesNo = new Exit();
-        YesNo.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btIngresarActionPerformed
-
     public String getUsuario(){
         return tfUsuario.getText().trim();
     }
@@ -308,11 +277,9 @@ public class LoginUserGI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel jlbRegistar;
     private javax.swing.JPasswordField tfContrasena;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables

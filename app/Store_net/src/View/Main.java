@@ -16,12 +16,14 @@ public class Main {
     
     public Main(){
         
-        login= new  LoginUserGI();
+        /*login= new  LoginUserGI();
         cliente = new ClienteDAO();
         emp= new EmpleadoDAO();
         controllogin= new ControladorLogin(login, cliente, emp, this);
         
-        login.setVisible(true);
+        login.setVisible(true);*/
+        Invoice factura = new Invoice();
+        factura.setVisible(true);
     }
 
     public static void main(String[] args) {
