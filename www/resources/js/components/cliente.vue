@@ -172,7 +172,7 @@ export default {
       .then(response => (this.clientes = response.data))
   },
   methods: {
-    limipiar()
+    limpiar()
     {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
@@ -186,9 +186,16 @@ export default {
     },
     buscar()
     {
-      axios
-      .get('../procesarClientes/0/'+this.tipo+'/'+this.datos) //Filtros
-      .then(response => (this.clientes = response.data))
+      if(this.datos=='')
+      {
+        axios
+          .get('../procesarClientes/0')
+          .then(response => (this.clientes = response.data))
+      }else{
+        axios
+          .get('../procesarClientes/0/'+this.tipo+'/'+this.datos) //Filtros
+          .then(response => (this.clientes = response.data))
+      }
     },
     modificar(cliente)
     {
@@ -205,6 +212,7 @@ export default {
     },
     agregar()
     {
+      this.limpiar()
       $('#agregarCliente').show()
       $('#modificarCliente').hide()
       this.metodo = 'Agregar cliente'
@@ -220,7 +228,7 @@ export default {
                                     telefono: this.telefono,
                                     }) //Filtros
       .then(response => (this.clientes = response.data))
-      this.limipiar();
+      this.limpiar();
       swal("El cliente ha sido agregado", "", "success");
     },
     actualizar()
@@ -235,7 +243,7 @@ export default {
                                     telefono: this.telefono,
                                     })
       .then(response => (this.clientes = response.data))
-      this.limipiar();
+      this.limpiar();
       swal("El cliente ha sido actualizado", "", "success");
     },
     eliminar(cliente)

@@ -31,19 +31,21 @@
         <li class="uk-parent">
             <a href="#"><span class="uk-margin-small-right" uk-icon="icon: star"></span>Supervisión</a>
             <ul class="uk-nav-sub">
-                <li><a href="#">Devoluciones</a></li>
                 <li><a href="cliente">Gestionar cliente</a></li>
+                <li><a href="tarjetas">Gestionar tarjetas</a></li>
+                <li><a href="#">Devoluciones</a></li>
             </ul>
         </li>
         <li class="uk-parent">
             <a href="#"><span class="uk-margin-small-right" uk-icon="icon: cart"></span>Tienda</a>
             <ul class="uk-nav-sub">
                 <li><a href="comprar">Comprar</a></li>
-                <li><a href="#">Mis compras</a></li>
+                <li><a href="compras">Mis compras</a></li>
                 <li><a href="#">Pedidos</a></li>
             </ul>
         </li>
         <li class="uk-nav-header">Area personal</li>
+        <li><a href="tarjeta"><span class="uk-margin-small-right" uk-icon="icon: credit-card"></span> Mi tarjeta</a></li>
         <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Mis ajustes</a></li>
         <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Mi nomina</a></li>
         <li class="uk-nav-divider"></li>

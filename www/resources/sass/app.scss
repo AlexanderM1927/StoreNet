@@ -219,7 +219,6 @@ html, body {
 {
     background:#DF7401;
     color:#FFF;
-    border-bottom: 2px solid #000;
 }
 
 .subtitulo-seccion
@@ -282,4 +281,43 @@ html, body {
 
 #modificarCliente{
     display:none;
+}
+
+.results{
+    padding: 5px;
+    background: #088A08;
+    color: #FFF;
+    display: none;
+    float: right;
+}
+
+.tarjetaInformacion{
+    padding:20px;
+}
+
+.numeroTarjeta{
+    position: absolute;
+    top: 50%;
+    left: 46.7%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #FFF;
+}
+
+.nombreTarjeta{
+    position: absolute;
+    top: 77%;
+    left: 46.7%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #FFF;
+}
+
+.carritoCompra {
+    width:auto;
+    height:200px;
+    overflow:auto;
+    border-radius: 0px 0px 8px 8px;
+    list-style: none;
+    background:#f0f0f0;
 }

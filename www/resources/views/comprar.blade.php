@@ -22,7 +22,7 @@
         ?>
         <div class="container">
             <div id="v-app">
-                <comprar></comprar>
+                <comprar idcliente=<?=$usuario->getId()?>></comprar>
             </div>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>

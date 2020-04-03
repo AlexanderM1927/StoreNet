@@ -72,4 +72,8 @@ class Usuario
         return $rango;
     }
 
+    public function setIdAfiliado($id){
+        $this->idafiliado = $id;
+    }
+
 }

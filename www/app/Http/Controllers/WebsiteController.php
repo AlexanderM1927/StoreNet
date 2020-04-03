@@ -44,4 +44,19 @@ class WebsiteController extends Controller
     {
         return view('producto')->with('usuario',session('usuario'));
     }
+
+    public function tarjeta ()
+    {
+        return view('tarjeta')->with('usuario',session('usuario'));
+    }
+
+    public function tarjetas ()
+    {
+        return view('tarjetas')->with('usuario',session('usuario'));
+    }
+
+    public function compras ()
+    {
+        return view('compras')->with('usuario',session('usuario'));
+    }
 }

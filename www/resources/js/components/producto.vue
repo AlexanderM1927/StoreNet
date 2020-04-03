@@ -146,7 +146,7 @@ export default {
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         metodo: 'Agregar producto',
         id: '',
-        cantidad: '',
+        cantidad: 0,
         precioventa: 0,
         precioproveedor: 0,
         imgurl: ''
@@ -159,22 +159,29 @@ export default {
       .then(response => (this.productos = response.data))
   },
   methods: {
-    limipiar()
+    limpiar()
     {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
       this.nombre= ""
-      this.cantidad= ""
-      this.precioventa= ""
-      this.precioproveedor = ""
+      this.cantidad= 0
+      this.precioventa= 0
+      this.precioproveedor = 0
       this.imgurl = ""
       this.metodo = 'Agregar producto'
     },
     buscar()
     {
-      axios
-      .get('../procesarProductos/0/'+this.tipo+'/'+this.datos+'/'+this.idafiliado) //Filtros
-      .then(response => (this.productos = response.data))
+      if(this.datos==''){
+        axios
+          .get('../procesarProductos/0/0/0/'+this.idafiliado)
+          .then(response => (this.productos = response.data))
+      }else{
+        axios
+          .get('../procesarProductos/0/'+this.tipo+'/'+this.datos+'/'+this.idafiliado) //Filtros
+          .then(response => (this.productos = response.data))
+      }
+      
     },
     modificar(producto)
     {
@@ -190,6 +197,7 @@ export default {
     },
     agregar()
     {
+      this.limpiar()
       $('#agregarProducto').show()
       $('#modificarProducto').hide()
       this.metodo = 'Agregar producto'
@@ -206,7 +214,7 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => (this.productos = response.data))
-      this.limipiar();
+      this.limpiar()
       swal("El producto ha sido agregado", "", "success");
     },
     actualizar()
@@ -221,7 +229,7 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => (this.productos = response.data))
-      this.limipiar();
+      this.limpiar()
       swal("El producto ha sido actualizado", "", "success");
     },
     eliminar(producto)
