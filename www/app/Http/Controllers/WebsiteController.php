@@ -59,4 +59,19 @@ class WebsiteController extends Controller
     {
         return view('compras')->with('usuario',session('usuario'));
     }
+
+    public function pedidos ()
+    {
+        return view('pedidos')->with('usuario',session('usuario'));
+    }
+
+    public function gpedidos ()
+    {
+        return view('gpedidos')->with('usuario',session('usuario'));
+    }
+
+    public function devoluciones ()
+    {
+        return view('devoluciones')->with('usuario',session('usuario'));
+    }
 }

@@ -26,6 +26,8 @@ class Cliente
     {
         DB::insert('INSERT INTO cliente (nombres, apellidos, mail, password, direccion, telefono) values (?, ?, ?, ?, ?, ?)', [ $nombres,
          $apellidos, $mail, $password, $direccion, $telefono]);
+        $idcliente = DB::getPdo()->lastInsertId();
+        DB::insert('INSERT INTO tarjeta (idcliente,saldo,puntos) values (?, 0, 0)', [ $idcliente ]);
     }
 
     public function modificarCliente($id,$nombres,$apellidos,$mail,$password,$direccion,$telefono)

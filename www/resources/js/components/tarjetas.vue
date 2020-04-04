@@ -112,9 +112,9 @@ export default {
     },
     modificar(tarjeta)
     {
+      this.saldo = 0
       this.id = tarjeta['id']
       this.idcliente= tarjeta['idcliente']
-      this.saldo= tarjeta['saldo']
       this.puntos= tarjeta['puntos']
       $('#agregarTarjeta').hide()
       $('#modificarTarjeta').show()

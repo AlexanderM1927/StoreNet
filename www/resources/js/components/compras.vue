@@ -2,6 +2,32 @@
   <div>
     <h1 class="titulo-seccion">Tus compras</h1>
     Haz seguimiento a tus compras dentro de la aplicación, o en los almacenes afiliados.
+    <center>
+        <table>
+            <tr>
+                <td>Desde:</td>
+                <td>Hasta:</td>
+            </tr>
+            <tr>
+                <td>
+                <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                <v-date-picker :mode="mode" :popover="visibility" v-model="selectedDate" color="blue" is-dark/>
+                </div>
+                </td>
+                <td>
+                <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                <v-date-picker :mode="mode1" :popover="visibility1" v-model="selectedDate1" color="blue" is-dark/>
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><center><button class="uk-button uk-button-primary" @click="filtrar">Filtrar</button></center></td>
+            </tr>
+        </table>
+    </center>
+    <hr>
     <table class="uk-table uk-table-small uk-table-divider">
         <thead>
             <tr>
@@ -61,6 +87,7 @@
 <script>
 import $ from 'jquery'
 import swal from 'sweetalert'
+import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 
 export default {
     name: 'compras',
@@ -70,11 +97,27 @@ export default {
             productos: [],
             idfactura: 0,
             nombre: '',
-            preciototal: 0
+            preciototal: 0,
+            mode: 'single',
+            selectedDate: null,
+            visibility: {
+            visibility: 'click'
+            },
+            mode1: 'single',
+            selectedDate1: null,
+            visibility1: {
+            visibility: 'click'
+            } 
         }
+    },
+    components: {
+    'v-date-picker': DatePicker
     },
     props: ['idcliente'],
     mounted(){
+      $("input[data-v-64ee1ddd]").removeClass()
+      $("input[data-v-64ee1ddd]").addClass('uk-input gk-shadow-input')
+      $("input[data-v-64ee1ddd]").css("padding-left","35px")
     //axios
     axios
       .get('../procesarCompras/0/'+this.idcliente)
@@ -93,12 +136,20 @@ export default {
         async detalles(factura,idfactura,idafiliado)
         {
             await axios
-                .get('../procesarCompras/0/0/'+idfactura+'/'+idafiliado)
+                .get('../procesarCompras/2/0/'+idfactura+'/'+idafiliado)
                 .then(response => (this.productos=response.data))
             
             this.idfactura = idfactura
             this.nombre = factura['afiliado']
             this.calcularPT(this.productos)
+        },
+        async filtrar()
+        {
+          await axios
+                .get('../procesarCompras/0/'+this.idcliente+'/'+JSON.stringify({
+                    desde: this.selectedDate,
+                    hasta: this.selectedDate1}))
+                .then(response => (this.compras=response.data))
         }
     }
 }

@@ -8,6 +8,7 @@ use App\Cliente;
 use App\Empleado;
 use App\Tarjeta;
 use App\Compra;
+use App\Pedido;
 
 class ActionController extends Controller
 {
@@ -162,7 +163,7 @@ class ActionController extends Controller
             $saldo = $_POST['saldo'];
             $tarjeta->modificarTarjeta($id,$saldo);
             return $tarjeta->listarTarjetas();
-        }else if($type==e)
+        }else if($type==3)
         {
             $id = $idcliente;
             $tarjeta->eliminarTarjeta($id);
@@ -178,7 +179,10 @@ class ActionController extends Controller
         if($type == 0 && $idfactura=='0' && $idafiliado == '0')
         {
             return $compra->listarCompras($idcliente);
-        }else if($type == 0 && $idfactura != '0' && $idafiliado != '0')
+        }else if($type == 0 && $idfactura != '0')
+        {
+            return $compra->listarCompras_fecha($idcliente,$idfactura);
+        }else if($type == 2 && $idfactura != '0' && $idafiliado != '0')
         {
             return $compra->listarCompras_productos($idfactura,$idafiliado);
         }
@@ -199,5 +203,48 @@ class ActionController extends Controller
 
             return $mensaje;
         }
+    }
+
+    public function procesaPedidos($type,$idcliente='0',$fecha='0',$estado='0',$idafiliado='0')
+    {
+        $pedido = new Pedido();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        if($type == 0 && $fecha == '0')
+        {
+            return $pedido->listarPedidos($idcliente);
+        }else if($type == 1)
+        {
+            return $pedido->listarPedidos_fecha($idcliente,$fecha,$estado,$idafiliado);
+        }else if($type == 2)
+        {
+            return $pedido->listarPedidos_estado($idcliente,$estado,$idafiliado);
+        }else if($type == 3)
+        {
+            $id = $_POST['id'];
+            $estado = $_POST['estado'];
+            $idafiliado = $_POST['idafiliado'];
+            $pedido->modificarEstado($id,$idafiliado,$estado);
+            return $pedido->listarPedidos_estado($idcliente,4,$idafiliado);
+        }
+    }
+
+    public function procesaDevoluciones()
+    {
+        $compra = new Compra();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+
+        $idafiliado = $_POST['idafiliado'];
+        $idfactura = $_POST['idfactura'];
+        
+        $estado = $compra->anularFactura($idafiliado,$idfactura);
+        if($estado == 0)
+        {
+            $mensaje = response()->json(['texto' => 'La factura no fue anulada', 'tipo' => 'error']);
+        }else{
+            $mensaje = response()->json(['texto' => 'La factura ha sido anulada con éxito', 'tipo' => 'success']);
+        }
+
+        return $mensaje;
+        
     }
 }

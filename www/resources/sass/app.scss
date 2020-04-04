@@ -219,6 +219,7 @@ html, body {
 {
     background:#DF7401;
     color:#FFF;
+    padding-left: 10px;
 }
 
 .subtitulo-seccion
@@ -320,4 +321,43 @@ html, body {
     border-radius: 0px 0px 8px 8px;
     list-style: none;
     background:#f0f0f0;
+}
+
+.devoluciones{
+    width:100%;
+    height:170px;
+}
+
+.devoluciones .izq{
+    float: left;
+    background: #1e87f0;
+    width:48%;
+    color:#FFF;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 150px;
+    vertical-align: middle;
+    text-align:center;
+    line-height: 120px;
+    font-size:25px;
+}
+
+.devoluciones .der{
+    float: right;
+    width: 48%;
+    background: #1e87f0;
+    color:#FFF;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 150px;
+    vertical-align: middle;
+    text-align:center;
+    line-height: 120px;
+    font-size:25px;
+}
+
+.contenidoD{
+    width:70%;
+    background: #f0f0f0;
+    padding:20px;
 }

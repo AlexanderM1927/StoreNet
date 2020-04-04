@@ -1,8 +1,12 @@
--> Mis pedidos
-	-> Devoluciones
-		-> Inventario
-			-> Estadisticas
-				->Liquidar nominas
-					->Gestionar afiliados
-						->Mis ajustes
-							->Mi nomina
+V1)
+-> Inventario
+	-> Estadisticas
+		->Liquidar nominas
+			->Gestionar afiliados
+				->Mis ajustes
+					->Mi nomina
+V2)
+->Gestión de reportes
+	->Redimir puntos <----
+		->Crear usuario 
+			->Subidor de imagenes <---

@@ -15,16 +15,16 @@
             {
         ?>
         @include('elements.navbar', ['usuario' => $usuario])
-        <?php
-            }else{
-                echo '<script>window.location.href = "/";</script>';
-            }
-        ?>
         <div class="container">
             <div id="v-app">
                 <comprar idcliente=<?=$usuario->getId()?>></comprar>
             </div>
         </div>
+        <?php
+            }else{
+                echo '<script>window.location.href = "/";</script>';
+            }
+        ?>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
