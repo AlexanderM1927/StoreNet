@@ -16,12 +16,12 @@
         <b><?=$usuario->getNombres()?></b><br>
         <b><?=$usuario->getNombreRango()?></b>
         </center>
-        <hr>
         <?php if($usuario->getRango()>3){ ?>
+        <hr>
         <li class="uk-parent">
             <a href="#"><span class="uk-margin-small-right" uk-icon="icon: world"></span>Ajustes generales</a>
             <ul class="uk-nav-sub">
-                <li><a href="afiliados">Agregar almacen</a></li>
+                <li><a href="afiliados">Gestionar almacenes</a></li>
             </ul>
         </li>
         <?php } ?>

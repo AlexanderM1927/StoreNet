@@ -8,16 +8,16 @@ class Empleado
 {
 
     public function listarEmpleados($idafiliado){
-        $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE idafiliado = $idafiliado LIMIT 10");
+        $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE idafiliado = $idafiliado AND rango<4 LIMIT 10");
         return json_encode($arrayEmpleados);
     }
 
     public function listarEmpleados_parametro($idafiliado,$param,$data){
         if($param == 'nombres' || $param == 'apellidos'){
-            $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE CONCAT(nombres,' ',apellidos) LIKE '%".$data."%' AND idafiliado = $idafiliado");
+            $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE CONCAT(nombres,' ',apellidos) LIKE '%".$data."%' AND idafiliado = $idafiliado AND rango<4");
             return json_encode($arrayEmpleados);
         }else{
-            $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE ".$param." LIKE '%".$data."%' AND idafiliado = $idafiliado LIMIT 20");
+            $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE ".$param." LIKE '%".$data."%' AND idafiliado = $idafiliado AND rango<4 LIMIT 20");
             return json_encode($arrayEmpleados);
         }
     }
