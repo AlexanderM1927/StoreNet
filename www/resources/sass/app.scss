@@ -392,3 +392,33 @@ html, body {
 .informe{
     padding:20px;
 }
+
+.reportes{
+    position:absolute;
+    right:0;
+    bottom:0;
+    padding:10px;
+    background:#DF7401;
+    color:#FFF;
+    width:20%;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+#list-reportes{
+    display:none;
+    background:#FFF;
+    padding:5px;
+    color:#000;
+    height:300px;
+    overflow: auto;
+}
+
+#list-reportes li{
+    list-style:none;
+}
+
+#list-reportes li ul:hover{
+    background:#000;
+    color:#FFF;
+}

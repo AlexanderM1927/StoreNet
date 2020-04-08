@@ -3,7 +3,7 @@
     <h1 class="titulo-seccion">Estadísticas</h1>
     <div class="filtrosEstadisticas">
         <center>
-            <h2 class="titulo-seccion">Ver facturas</h2>
+            <h2 class="titulo-seccion">Facturas y balances</h2>
             <table>
                 <tr>
                     <td>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>
                         <center>
-                            <button class="uk-button uk-button-primary" @click="balance()">Exportar balance</button>
+                            <button class="uk-button uk-button-primary" @click="balance()">Ver balance</button>
                         </center>
                     </td>
                 </tr>

@@ -72,6 +72,41 @@
     </ul>
 </div>
 <br><br>
+<div class="reportes">
+<div onclick="report()"><span class="uk-margin-small-right" uk-icon="icon: list"></span>Reportes</div>
+<div id="list-reportes" class="barra">
+<li>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+<ul>Prueba</ul>
+</li>
+</div>
+</div>
+<script>
+    let activo=0
+function report()
+{
+    if(activo===0)
+    {
+        document.getElementById('list-reportes').style.display="block"
+        activo=1
+    }else{
+        document.getElementById('list-reportes').style.display="none"
+        activo=0
+    }
+}
+</script>
 <?php
     }
 ?>

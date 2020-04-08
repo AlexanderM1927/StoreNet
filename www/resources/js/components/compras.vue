@@ -59,6 +59,9 @@
         ID FACTURA:{{idfactura}}
         </div>
         <center>
+            <barcode v-bind:value="idfactura" format="CODE39" width="2" height="30">
+          Error generando codigo de barras
+        </barcode>
         <div class="carritoCompra barra">
           <table>
             <tr>
@@ -93,6 +96,7 @@
 import $ from 'jquery'
 import swal from 'sweetalert'
 import DatePicker from 'v-calendar/lib/components/date-picker.umd'
+import VueBarcode from 'vue-barcode';
 
 export default {
     name: 'compras',
@@ -116,7 +120,8 @@ export default {
         }
     },
     components: {
-    'v-date-picker': DatePicker
+    'v-date-picker': DatePicker,
+    'barcode': VueBarcode
     },
     props: ['idcliente'],
     mounted(){

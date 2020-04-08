@@ -30,6 +30,9 @@
         ID FACTURA:{{idfactura}}
         </div>
         <center>
+            <barcode v-bind:value="idfactura" format="CODE39" width="3" height="50">
+          Error generando codigo de barras
+          </barcode>
         <div class="carritoCompra barra">
           <table>
             <tr>
@@ -63,6 +66,7 @@
 <script>
 import $ from 'jquery'
 import swal from 'sweetalert'
+import VueBarcode from 'vue-barcode';
 
 export default {
     name: 'visorfacturas',
@@ -88,6 +92,9 @@ export default {
 
       localStorage.removeItem('desde')
       localStorage.removeItem('hasta')
+    },
+    components: {
+    'barcode': VueBarcode
     },
     methods: {
         calcularPT(arreglo)

@@ -5,4 +5,4 @@ V2)
 =fix iniciar sesión afiliado inactivo
 ->Gestión de reportes
 	->Redimir puntos <----
-		->Subidor de imagenes <---
+		->Subidor de imagenes in Productos <---
