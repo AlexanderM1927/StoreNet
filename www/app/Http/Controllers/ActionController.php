@@ -9,6 +9,10 @@ use App\Empleado;
 use App\Tarjeta;
 use App\Compra;
 use App\Pedido;
+use App\Estadistica;
+use App\Afiliado;
+use App\Usuario;
+use App\Visor;
 
 class ActionController extends Controller
 {
@@ -19,6 +23,15 @@ class ActionController extends Controller
      * @author 
      **/
 
+
+    public function administrador()
+    {
+        $usuario = session('usuario');
+        $usuario->setIdAfiliado($_POST['id']);
+        session(['usuario' => $usuario]);
+        return redirect('/');
+    }
+     
     public function procesaProductos($type,$params = '0',$data = '0',$idafiliado='0')
     {
         $producto = new Producto();
@@ -55,6 +68,9 @@ class ActionController extends Controller
             $id = $params;
             $producto->eliminarProducto($id,$idafiliado);
             return $producto->listarProductos($idafiliado);
+        }else if($type==4)
+        {
+            return $producto->listarInventario($params,$idafiliado);
         }
     }
 
@@ -246,5 +262,101 @@ class ActionController extends Controller
 
         return $mensaje;
         
+    }
+
+    public function procesaEstadisticas($type,$idafiliado,$fechas='0')
+    {
+        $estadistica = new Estadistica();
+        if($type==1)
+        {
+            return $estadistica->listarVentasMeses_data($idafiliado);
+        }else if($type==2)
+        {
+            return $estadistica->listarVentasMeses_head($idafiliado);
+        }else if($type==3)
+        {
+            return $estadistica->listarProductosVendidos_data($idafiliado,$fechas);
+        }else if($type==4)
+        {
+            return $estadistica->listarProductosVendidos_head($idafiliado,$fechas);
+        }
+    }
+
+    public function procesaAfiliados($type,$idafiliado="0")
+    {
+        $afiliado = new Afiliado();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+
+        if($type==0)
+        {
+            if($idafiliado=="0")
+            {
+                return $afiliado->listarAfiliados();
+            }else{
+                return $afiliado->listarAfiliados_nombre($idafiliado);
+            }
+        }else if($type==1)
+        {
+            $nombre = $_POST['nombre'];
+            $estado = $_POST['estado'];
+
+            $afiliado->registrarAfiliado($nombre,$estado);
+            return $afiliado->listarAfiliados();
+        }else if($type==2)
+        {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $estado = $_POST['estado'];
+
+            $afiliado->modificarAfiliado($id,$nombre,$estado);
+            return $afiliado->listarAfiliados();
+        }else if($type==3)
+        {
+            $afiliado->eliminarAfiliado($idafiliado);
+            return $afiliado->listarAfiliados();
+        }
+    }
+
+    public function procesaAjustes($type,$idafiliado="",$rango="",$idusuario="")
+    {
+        $cliente = new Cliente();
+        $empleado = new Empleado();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+
+        if($type==0)
+        {
+            if($rango>0)
+            {
+                return $empleado->getEmpleado($idusuario,$idafiliado);
+            }else{
+                return $cliente->getCliente($idusuario);
+            }
+        }else if($type==1)
+        {
+            $id = $_POST['id'];
+            $rango = $_POST['rango'];
+            $nombres = $_POST['nombres'];
+            $apellidos = $_POST['apellidos'];
+            $direccion = $_POST['direccion'];
+            $telefono = $_POST['telefono'];
+            if($rango>0)
+            {
+                $idafiliado = $_POST['idafiliado'];
+                $empleado->setEmpleado($id,$idafiliado,$nombres,$apellidos,$direccion,$telefono);
+                return $empleado->getEmpleado($id,$idafiliado);
+            }else{
+                $cliente->setCliente($id,$nombres,$apellidos,$direccion,$telefono);
+                return $cliente->getCliente($idusuario);
+            }
+        }
+    }
+
+    public function procesaVisor($type,$idafiliado,$fecha="")
+    {
+        $visor = new Visor();
+        if($type == 0)
+        {
+            return $visor->getFacturas($idafiliado,$fecha);
+        }
     }
 }

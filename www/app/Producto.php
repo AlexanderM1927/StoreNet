@@ -39,6 +39,122 @@ class Producto
     {
         DB::delete('DELETE FROM producto WHERE id = ? AND idafiliado = ?', [ $id,$idafiliado ]);
     }
+
+    public function listarInventario($filtro,$idafiliado)
+    {
+        $productos = array();
+        if($filtro==0)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id");
+        }else if($filtro==1)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY cantidad ASC");
+        }else if($filtro==2)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY cantidad DESC");
+        }else if($filtro==3)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY utilidad ASC");
+        }else if($filtro==4)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY utilidad DESC");
+        }else if($filtro==5)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY precioventa ASC");
+        }else if($filtro==6)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY precioventa DESC");
+        }else if($filtro==7)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY ventas ASC");
+        }else if($filtro==8)
+        {
+            $arrayProductos = DB::select("SELECT p.id as id,
+            p.nombre as nombre,
+            p.precioproveedor as precioproveedor,
+            p.precioventa as precioventa,
+            p.cantidad as cantidad,
+            (p.precioventa-p.precioproveedor) as utilidad,
+            IFNULL(SUM(v.cantidad), 0) as ventas  
+            FROM producto as p 
+            LEFT JOIN venta as v ON p.id = v.idproducto 
+            WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY ventas DESC");
+        }
+
+        return $arrayProductos;
+    }
     
 }
 

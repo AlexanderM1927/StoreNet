@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PDF;
+use App\Visor;
 
 class WebsiteController extends Controller
 {
@@ -73,5 +75,45 @@ class WebsiteController extends Controller
     public function devoluciones ()
     {
         return view('devoluciones')->with('usuario',session('usuario'));
+    }
+
+    public function inventario ()
+    {
+        return view('inventario')->with('usuario',session('usuario'));
+    }
+
+    public function estadisticas ()
+    {
+        return view('estadisticas')->with('usuario',session('usuario'));
+    }
+
+    public function afiliados ()
+    {
+        return view('afiliados')->with('usuario',session('usuario'));
+    }
+
+    public function ajustes ()
+    {
+        return view('ajustes')->with('usuario',session('usuario'));
+    }
+
+    public function visorfacturas()
+    {
+        return view('visorfacturas')->with('usuario',session('usuario'));
+    }
+
+    public function balance($idafiliado,$desde,$hasta)
+    {
+        $data = ['title' => 'Balance - Generado por StoreNet'];
+        $visor = new Visor();
+        $balance = $visor->getBalance($idafiliado,$desde,$hasta);
+        $pdf = PDF::loadView('balance', array('usuario' => session('usuario'),'balance' => $balance,'data' => $data, 'desde' => $desde, 'hasta' => $hasta));
+  
+        return $pdf->stream('balance.pdf');
+    }
+
+    public function homeadm()
+    {
+        return view('homeadm')->with('usuario',session('usuario'));
     }
 }

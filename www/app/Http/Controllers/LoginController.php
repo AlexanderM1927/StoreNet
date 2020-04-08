@@ -27,7 +27,12 @@ class LoginController extends Controller
                 $usuario = new Usuario();
                 $usuario->setEmpleado($empleado);
                 session(['usuario' => $usuario]);
-                return view('home')->with('usuario',$usuario);
+                if($empleado->rango == 4)
+                {
+                    return view('homeadm')->with('usuario',$usuario);
+                }else{
+                    return view('home')->with('usuario',$usuario);
+                }
             }
         }else{
             $arrayClientes = DB::select("SELECT * FROM cliente WHERE mail = '$mail' and password = '$password'");

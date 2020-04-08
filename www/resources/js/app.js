@@ -10,6 +10,11 @@ Vue.component('compras', require('./components/compras.vue').default);
 Vue.component('pedidos', require('./components/pedidos.vue').default);
 Vue.component('gpedidos', require('./components/gpedidos.vue').default);
 Vue.component('devoluciones', require('./components/devoluciones.vue').default);
+Vue.component('inventario', require('./components/inventario.vue').default);
+Vue.component('estadisticas', require('./components/estadisticas.vue').default);
+Vue.component('afiliados', require('./components/afiliados.vue').default);
+Vue.component('ajustes', require('./components/ajustes.vue').default);
+Vue.component('visorfacturas', require('./components/visorfacturas.vue').default);
 const app = new Vue({
   el: '#v-app',
 });

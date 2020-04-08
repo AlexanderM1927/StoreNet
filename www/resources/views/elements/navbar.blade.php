@@ -1,6 +1,12 @@
 <?php
     if(!empty($usuario))
     {
+        if($usuario->getRango()==4 && $usuario->getIdAfiliado()==0)
+        {
+            ?>
+            <script>window.location.href = "homeadm"</script>
+            <?php
+        }
 ?>
 <div class="uk-card uk-card-default uk-card-body uk-width-1-2@s navbar">
     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
@@ -15,7 +21,7 @@
         <li class="uk-parent">
             <a href="#"><span class="uk-margin-small-right" uk-icon="icon: world"></span>Ajustes generales</a>
             <ul class="uk-nav-sub">
-                <li><a href="#">Agregar almacen</a></li>
+                <li><a href="afiliados">Agregar almacen</a></li>
             </ul>
         </li>
         <?php } ?>
@@ -26,8 +32,8 @@
             <ul class="uk-nav-sub">
                 <li><a href="empleado">Gestionar empleado</a></li>
                 <li><a href="producto">Gestionar producto</a></li>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="#">Estadísticas</a></li>
+                <li><a href="inventario">Inventario</a></li>
+                <li><a href="estadisticas">Estadísticas</a></li>
                 <li><a href="#">Liquidar nominas</a></li>
             </ul>
         </li>
@@ -57,7 +63,7 @@
         <?php if($usuario->getRango()==0){ ?>
         <li><a href="tarjeta"><span class="uk-margin-small-right" uk-icon="icon: credit-card"></span> Mi tarjeta</a></li>
         <?php } ?>
-        <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Mis ajustes</a></li>
+        <li><a href="ajustes"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Mis ajustes</a></li>
         <?php if($usuario->getRango()!=0){ ?>
         <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Mi nomina</a></li>
         <?php } ?>

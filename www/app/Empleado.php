@@ -39,6 +39,16 @@ class Empleado
         DB::delete('DELETE FROM empleado WHERE id = ? AND idafiliado = ?', [ $id,$idafiliado ]);
     }
     
+    public function getEmpleado($id,$idafiliado)
+    {
+        $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE id = $id AND idafiliado = $idafiliado");
+        return json_encode($arrayEmpleados[0]);
+    }
+
+    public function setEmpleado($id,$idafiliado,$nombres,$apellidos,$direccion,$telefono)
+    {
+        DB::update('UPDATE empleado SET nombres = ?, apellidos = ?, direccion = ?, telefono = ?  WHERE id = ? AND idafiliado = ?', [ $nombres,$apellidos,$direccion,$telefono, $id, $idafiliado ]);
+    }
 
 }
 

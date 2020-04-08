@@ -140,7 +140,9 @@ class Compra
             DB::update("UPDATE factura SET anulada = 1 WHERE idafiliado = $idafiliado AND id = $idfactura");
             DB::update("UPDATE producto as p, venta as v SET p.cantidad = p.cantidad + v.cantidad
                                                          WHERE p.id = v.idproducto AND v.idfactura = $idfactura AND v.idafiliado = $idafiliado");
+            DB::update("UPDATE pedido as p SET p.estado = 2 WHERE p.idfactura = $idfactura AND p.idafiliado = $idafiliado");
             $arrayVentas = DB::select("SELECT * FROM venta WHERE idafiliado = $idafiliado AND idfactura = $idfactura");
+            DB::delete("DELETE FROM venta WHERE idfactura = $idfactura AND idafiliado = $idafiliado"); //ESTO PUEDE CAMBIAR CON EL TIEMPO
             $valortotal = 0;
             foreach($arrayVentas as $venta)
             {

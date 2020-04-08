@@ -361,3 +361,34 @@ html, body {
     background: #f0f0f0;
     padding:20px;
 }
+
+.filtrosEstadisticas{
+    width: 46%;
+    float: left;
+    padding: 20px;
+    height: 260px;
+    background: #f0f0f0;
+}
+
+.circuloEstadisticas{
+    width: 45%;
+    float: right;
+    padding: 20px;
+    height: 260px;
+    background: #f0f0f0;
+}
+
+.footer{
+    padding:10px;
+    text-align:center;
+    width:100%;
+    bottom: 0px;
+    position: absolute;
+    background: #000;
+    left:0;
+    color: #FFF;
+}
+
+.informe{
+    padding:20px;
+}

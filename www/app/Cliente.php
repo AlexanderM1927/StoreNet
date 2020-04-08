@@ -41,6 +41,16 @@ class Cliente
         DB::delete('DELETE FROM cliente WHERE id = ?', [ $id ]);
     }
     
+    public function getCliente($id)
+    {
+        $arrayClientes = DB::select("SELECT * FROM cliente WHERE id = $id");
+        return json_encode($arrayClientes[0]);
+    }
+
+    public function setCliente($id,$nombres,$apellidos,$direccion,$telefono)
+    {
+        DB::update('UPDATE cliente SET nombres = ?, apellidos = ?, direccion = ?, telefono = ?  WHERE id = ?', [ $nombres,$apellidos,$direccion,$telefono, $id ]);
+    }
 
 }
 

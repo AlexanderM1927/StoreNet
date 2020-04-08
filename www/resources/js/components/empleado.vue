@@ -57,7 +57,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <select v-on:change="buscar" class="uk-input field" v-model="rango" name="rango">
+            <select class="uk-input field" v-model="rango" name="rango">
                   <option value="1">Vendedor</option>
                   <option value="2">Supervisor</option>
                   <option value="3">Administrador</option>

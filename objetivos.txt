@@ -1,12 +1,8 @@
 V1)
--> Inventario
-	-> Estadisticas
-		->Liquidar nominas
-			->Gestionar afiliados
-				->Mis ajustes
-					->Mi nomina
+->Liquidar nominas
+	->Mi nomina
 V2)
+=fix iniciar sesión afiliado inactivo
 ->Gestión de reportes
 	->Redimir puntos <----
-		->Crear usuario 
-			->Subidor de imagenes <---
+		->Subidor de imagenes <---
