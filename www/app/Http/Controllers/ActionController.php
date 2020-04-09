@@ -361,16 +361,47 @@ class ActionController extends Controller
         }
     }
 
-    public function procesaNomina($type,$idafiliado="",$idusuario="")
+    public function procesaNomina($type,$idafiliado="",$idusuario="",$fechas="")
     {
         $nomina = new Nomina();
         $_POST = json_decode(file_get_contents("php://input"),true);
         if($type == 0)
         {
-            return $nomina->getNomina($idafiliado,$idusuario);
+            if($fechas=="")
+            {
+                return $nomina->getNomina($idafiliado,$idusuario);
+            }else{
+                return $nomina->getNomina_fecha($idafiliado,$idusuario,$fechas);
+            }
         }else if($type == 1)
         {
+            $idafiliado = $_POST['idafiliado'];
+            $idusuario = $_POST['idusuario'];
+            $dias = $_POST['dias'];
+            $hext = $_POST['hext'];
+            $hn = $_POST['hn'];
+            $hdf = $_POST['hdf'];
+            $ded = $_POST['ded'];
+            $tdev = $_POST['tdev'];
+            $tded = $_POST['tded'];
+            $tpag = $_POST['tpag'];
+            $tnom = $_POST['tnom'];
+            
+            $nomina->setNomina($idafiliado,$idusuario,$dias,$hext,$hn,$hdf,$ded,$tdev,$tded,$tpag,$tnom);
             return array("","Nomina liquidada y guardada correctamente","success");
+        }elseif($type == 2)
+        {
+            if($fechas=="")
+            {
+                return $nomina->getNominaAfiliado($idafiliado);
+            }else{
+                return $nomina->getNominaAfiliado_fecha($idafiliado,$fechas);
+            }
+        }elseif($type == 3)
+        {
+            $idnomina = $idusuario; // Esto debido a que la $idusuario en el get es usada como transporte para el id de la nomina 
+            $nomina->eliminarNomina($idafiliado,$idnomina);
+            return $nomina->getNominaAfiliado($idafiliado);
         }
     }
 }

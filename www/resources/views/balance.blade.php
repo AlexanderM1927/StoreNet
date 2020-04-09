@@ -20,7 +20,38 @@
         Desde: <?=$desde?><br>
         Hasta: <?=$hasta?>
         <hr>
-        <?=$balance?>
+        <center>
+        <table id="balance">
+        <tr>
+            <th>Concepto</th>
+            <th>Ingresos</th>
+            <th>Egresos</th>
+            <th>Totales</th>
+        </tr>
+        <tr>
+            <td>Ventas realizadas</td>
+            <td><?=$balance->ventas?></td>
+            <td>0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Pagos por nomina</td>
+            <td>0</td>
+            <td><?=$balance->nominas?></td>
+            <td></td>
+        </tr>
+        <?php
+        $total = $balance->ventas-$balance->nominas;
+        ?>
+        <tr>
+            <th colspan="3">Total</th>
+            <th><?=$total?></th>
+        </tr>
+        </table>
+        </center>
+        <br><br>
+        <hr>
+        <b style="color:red;">*</b>Si el saldo total, tiene un valor negativo, es posible que presentes perdidas.
         </div>
         <div class="footer">Balance generador por StoreNet - a product by SoftCorp</div>
         <?php

@@ -45,7 +45,7 @@ Route::get('/procesarEstadisticas/{type}/{idafiliado?}/{fechas?}', 'ActionContro
 Route::get('/procesarAfiliados/{type}/{afiliado?}', 'ActionController@procesaAfiliados');
 Route::get('/procesarAjustes/{type}/{idafiliado}/{rango}/{idusuario}', 'ActionController@procesaAjustes');
 Route::get('/procesarVisor/{type}/{idafiliado}/{fecha?}', 'ActionController@procesaVisor');
-Route::get('/procesarNomina/{type}/{idafiliado}/{idusuario}', 'ActionController@procesaNomina');
+Route::get('/procesarNomina/{type}/{idafiliado}/{idusuario?}/{fechas?}', 'ActionController@procesaNomina');
 
 
 //FORMULARIOS POST

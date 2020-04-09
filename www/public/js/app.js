@@ -3865,10 +3865,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
-/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! v-calendar/lib/components/date-picker.umd */ "./node_modules/v-calendar/lib/components/date-picker.umd.js");
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3876,17 +3886,126 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'nomina',
   data: function data() {
     return {
-      activo: 0
+      activo: 0,
+      mode: 'single',
+      selectedDate: null,
+      visibility: {
+        visibility: 'click'
+      },
+      mode1: 'single',
+      selectedDate1: null,
+      visibility1: {
+        visibility: 'click'
+      },
+      nominas: []
     };
   },
   props: ['idafiliado', 'idempleado'],
-  methods: {}
+  components: {
+    'v-date-picker': v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3___default.a
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").removeClass();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").addClass('uk-input gk-shadow-input');
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").css("padding-left", "35px"); //axios
+
+    axios.get('../procesarNomina/0/' + this.idafiliado + '/' + this.idempleado).then(function (response) {
+      return _this.nominas = response.data;
+    });
+  },
+  methods: {
+    filtrar: function filtrar() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (_this2.selectedDate != null && _this2.selectedDate1 != null) {
+                  axios.get('../procesarNomina/0/' + _this2.idafiliado + '/' + _this2.idempleado + '/' + JSON.stringify({
+                    desde: _this2.selectedDate,
+                    hasta: _this2.selectedDate1
+                  })).then(function (response) {
+                    return _this2.nominas = response.data;
+                  });
+                } else {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Filtros", "Por favor, selecciona una fecha valida", "error");
+                }
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  }
 });
 
 /***/ }),
@@ -3906,6 +4025,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! v-calendar/lib/components/date-picker.umd */ "./node_modules/v-calendar/lib/components/date-picker.umd.js");
+/* harmony import */ var v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4143,6 +4264,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4158,6 +4341,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deducciones: 0,
       empleado: {},
       liquidada: 0,
+      mode: 'single',
+      selectedDate: null,
+      visibility: {
+        visibility: 'click'
+      },
+      mode1: 'single',
+      selectedDate1: null,
+      visibility1: {
+        visibility: 'click'
+      },
+      nominas: [],
       //devengado
       salariob: 0,
       salariod: 0,
@@ -4194,60 +4388,76 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   props: ['idafiliado'],
+  components: {
+    'v-date-picker': v_calendar_lib_components_date_picker_umd__WEBPACK_IMPORTED_MODULE_3___default.a
+  },
   mounted: function mounted() {
+    var _this = this;
+
     jquery__WEBPACK_IMPORTED_MODULE_1___default()('#nomina').hide();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").removeClass();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").addClass('uk-input gk-shadow-input');
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()("input[data-v-64ee1ddd]").css("padding-left", "35px"); //axios
+
+    axios.get('../procesarNomina/2/' + this.idafiliado).then(function (response) {
+      return _this.nominas = response.data;
+    });
   },
   methods: {
+    formulario: function formulario() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()('#modal-center').addClass('uk-open').show();
+    },
     nomina: function nomina() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                jquery__WEBPACK_IMPORTED_MODULE_1___default()('#modal-center').removeClass('uk-open').hide();
                 jquery__WEBPACK_IMPORTED_MODULE_1___default()('#nomina').show();
-                _context.next = 3;
-                return axios.get('../procesarAjustes/0/' + _this.idafiliado + '/1/' + _this.idusuario).then(function (response) {
-                  return _this.empleado = response.data;
+                _context.next = 4;
+                return axios.get('../procesarAjustes/0/' + _this2.idafiliado + '/1/' + _this2.idusuario).then(function (response) {
+                  return _this2.empleado = response.data;
                 });
 
-              case 3:
+              case 4:
                 //devengado
-                _this.salariob = parseInt(_this.empleado['sueldo']);
-                _this.salariod = parseFloat(_this.salariob / 30 * parseInt(_this.dias));
-                _this.horase = parseFloat(_this.salariod / 720 * 1.25 * parseInt(_this.horas));
-                _this.recargo = parseFloat(_this.salariod / 720 * 0.35 * parseInt(_this.horasn));
-                _this.dominicales = parseFloat(_this.salariod / 720 * 2 * parseInt(_this.horasd));
-                _this.auxiliot = parseFloat(_this.salariob < 877803 * 2 ? 102854 : 0);
-                _this.totaldevengado = _this.salariod + _this.horase + _this.recargo + _this.dominicales + _this.auxiliot; //deducciones
+                _this2.salariob = parseInt(_this2.empleado['sueldo']);
+                _this2.salariod = parseFloat(_this2.salariob / 30 * parseInt(_this2.dias));
+                _this2.horase = parseFloat(_this2.salariod / 720 * 1.25 * parseInt(_this2.horas));
+                _this2.recargo = parseFloat(_this2.salariod / 720 * 0.35 * parseInt(_this2.horasn));
+                _this2.dominicales = parseFloat(_this2.salariod / 720 * 2 * parseInt(_this2.horasd));
+                _this2.auxiliot = parseFloat(_this2.salariob < 877803 * 2 ? 102854 : 0);
+                _this2.totaldevengado = parseFloat(_this2.salariod + _this2.horase + _this2.recargo + _this2.dominicales + _this2.auxiliot); //deducciones
 
-                _this.salud = parseFloat(_this.salariod * 0.04);
-                _this.pension = parseFloat(_this.salariod * 0.04);
-                _this.fsp = parseFloat(_this.salariob > 877803 * 4 ? _this.salariod * 0.01 : 0);
-                _this.totaldeducciones = _this.salud + _this.pension + _this.fsp + _this.deducciones;
-                _this.totalpagar = _this.totaldevengado - _this.totaldeducciones; //seguridad social
+                _this2.salud = parseFloat(_this2.salariod * 0.04);
+                _this2.pension = parseFloat(_this2.salariod * 0.04);
+                _this2.fsp = parseFloat(_this2.salariob > 877803 * 4 ? _this2.salariod * 0.01 : 0);
+                _this2.totaldeducciones = parseFloat(_this2.salud + _this2.pension + _this2.fsp + parseFloat(_this2.deducciones));
+                _this2.totalpagar = parseFloat(_this2.totaldevengado - _this2.totaldeducciones); //seguridad social
 
-                _this.esalud = parseFloat(_this.salariod * 0.085);
-                _this.epension = parseFloat(_this.salariod * 0.12);
-                _this.earl = parseFloat(_this.salariod * 0.00522);
-                _this.totalss = _this.esalud + _this.epension + _this.earl; //aportes parafiscales
+                _this2.esalud = parseFloat(_this2.salariod * 0.085);
+                _this2.epension = parseFloat(_this2.salariod * 0.12);
+                _this2.earl = parseFloat(_this2.salariod * 0.00522);
+                _this2.totalss = parseFloat(_this2.esalud + _this2.epension + _this2.earl); //aportes parafiscales
 
-                _this.sena = parseFloat(_this.salariob * 0.02);
-                _this.caja = parseFloat(_this.salariob * 0.04);
-                _this.icbf = parseFloat(_this.salariob * 0.03);
-                _this.tap = _this.sena + _this.caja + _this.icbf; //prestaciones sociales
+                _this2.sena = parseFloat(_this2.salariob * 0.02);
+                _this2.caja = parseFloat(_this2.salariob * 0.04);
+                _this2.icbf = parseFloat(_this2.salariob * 0.03);
+                _this2.tap = parseFloat(_this2.sena + _this2.caja + _this2.icbf); //prestaciones sociales
 
-                _this.cesantias = parseFloat(_this.salariod / 360);
-                _this.isc = parseFloat(_this.cesantias * parseInt(_this.dias) * 0.12 / 360);
-                _this.prima = parseFloat(_this.salariod / 360);
-                _this.vacaciones = parseFloat(_this.salariod / 720);
-                _this.tps = _this.cesantias + _this.isc + _this.prima + _this.vacaciones;
-                _this.totalapropiaciones = _this.totalss + _this.tap + _this.tps;
-                _this.totalnomina = _this.totalpagar + _this.totalapropiaciones;
-                _this.liquidada = 1;
+                _this2.cesantias = parseFloat(_this2.salariod / 360);
+                _this2.isc = parseFloat(_this2.cesantias * parseInt(_this2.dias) * 0.12 / 360);
+                _this2.prima = parseFloat(_this2.salariod / 360);
+                _this2.vacaciones = parseFloat(_this2.salariod / 720);
+                _this2.tps = parseFloat(_this2.cesantias + _this2.isc + _this2.prima + _this2.vacaciones);
+                _this2.totalapropiaciones = parseFloat(_this2.totalss + _this2.tap + _this2.tps);
+                _this2.totalnomina = parseFloat(_this2.totalpagar + _this2.totalapropiaciones);
+                _this2.liquidada = 1;
 
-              case 31:
+              case 32:
               case "end":
                 return _context.stop();
             }
@@ -4264,22 +4474,90 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ventimp.close();
     },
     guardar: function guardar() {
+      var _this3 = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post('../procesarNomina/1').then(function (response) {
+                return axios.post('../procesarNomina/1', {
+                  idafiliado: _this3.idafiliado,
+                  idusuario: _this3.idusuario,
+                  dias: _this3.dias,
+                  hext: _this3.horas,
+                  hn: _this3.horasn,
+                  hdf: _this3.horasd,
+                  ded: _this3.deducciones,
+                  tdev: _this3.totaldevengado,
+                  tded: _this3.totaldeducciones,
+                  tpag: _this3.totalpagar,
+                  tnom: _this3.totalnomina
+                }).then(function (response) {
                   return sweetalert__WEBPACK_IMPORTED_MODULE_2___default()(response.data[0], response.data[1], response.data[2]);
                 });
 
               case 2:
+                _this3.filtrar();
+
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    filtrar: function filtrar() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (_this4.selectedDate != null && _this4.selectedDate1 != null) {
+                  axios.get('../procesarNomina/2/' + _this4.idafiliado + '/0/' + JSON.stringify({
+                    desde: _this4.selectedDate,
+                    hasta: _this4.selectedDate1
+                  })).then(function (response) {
+                    return _this4.nominas = response.data;
+                  });
+                } else {
+                  axios.get('../procesarNomina/2/' + _this4.idafiliado).then(function (response) {
+                    return _this4.nominas = response.data;
+                  });
+                }
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    eliminar: function eliminar(nomina) {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                axios.get('../procesarNomina/3/' + nomina['idafiliado'] + '/' + nomina['id']) //Filtros
+                .then(function (response) {
+                  return _this5.nominas = response.data;
+                });
+                sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("La nomina ha sido eliminada", "", "success");
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -98244,16 +98522,174 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "titulo-seccion" }, [_vm._v("Mi nomina")]),
+      _vm._v(" "),
+      _c("center", [
+        _c("table", [
+          _c("tr", [
+            _c("td", [_vm._v("Desde:")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Hasta:")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [
+              _c(
+                "div",
+                { staticClass: "uk-inline" },
+                [
+                  _c("span", {
+                    staticClass: "uk-form-icon",
+                    attrs: { "uk-icon": "icon: calendar" }
+                  }),
+                  _vm._v(" "),
+                  _c("v-date-picker", {
+                    attrs: {
+                      mode: _vm.mode,
+                      popover: _vm.visibility,
+                      color: "blue",
+                      "is-dark": ""
+                    },
+                    model: {
+                      value: _vm.selectedDate,
+                      callback: function($$v) {
+                        _vm.selectedDate = $$v
+                      },
+                      expression: "selectedDate"
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "div",
+                { staticClass: "uk-inline" },
+                [
+                  _c("span", {
+                    staticClass: "uk-form-icon",
+                    attrs: { "uk-icon": "icon: calendar" }
+                  }),
+                  _vm._v(" "),
+                  _c("v-date-picker", {
+                    attrs: {
+                      mode: _vm.mode1,
+                      popover: _vm.visibility1,
+                      color: "blue",
+                      "is-dark": ""
+                    },
+                    model: {
+                      value: _vm.selectedDate1,
+                      callback: function($$v) {
+                        _vm.selectedDate1 = $$v
+                      },
+                      expression: "selectedDate1"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c(
+              "td",
+              { attrs: { colspan: "3" } },
+              [
+                _c("center", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "uk-button uk-button-primary",
+                      on: {
+                        click: function($event) {
+                          return _vm.filtrar()
+                        }
+                      }
+                    },
+                    [_vm._v("Filtrar")]
+                  )
+                ])
+              ],
+              1
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c(
+        "table",
+        { staticClass: "uk-table uk-table-small uk-table-divider" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.nominas, function(nomina) {
+            return _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v(_vm._s(nomina["id"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["fecha"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["dias"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["horasextras"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["recargonocturno"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["horasdyf"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["deducciones"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["totaldevengado"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["totaldeducido"]))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(nomina["totalpago"]))])
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", { staticClass: "titulo-seccion" }, [_vm._v("Mi nomina")]),
-      _vm._v("\n  x\n")
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_c("b", [_vm._v("ID")])]),
+        _vm._v(" "),
+        _c("th", [_vm._v("fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("dias")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("horas extras")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("horas nocturnas")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("horas dom y fest")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("deducciones")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("total devengado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("total deducciones")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("total pago")])
+      ])
     ])
   }
 ]
@@ -98282,292 +98718,94 @@ var render = function() {
     "div",
     [
       _c("h1", { staticClass: "titulo-seccion" }, [_vm._v("Nominas")]),
-      _vm._v("\n  Llena el siguiente formulario:"),
-      _c("br"),
       _vm._v(" "),
       _c("center", [
         _c("table", [
           _c("tr", [
-            _c("td", [
-              _c("h3", { staticClass: "titulo-seccion" }, [_vm._v("Devengado")])
-            ]),
-            _c("td", [
-              _c("h3", { staticClass: "titulo-seccion" }, [_vm._v("Nominas")])
-            ])
+            _c("td", [_vm._v("Desde:")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Hasta:")])
           ]),
           _vm._v(" "),
           _c("tr", [
             _c("td", [
-              _c("tr", [
-                _c("td", [_vm._v("ID del empleado:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: user" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.idusuario,
-                            expression: "idusuario"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "idusuario",
-                          placeholder: "ID empleado...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.idusuario },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.idusuario = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Días trabajados:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: hashtag" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.dias,
-                            expression: "dias"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "dias",
-                          placeholder: "Dias trabajados...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.dias },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.dias = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Horas extras:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: hashtag" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.horas,
-                            expression: "horas"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "horas",
-                          placeholder: "Horas trabajadas...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.horas },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.horas = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Horas nocturnas:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: hashtag" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.horasn,
-                            expression: "horasn"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "horasn",
-                          placeholder: "Horas nocturnas trabajadas...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.horasn },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.horasn = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Horas dominicales y festivos:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: hashtag" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.horasd,
-                            expression: "horasd"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "horasd",
-                          placeholder:
-                            "Horas dominicales y festivos trabajadas...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.horasd },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.horasd = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "uk-inline" },
+                [
+                  _c("span", {
+                    staticClass: "uk-form-icon",
+                    attrs: { "uk-icon": "icon: calendar" }
+                  }),
+                  _vm._v(" "),
+                  _c("v-date-picker", {
+                    attrs: {
+                      mode: _vm.mode,
+                      popover: _vm.visibility,
+                      color: "blue",
+                      "is-dark": ""
+                    },
+                    model: {
+                      value: _vm.selectedDate,
+                      callback: function($$v) {
+                        _vm.selectedDate = $$v
+                      },
+                      expression: "selectedDate"
+                    }
+                  })
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("tr", [
-                _c("td", [_vm._v("Otras deducciones:")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "uk-margin" }, [
-                    _c("div", { staticClass: "uk-inline" }, [
-                      _c("span", {
-                        staticClass: "uk-form-icon",
-                        attrs: { "uk-icon": "icon: hashtag" }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.deducciones,
-                            expression: "deducciones"
-                          }
-                        ],
-                        staticClass: "uk-input field",
-                        attrs: {
-                          type: "text",
-                          name: "deducciones",
-                          placeholder: "Otras deducciones...",
-                          required: ""
-                        },
-                        domProps: { value: _vm.deducciones },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.deducciones = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "uk-inline" },
+                [
+                  _c("span", {
+                    staticClass: "uk-form-icon",
+                    attrs: { "uk-icon": "icon: calendar" }
+                  }),
+                  _vm._v(" "),
+                  _c("v-date-picker", {
+                    attrs: {
+                      mode: _vm.mode1,
+                      popover: _vm.visibility1,
+                      color: "blue",
+                      "is-dark": ""
+                    },
+                    model: {
+                      value: _vm.selectedDate1,
+                      callback: function($$v) {
+                        _vm.selectedDate1 = $$v
+                      },
+                      expression: "selectedDate1"
+                    }
+                  })
+                ],
+                1
+              )
             ])
           ]),
           _vm._v(" "),
           _c("tr", [
             _c(
               "td",
-              { attrs: { colspan: "2" } },
+              { attrs: { colspan: "3" } },
               [
                 _c("center", [
                   _c(
                     "button",
                     {
                       staticClass: "uk-button uk-button-primary",
-                      on: { click: _vm.nomina }
+                      on: {
+                        click: function($event) {
+                          return _vm.filtrar()
+                        }
+                      }
                     },
-                    [_vm._v("Generar nomina")]
+                    [_vm._v("Filtrar")]
                   )
                 ])
               ],
@@ -98576,6 +98814,386 @@ var render = function() {
           ])
         ])
       ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("center", [
+        _c(
+          "table",
+          { staticClass: "uk-table uk-table-small uk-table-divider" },
+          [
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_c("b", [_vm._v("ID")])]),
+                _vm._v(" "),
+                _c("th", [_vm._v("fecha")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("idempleado")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("devengado")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("deducido")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("total pagado")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("total nomina")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("opciones")])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.nominas, function(nomina) {
+              return _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(nomina["id"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["fecha"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["idempleado"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["totaldevengado"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["totaldeducido"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["totalpago"]))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nomina["totalnomina"]))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.eliminar(nomina)
+                          }
+                        }
+                      },
+                      [_vm._v("Eliminar")]
+                    )
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("center", [
+        _c(
+          "button",
+          {
+            staticClass: "uk-button uk-button-primary",
+            on: { click: _vm.formulario }
+          },
+          [_vm._v("Crear nomina")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "uk-flex-top",
+          attrs: { id: "modal-center", "uk-modal": "" }
+        },
+        [
+          _c("div", { staticClass: "creadorForm" }, [
+            _c("table", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ID del empleado:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: user" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.idusuario,
+                                expression: "idusuario"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "idusuario",
+                              placeholder: "ID empleado...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.idusuario },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.idusuario = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Días trabajados:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: hashtag" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.dias,
+                                expression: "dias"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "dias",
+                              placeholder: "Dias trabajados...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.dias },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.dias = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Horas extras:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: hashtag" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.horas,
+                                expression: "horas"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "horas",
+                              placeholder: "Horas trabajadas...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.horas },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.horas = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Horas nocturnas:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: hashtag" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.horasn,
+                                expression: "horasn"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "horasn",
+                              placeholder: "Horas nocturnas trabajadas...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.horasn },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.horasn = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("Horas dominicales y festivos:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: hashtag" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.horasd,
+                                expression: "horasd"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "horasd",
+                              placeholder:
+                                "Horas dominicales y festivos trabajadas...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.horasd },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.horasd = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("tr", [
+                    _c("td", [_vm._v("Otras deducciones:")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("div", { staticClass: "uk-margin" }, [
+                        _c("div", { staticClass: "uk-inline" }, [
+                          _c("span", {
+                            staticClass: "uk-form-icon",
+                            attrs: { "uk-icon": "icon: hashtag" }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.deducciones,
+                                expression: "deducciones"
+                              }
+                            ],
+                            staticClass: "uk-input field",
+                            attrs: {
+                              type: "text",
+                              name: "deducciones",
+                              placeholder: "Otras deducciones...",
+                              required: ""
+                            },
+                            domProps: { value: _vm.deducciones },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.deducciones = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c(
+                  "td",
+                  { attrs: { colspan: "2" } },
+                  [
+                    _c("center", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "uk-button uk-button-primary",
+                          on: { click: _vm.nomina }
+                        },
+                        [_vm._v("Generar nomina")]
+                      )
+                    ])
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "uk-modal-close-default",
+              attrs: { type: "button", "uk-close": "" }
+            })
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c("div", { ref: "nomina", attrs: { id: "nomina" } }, [
         _c("h2", { staticClass: "titulo-seccion" }, [
@@ -98589,7 +99207,7 @@ var render = function() {
             "table",
             { staticClass: "uk-table uk-table-small uk-table-divider" },
             [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -98630,7 +99248,7 @@ var render = function() {
             "table",
             { staticClass: "uk-table uk-table-small uk-table-divider" },
             [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -98678,7 +99296,7 @@ var render = function() {
             "table",
             { staticClass: "uk-table uk-table-small uk-table-divider" },
             [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -98715,7 +99333,7 @@ var render = function() {
             "table",
             { staticClass: "uk-table uk-table-small uk-table-divider" },
             [
-              _vm._m(3),
+              _vm._m(4),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -98752,7 +99370,7 @@ var render = function() {
             "table",
             { staticClass: "uk-table uk-table-small uk-table-divider" },
             [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("tbody", [
                 _c("tr", [
@@ -98831,6 +99449,19 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", [
+        _c("h3", { staticClass: "titulo-seccion" }, [_vm._v("Devengado")])
+      ]),
+      _c("td", [
+        _c("h3", { staticClass: "titulo-seccion" }, [_vm._v("Deducciones")])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

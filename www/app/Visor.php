@@ -46,13 +46,15 @@ class Visor
         $hasta=date_create_from_format('D M d Y H:i:s e+', $hasta);
         $hasta=$hasta->format("Y-m-d");
 
-        $arrayInforme = DB::select("SELECT SUM(p.precioventa*v.cantidad) as ventas
+        $arrayInforme = DB::select("SELECT SUM(p.precioventa*v.cantidad) as ventas,
+        SUM(n.totalnomina) as nominas
         FROM factura as f
+        LEFT JOIN nomina as n ON n.idafiliado = $idafiliado
         LEFT JOIN venta as v ON f.id = v.idfactura
         LEFT JOIN producto as p ON v.idproducto = p.id
         WHERE v.idafiliado = $idafiliado AND (f.fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE))");
 
-        return json_encode($arrayInforme);
+        return $arrayInforme[0];
     }
 
 }

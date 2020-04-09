@@ -1,8 +1,6 @@
 V1)
-->Liquidar nominas
-	->Mi nomina
+Finalizada
 V2)
 =fix iniciar sesión afiliado inactivo
+=fix cod barras tarjeta
 ->Gestión de reportes
-	->Redimir puntos <----
-		->Subidor de imagenes in Productos <---

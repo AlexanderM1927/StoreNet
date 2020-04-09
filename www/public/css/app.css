@@ -444,3 +444,31 @@ body {
   color: #FFF;
 }
 
+#balance {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#balance td,
+#balance th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#balance tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#balance tr:hover {
+  background-color: #ddd;
+}
+
+#balance th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
