@@ -30,6 +30,8 @@ Route::get('/inventario', 'WebsiteController@inventario');
 Route::get('/estadisticas', 'WebsiteController@estadisticas');
 Route::get('/afiliados', 'WebsiteController@afiliados');
 Route::get('/ajustes', 'WebsiteController@ajustes');
+Route::get('/nomina', 'WebsiteController@nomina');
+Route::get('/nominas', 'WebsiteController@nominas');
 Route::get('/visorfacturas', 'WebsiteController@visorfacturas');
 Route::get('/balance/{idafiliado}/{desde}/{hasta}', 'WebsiteController@balance');
 Route::get('/logout', 'LoginController@logout');
@@ -43,6 +45,7 @@ Route::get('/procesarEstadisticas/{type}/{idafiliado?}/{fechas?}', 'ActionContro
 Route::get('/procesarAfiliados/{type}/{afiliado?}', 'ActionController@procesaAfiliados');
 Route::get('/procesarAjustes/{type}/{idafiliado}/{rango}/{idusuario}', 'ActionController@procesaAjustes');
 Route::get('/procesarVisor/{type}/{idafiliado}/{fecha?}', 'ActionController@procesaVisor');
+Route::get('/procesarNomina/{type}/{idafiliado}/{idusuario}', 'ActionController@procesaNomina');
 
 
 //FORMULARIOS POST
@@ -56,5 +59,6 @@ Route::post('/procesarCompras/{type}', 'ActionController@procesaCompras');
 Route::post('/procesarPedidos/{type}', 'ActionController@procesaPedidos');
 Route::post('/procesarDevoluciones', 'ActionController@procesaDevoluciones');
 Route::post('/procesarAfiliados/{type}', 'ActionController@procesaAfiliados');
-Route::post('/procesarAjustes/{type}/{rango?}/{idusuario?}', 'ActionController@procesaAjustes');
+Route::post('/procesarAjustes/{type}', 'ActionController@procesaAjustes');
+Route::post('/procesarNomina/{type}', 'ActionController@procesaNomina');
 Route::post('/administrador', 'ActionController@administrador');

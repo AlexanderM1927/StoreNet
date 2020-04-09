@@ -37,7 +37,7 @@
                 <td>{{producto['precioventa']}}</td>
                 <td>{{producto['cantidad']}}</td>
                 <td>{{producto['utilidad']}}</td>
-                <td>{{producto['putilidad']}}%</td>
+                <td>{{calcularUtilidad(producto['precioventa'],producto['precioproveedor'])}}%</td>
                 <td>{{producto['ventas']}}</td>
             </tr>
         </tbody>
@@ -70,6 +70,12 @@ export default {
             axios
                 .get('../procesarProductos/4/'+this.filtro+'/0/'+this.idafiliado)
                 .then(response => (this.productos = response.data))
+        },
+        calcularUtilidad(pv,pp)
+        {
+            let porcentaje
+            porcentaje = parseFloat((pv-pp)*100/pp)
+            return porcentaje
         }
     }
 }

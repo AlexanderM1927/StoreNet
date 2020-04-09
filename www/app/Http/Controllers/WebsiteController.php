@@ -116,4 +116,14 @@ class WebsiteController extends Controller
     {
         return view('homeadm')->with('usuario',session('usuario'));
     }
+
+    public function nomina()
+    {
+        return view('nomina')->with('usuario',session('usuario'));
+    }
+    
+    public function nominas()
+    {
+        return view('nominas')->with('usuario',session('usuario'));
+    }
 }

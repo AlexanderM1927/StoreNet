@@ -422,7 +422,7 @@ body {
   background: #DF7401;
   color: #FFF;
   width: 20%;
-  border-radius: 4px;
+  border-radius: 4px 0px 0px 0px;
   cursor: pointer;
 }
 

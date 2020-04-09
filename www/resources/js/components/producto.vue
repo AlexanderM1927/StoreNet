@@ -162,9 +162,9 @@ export default {
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         metodo: 'Agregar producto',
         id: '',
-        cantidad: 0,
-        precioventa: 0,
-        precioproveedor: 0,
+        cantidad: '',
+        precioventa: '',
+        precioproveedor: '',
         imgurl: ''
     }
   },

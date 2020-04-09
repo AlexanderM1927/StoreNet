@@ -34,7 +34,7 @@
                 <li><a href="producto">Gestionar producto</a></li>
                 <li><a href="inventario">Inventario</a></li>
                 <li><a href="estadisticas">Estadísticas</a></li>
-                <li><a href="#">Liquidar nominas</a></li>
+                <li><a href="nominas">Liquidar nominas</a></li>
             </ul>
         </li>
         <?php } ?>
@@ -65,15 +65,16 @@
         <?php } ?>
         <li><a href="ajustes"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Mis ajustes</a></li>
         <?php if($usuario->getRango()!=0){ ?>
-        <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Mi nomina</a></li>
+        <li><a href="nomina"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Mi nomina</a></li>
         <?php } ?>
         <li class="uk-nav-divider"></li>
         <li><a href="logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Cerrar sesión</a></li>
     </ul>
 </div>
 <br><br>
+<?php if($usuario->getRango()>3){ ?>
 <div class="reportes">
-<div onclick="report()"><span class="uk-margin-small-right" uk-icon="icon: list"></span>Reportes</div>
+<div onclick="report()" style="width:100%; padding:3px;"><span class="uk-margin-small-right" uk-icon="icon: list"></span>Reportes</div>
 <div id="list-reportes" class="barra">
 <li>
 <ul>Prueba</ul>
@@ -108,5 +109,6 @@ function report()
 }
 </script>
 <?php
+    }
     }
 ?>

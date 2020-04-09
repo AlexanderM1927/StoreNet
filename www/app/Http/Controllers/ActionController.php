@@ -13,6 +13,7 @@ use App\Estadistica;
 use App\Afiliado;
 use App\Usuario;
 use App\Visor;
+use App\Nomina;
 
 class ActionController extends Controller
 {
@@ -346,7 +347,7 @@ class ActionController extends Controller
                 return $empleado->getEmpleado($id,$idafiliado);
             }else{
                 $cliente->setCliente($id,$nombres,$apellidos,$direccion,$telefono);
-                return $cliente->getCliente($idusuario);
+                return $cliente->getCliente($id);
             }
         }
     }
@@ -357,6 +358,19 @@ class ActionController extends Controller
         if($type == 0)
         {
             return $visor->getFacturas($idafiliado,$fecha);
+        }
+    }
+
+    public function procesaNomina($type,$idafiliado="",$idusuario="")
+    {
+        $nomina = new Nomina();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        if($type == 0)
+        {
+            return $nomina->getNomina($idafiliado,$idusuario);
+        }else if($type == 1)
+        {
+            return array("","Nomina liquidada y guardada correctamente","success");
         }
     }
 }

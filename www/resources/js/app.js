@@ -15,6 +15,8 @@ Vue.component('estadisticas', require('./components/estadisticas.vue').default);
 Vue.component('afiliados', require('./components/afiliados.vue').default);
 Vue.component('ajustes', require('./components/ajustes.vue').default);
 Vue.component('visorfacturas', require('./components/visorfacturas.vue').default);
+Vue.component('nominas', require('./components/nominas.vue').default);
+Vue.component('nomina', require('./components/nomina.vue').default);
 const app = new Vue({
   el: '#v-app',
 });
