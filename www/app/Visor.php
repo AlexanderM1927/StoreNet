@@ -46,15 +46,29 @@ class Visor
         $hasta=date_create_from_format('D M d Y H:i:s e+', $hasta);
         $hasta=$hasta->format("Y-m-d");
 
-        $arrayInforme = DB::select("SELECT SUM(p.precioventa*v.cantidad) as ventas,
-        SUM(n.totalnomina) as nominas
+        $nominasQ = DB::select("SELECT SUM(n.totalnomina) as nominas,
+        a.nombre as nombre
+        FROM nomina as n, afiliado as a
+        WHERE n.idafiliado = $idafiliado AND n.idafiliado = a.id");
+
+        $ventasQ = DB::select("SELECT SUM(p.precioventa*v.cantidad) as ventas,
+        SUM(v.cantidad) as nventas,
+        SUM(p.precioproveedor*v.cantidad) as costosv,
+        SUM((p.precioventa-p.precioproveedor)*v.cantidad) as utilidades
         FROM factura as f
-        LEFT JOIN nomina as n ON n.idafiliado = $idafiliado
         LEFT JOIN venta as v ON f.id = v.idfactura
         LEFT JOIN producto as p ON v.idproducto = p.id
-        WHERE v.idafiliado = $idafiliado AND (f.fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE))");
+        WHERE f.idafiliado = $idafiliado AND f.anulada = 0");
 
-        return $arrayInforme[0];
+        $nombre = $nominasQ[0]->nombre;
+        $nominas = $nominasQ[0]->nominas;
+        $ventas = $ventasQ[0]->ventas;
+        $nventas = $ventasQ[0]->nventas;
+        $costosv = $ventasQ[0]->costosv;
+        $utilidades = $ventasQ[0]->utilidades;
+
+
+        return array("nombre" => $nombre, "nominas" => $nominas, "ventas" => $ventas, "nventas" => $nventas, "costosv" => $costosv, "utilidades" => $utilidades);
     }
 
 }

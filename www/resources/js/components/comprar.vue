@@ -169,7 +169,6 @@ export default {
       this.preciototal=0
       $('#modal-center').removeClass('uk-open').hide();
       swal("Información de la compra", this.mensaje.texto, this.mensaje.type);
-      console.log(this.factura)
     },
     generarFactura()
     {

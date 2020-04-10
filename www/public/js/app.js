@@ -2681,9 +2681,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.preciototal = 0;
                 jquery__WEBPACK_IMPORTED_MODULE_1___default()('#modal-center').removeClass('uk-open').hide();
                 sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", _this3.mensaje.texto, _this3.mensaje.type);
-                console.log(_this3.factura);
 
-              case 8:
+              case 7:
               case "end":
                 return _context.stop();
             }

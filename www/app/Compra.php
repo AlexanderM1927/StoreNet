@@ -104,7 +104,8 @@ class Compra
                         if($cantidad<=$item->cantidad)
                         {
                             DB::insert('INSERT INTO factura(idafiliado, idcliente, fecha) values (?, ?, now())', [ $item->idafiliado,$idcliente ]);
-                            $idfactura = DB::getPdo()->lastInsertId();
+                            $idfacturaQ = DB::select('SELECT MAX(id) as cuenta FROM factura WHERE idafiliado = ?',[$item->idafiliado]);
+                            $idfactura = $idfacturaQ[0]->cuenta;
                             DB::insert('INSERT INTO pedido(idcliente,idafiliado,idfactura,estado,fecha) VALUES (?,?,?,0,now())',[ $idcliente,$item->idafiliado,$idfactura ]);
                             DB::insert('INSERT INTO venta(idafiliado,idfactura,idproducto,cantidad) VALUES (?,?,?,?)',[ $item->idafiliado,$idfactura,$item->id,$cantidad ]);
                             DB::update('UPDATE producto SET cantidad = cantidad - ? WHERE id = ? AND idafiliado = ?', [ $producto['cantidad'],$item->id,$item->idafiliado ]);

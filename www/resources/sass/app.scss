@@ -442,6 +442,34 @@ html, body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #DF7401;
     color: white;
 }
+
+#balance_productos {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: auto;
+    float:left;
+}
+    
+#balance_productos td, #balance_productos th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+    
+#balance_productos tr:nth-child(even){background-color: #f2f2f2;}
+    
+#balance_productos tr:hover {background-color: #ddd;}
+    
+#balance_productos th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0080FF;
+    color: white;
+}
+
+  .balance_productos{
+      height:100px;
+  }
