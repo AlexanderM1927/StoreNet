@@ -14,6 +14,7 @@ use App\Afiliado;
 use App\Usuario;
 use App\Visor;
 use App\Nomina;
+use App\Reporte;
 
 class ActionController extends Controller
 {
@@ -403,5 +404,35 @@ class ActionController extends Controller
             $nomina->eliminarNomina($idafiliado,$idnomina);
             return $nomina->getNominaAfiliado($idafiliado);
         }
+    }
+
+    public function procesaReportes($type,$fechas="")
+    {
+        $reporte = new Reporte();
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        
+        if($type==0){
+            if($fechas=="")
+            {
+                return $reporte->listarReportes();
+            }else{
+                return $reporte->listarReportes_fecha($fechas);
+            }
+        }else if($type==1)
+        {
+            $titulo = $_POST['titulo'];
+            $contenido = $_POST['contenido'];
+            $correo = $_POST['correo'];
+            $reporte->registrarReporte($titulo,$contenido,$correo);
+        }else if($type==2)
+        {
+            $titulo = $_POST['titulo'];
+            $contenido = $_POST['contenido'];
+            $correo = $_POST['correo'];
+            $id = $_POST['id'];
+            $reporte->responderReporte($id,$titulo,$contenido,$correo);
+            return array("","Correo enviado correctamente, ahora el reporte será quitado","success");
+        }
+
     }
 }

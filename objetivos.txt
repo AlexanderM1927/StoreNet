@@ -1,6 +1,6 @@
 V1)
 Finalizada
 V2)
+->Gestión de reportes
 =fix iniciar sesión afiliado inactivo
 =fix cod barras tarjeta
-->Gestión de reportes

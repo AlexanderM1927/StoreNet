@@ -101,7 +101,7 @@ export default {
         {
             if(this.selectedDate != null && this.selectedDate1 != null)
             {
-                axios
+                await axios
                 .get('../procesarNomina/0/'+this.idafiliado+'/'+this.idempleado+'/'+JSON.stringify({
                     desde: this.selectedDate,
                     hasta: this.selectedDate1

@@ -505,3 +505,12 @@ body {
   height: 100px;
 }
 
+.mensajeReporte {
+  height: 100px;
+  overflow: auto;
+}
+
+pre {
+  border: none;
+}
+

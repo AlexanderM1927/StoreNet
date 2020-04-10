@@ -24,7 +24,7 @@ class Pedido
     public function listarPedidos($idcliente)
     {
         $listaPedidos = array();
-        $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente");
+        $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente  ORDER BY id DESC");
         foreach($arrayPedidos as $pedido)
         {
             $idafiliado = $pedido->idafiliado;
@@ -45,25 +45,25 @@ class Pedido
         {
             if($estado==4)
             {
-                $arrayPedidos = DB::select("SELECT * FROM pedido");
+                $arrayPedidos = DB::select("SELECT * FROM pedido ORDER BY id DESC");
             }else{
                 if($idcliente == 0)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idcliente = $idcliente");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idcliente = $idcliente ORDER BY id DESC");
                 }
             } 
         }else{
             if($estado==4)
             {
-                $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idafiliado = $idafiliado");
+                $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idafiliado = $idafiliado ORDER BY id DESC");
             }else{
                 if($idcliente == 0)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idafiliado = $idafiliado ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idcliente = $idcliente AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND idcliente = $idcliente AND idafiliado = $idafiliado ORDER BY id DESC");
                 }
             } 
         }
@@ -96,16 +96,16 @@ class Pedido
             {
                 if($estado==4)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ORDER BY id DESC");
                 }
             }else{
                 if($estado==4)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ORDER BY id DESC");
                 }
             }
         }else{
@@ -113,16 +113,16 @@ class Pedido
             {
                 if($estado==4)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado ORDER BY id DESC");
                 }
             }else{
                 if($estado==4)
                 {
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado ORDER BY id DESC");
                 }else{
-                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado");
+                    $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente AND estado = $estado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND idafiliado = $idafiliado ORDER BY id DESC");
                 }
             }
         }
