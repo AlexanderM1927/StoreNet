@@ -19,7 +19,7 @@
         
         <div class="container">
             <div id="v-app">
-                <empleado idafiliado="<?=$usuario->getIdAfiliado()?>"></empleado>
+                <ajustes idafiliado="<?=$usuario->getIdAfiliado()?>" rango="<?=$usuario->getRango()?>" idusuario="<?=$usuario->getId()?>"></ajustes>
             </div>
         </div>
         <?php

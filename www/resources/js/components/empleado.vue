@@ -47,8 +47,8 @@
       <br><br>
       <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">{{metodo}}</button>
     </center>
-        <div id="modal-center" class="uk-flex-top" uk-modal>
-        <div class="creadorForm">
+      <div id="modal-center" class="uk-flex-top" uk-modal>
+      <div class="creadorForm">
       <h3 class="title">{{metodo}}</h3>
       <div class="content" id="agregarEmpleado">
         <center>
@@ -57,7 +57,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <select v-on:change="buscar" class="uk-input field" v-model="rango" name="rango">
+            <select class="uk-input field" v-model="rango" name="rango">
                   <option value="1">Vendedor</option>
                   <option value="2">Supervisor</option>
                   <option value="3">Administrador</option>
@@ -212,7 +212,7 @@ export default {
       .then(response => (this.empleados = response.data))
   },
   methods: {
-    limipiar()
+    limpiar()
     {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
@@ -228,9 +228,16 @@ export default {
     },
     buscar()
     {
-      axios
-      .get('../procesarEmpleados/0/'+this.idafiliado+'/'+this.tipo+'/'+this.datos) //Filtros
-      .then(response => (this.empleados = response.data))
+      if(this.datos=='')
+      {
+        axios
+          .get('../procesarEmpleados/0/'+this.idafiliado)
+          .then(response => (this.empleados = response.data))
+      }else{
+        axios
+          .get('../procesarEmpleados/0/'+this.idafiliado+'/'+this.tipo+'/'+this.datos) //Filtros
+          .then(response => (this.empleados = response.data))
+      }
     },
     modificar(empleado)
     {
@@ -249,6 +256,7 @@ export default {
     },
     agregar()
     {
+      this.limpiar()
       $('#agregarEmpleado').show()
       $('#modificarEmpleado').hide()
       this.metodo = 'Agregar empleado'
@@ -268,7 +276,7 @@ export default {
                                     telefono: this.telefono
                                     })
       .then(response => (this.empleados = response.data))
-      this.limipiar();
+      this.limpiar();
       swal("El empleado ha sido agregado", "", "success");
     },
     actualizar()
@@ -287,7 +295,7 @@ export default {
                                     telefono: this.telefono
                                     })
       .then(response => (this.empleados = response.data))
-      this.limipiar();
+      this.limpiar();
       swal("El empleado ha sido actualizado", "", "success");
     },
     eliminar(empleado)

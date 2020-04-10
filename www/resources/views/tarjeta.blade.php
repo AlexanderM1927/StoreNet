@@ -19,7 +19,7 @@
         
         <div class="container">
             <div id="v-app">
-                <empleado idafiliado="<?=$usuario->getIdAfiliado()?>"></empleado>
+                <tarjeta rango="<?=$usuario->getRango()?>" idcliente="<?=$usuario->getId()?>" nombre="<?=$usuario->getNombres().' '.$usuario->getApellidos()?>"></tarjeta>
             </div>
         </div>
         <?php

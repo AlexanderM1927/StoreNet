@@ -16,17 +16,16 @@
             {
         ?>
         @include('elements.navbar', ['usuario' => $usuario])
-        
-        <div class="container">
-            <div id="v-app">
-                <empleado idafiliado="<?=$usuario->getIdAfiliado()?>"></empleado>
-            </div>
-        </div>
         <?php
             }else{
                 echo '<script>window.location.href = "/";</script>';
             }
         ?>
+        <div class="container">
+            <div id="v-app">
+                <nomina idafiliado="<?=$usuario->getIdAfiliado()?>" idempleado="<?=$usuario->getId()?>"> </nomina>
+            </div>
+        </div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

@@ -26,6 +26,9 @@
             Esta plataforma te permitirá gestionar hasta el más mínimo detalle de tu empresa, contamos con gestionador de inventario, nominas, ventas, reportes, tickets, entre otras muchas utilidades que podrás encontrar.
             <br>
             Release: 0.1
+            <center>
+                <img src="img/home.jpg">
+            </center>
             <br>
         </div>
     </body>

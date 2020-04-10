@@ -19,7 +19,7 @@
         
         <div class="container">
             <div id="v-app">
-                <empleado idafiliado="<?=$usuario->getIdAfiliado()?>"></empleado>
+                <inventario idafiliado="<?=$usuario->getIdAfiliado()?>"></inventario>
             </div>
         </div>
         <?php

@@ -26,6 +26,8 @@ class Cliente
     {
         DB::insert('INSERT INTO cliente (nombres, apellidos, mail, password, direccion, telefono) values (?, ?, ?, ?, ?, ?)', [ $nombres,
          $apellidos, $mail, $password, $direccion, $telefono]);
+        $idcliente = DB::getPdo()->lastInsertId();
+        DB::insert('INSERT INTO tarjeta (idcliente,saldo,puntos) values (?, 0, 0)', [ $idcliente ]);
     }
 
     public function modificarCliente($id,$nombres,$apellidos,$mail,$password,$direccion,$telefono)
@@ -39,6 +41,16 @@ class Cliente
         DB::delete('DELETE FROM cliente WHERE id = ?', [ $id ]);
     }
     
+    public function getCliente($id)
+    {
+        $arrayClientes = DB::select("SELECT * FROM cliente WHERE id = $id");
+        return json_encode($arrayClientes[0]);
+    }
+
+    public function setCliente($id,$nombres,$apellidos,$direccion,$telefono)
+    {
+        DB::update('UPDATE cliente SET nombres = ?, apellidos = ?, direccion = ?, telefono = ?  WHERE id = ?', [ $nombres,$apellidos,$direccion,$telefono, $id ]);
+    }
 
 }
 
