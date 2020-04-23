@@ -12,7 +12,7 @@ class Reporte
     
     public function registrarReporte($titulo,$contenido,$correo)
     {
-        DB::insert("INSERT INTO reporte(titulo,contenido,mail,fecha) VALUES (?,?,?,now())",[$titulo,$contenido,$correo]);
+        DB::insert("INSERT INTO reporte(titulo,contenido,mail,estado,fecha) VALUES (?,?,?,1,now())",[$titulo,$contenido,$correo]);
     }
 
     public function responderReporte($id,$titulo,$contenido,$correo)

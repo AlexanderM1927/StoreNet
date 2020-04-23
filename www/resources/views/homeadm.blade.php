@@ -15,7 +15,7 @@
             if(!empty($usuario))
             {
         ?>
-        <div class="container" style="width:50%; height:30%;">
+        <div class="loginForm" style="width:50%; height:30%;">
             <center>
             <h2 class="titulo-seccion">Almacen:</h2>
             <form action="administrador" method="POST">
