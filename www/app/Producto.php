@@ -53,7 +53,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id");
         }else if($filtro==1)
         {
@@ -65,7 +65,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY cantidad ASC");
         }else if($filtro==2)
         {
@@ -77,7 +77,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY cantidad DESC");
         }else if($filtro==3)
         {
@@ -89,7 +89,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY utilidad ASC");
         }else if($filtro==4)
         {
@@ -101,7 +101,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY utilidad DESC");
         }else if($filtro==5)
         {
@@ -113,7 +113,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY precioventa ASC");
         }else if($filtro==6)
         {
@@ -125,7 +125,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY precioventa DESC");
         }else if($filtro==7)
         {
@@ -137,7 +137,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY ventas ASC");
         }else if($filtro==8)
         {
@@ -149,7 +149,7 @@ class Producto
             (p.precioventa-p.precioproveedor) as utilidad,
             IFNULL(SUM(v.cantidad), 0) as ventas  
             FROM producto as p 
-            LEFT JOIN venta as v ON p.id = v.idproducto 
+            LEFT JOIN venta as v ON p.id = v.idproducto AND v.idafiliado = $idafiliado
             WHERE p.idafiliado = ".$idafiliado." GROUP BY id ORDER BY ventas DESC");
         }
 

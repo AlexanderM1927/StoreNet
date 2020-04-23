@@ -21,8 +21,8 @@ class Visor
         SUM(p.precioventa*v.cantidad) as totalventa,
         f.fecha as fecha
         FROM factura as f
-        LEFT JOIN venta as v ON f.id=v.idfactura
-        LEFT JOIN producto as p ON v.idproducto=p.id
+        LEFT JOIN venta as v ON f.id=v.idfactura AND v.idafiliado = $idafiliado
+        LEFT JOIN producto as p ON v.idproducto=p.id AND p.idafiliado = $idafiliado
         WHERE f.idafiliado = $idafiliado AND (f.fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) AND f.anulada=0 GROUP BY id");
         }else{
         $arrayFacturas = DB::select("SELECT f.id as id,
@@ -56,8 +56,8 @@ class Visor
         SUM(p.precioproveedor*v.cantidad) as costosv,
         SUM((p.precioventa-p.precioproveedor)*v.cantidad) as utilidades
         FROM factura as f
-        LEFT JOIN venta as v ON f.id = v.idfactura
-        LEFT JOIN producto as p ON v.idproducto = p.id
+        LEFT JOIN venta as v ON f.id = v.idfactura AND v.idafiliado = $idafiliado
+        LEFT JOIN producto as p ON v.idproducto = p.id AND p.idafiliado = $idafiliado
         WHERE f.idafiliado = $idafiliado AND f.anulada = 0");
 
         $nombre = $nominasQ[0]->nombre;

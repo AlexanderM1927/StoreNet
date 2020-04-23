@@ -138,7 +138,6 @@
           </div>
           <br>
           <button class="uk-button uk-button-danger" @click="imprimir">Imprimir</button>
-        <button class="uk-modal-close-default" type="button" uk-close></button>
         </center>
       </div>
     </div>
@@ -183,9 +182,9 @@ export default {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
       this.nombre= ""
-      this.cantidad= 0
-      this.precioventa= 0
-      this.precioproveedor = 0
+      this.cantidad= ""
+      this.precioventa= ""
+      this.precioproveedor = ""
       this.imgurl = ""
       this.metodo = 'Agregar producto'
     },

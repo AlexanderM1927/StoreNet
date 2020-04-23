@@ -4894,7 +4894,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -4931,9 +4930,9 @@ __webpack_require__.r(__webpack_exports__);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modal-center').removeClass('uk-open').hide();
       this.id = "";
       this.nombre = "";
-      this.cantidad = 0;
-      this.precioventa = 0;
-      this.precioproveedor = 0;
+      this.cantidad = "";
+      this.precioventa = "";
+      this.precioproveedor = "";
       this.imgurl = "";
       this.metodo = 'Agregar producto';
     },
@@ -100730,12 +100729,7 @@ var render = function() {
                       on: { click: _vm.imprimir }
                     },
                     [_vm._v("Imprimir")]
-                  ),
-                  _vm._v(" "),
-                  _c("button", {
-                    staticClass: "uk-modal-close-default",
-                    attrs: { type: "button", "uk-close": "" }
-                  })
+                  )
                 ])
               ],
               1
