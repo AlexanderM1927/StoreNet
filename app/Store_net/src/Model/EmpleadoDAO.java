@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class EmpleadoDAO {
     
-    public Empleado getEmpleado(String username){
+    public Empleado getEmpleado(String mail){
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -26,22 +26,24 @@ public class EmpleadoDAO {
         try{
             con = Fachada.getConnection();
             String sql="";
-            sql = "SELECT * FROM empleado WHERE usuario = ?";
+            sql = "SELECT * FROM empleado WHERE mail = ?";
                          
             pstm = con.prepareStatement(sql);
-            pstm.setString(1, username);
+            pstm.setString(1, mail);
             rs= pstm.executeQuery();
             
             while(rs.next()){
                empleado= new Empleado();
                empleado.setId(rs.getInt("id"));
-               empleado.setNombre(rs.getString("nombre"));
-               empleado.setApellido(rs.getString("apellido"));
-               empleado.setCorreo(rs.getString("correo"));
-               empleado.setUsuario(rs.getString("usuario"));
-               empleado.setContraseña(rs.getString("contrasena"));
-               empleado.setTelefono(rs.getString("telefono"));
-               empleado.setRango(rs.getString("rango"));  
+               empleado.setIdafilidado(rs.getInt("idafiliado"));
+               empleado.setNombres(rs.getString("nombres"));
+               empleado.setApellidos(rs.getString("apellidos"));
+               empleado.setMail(rs.getString("mail"));
+               empleado.setDireccion(rs.getString("direccion"));
+               empleado.setSueldo(rs.getInt("sueldo"));
+               empleado.setPassword(rs.getString("password"));
+               empleado.setTelefono(rs.getInt("telefono"));
+               empleado.setRango(rs.getInt("rango"));  
            
             }
            
@@ -63,46 +65,6 @@ public class EmpleadoDAO {
   
         return empleado;
     
-    }
-    
-    
-    public int ingresarEmpleado(Empleado e){      
-        Connection con = null;
-        PreparedStatement pstm;
-        pstm = null;
-        int rtdo;
-        rtdo = 0;
-        try{
-            con = Fachada.getConnection();
-            
-            String sql = "INSERT INTO cliente values (?,?,?,?,?,?,?,?)";
-            
-            pstm = con.prepareStatement(sql);
-            pstm.setInt(1, e.getId());
-            pstm.setString(2, e.getNombre());
-            pstm.setString(3,e.getApellido());
-            pstm.setString(4,e.getCorreo());
-            pstm.setString(5,e.getUsuario());
-            pstm.setString(6,e.getContraseña());
-            pstm.setString(7,e.getTelefono());
-            pstm.setString(8,e.getRango());
-            
-            
-            rtdo = pstm.executeUpdate();  
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-        }
-        finally{
-            try{
-                if(pstm!=null) pstm.close();                
-            }
-            catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-        }
-        return rtdo;
-    }
+    }   
+   
 }

@@ -61,7 +61,7 @@ public class ClienteDAO {
     }
     
     
-    public Cliente getClienteByUsername(String username){
+    public Cliente getClienteByEmail(String email){
          Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -72,7 +72,7 @@ public class ClienteDAO {
             sql = "SELECT * FROM cliente WHERE usuario = ?";
                          
             pstm = con.prepareStatement(sql);
-            pstm.setString(1, username);
+            pstm.setString(1, email);
             rs= pstm.executeQuery();
             
             while(rs.next()){

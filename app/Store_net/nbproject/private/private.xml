@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/Model/Producto.java</file>
-            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/Services/jdbc.properties</file>
+            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/View/Venta.java</file>
+            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/Controller/ControladorVenta.java</file>
+            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/Model/ProductoDAO.java</file>
+            <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/Controller/ControladorLogin.java</file>
             <file>file:/C:/Users/mauri/Documents/GitHub/StoreNet/app/Store_net/src/View/Main.java</file>
         </group>
     </open-files>

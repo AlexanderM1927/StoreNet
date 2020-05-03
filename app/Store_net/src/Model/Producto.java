@@ -12,15 +12,22 @@ package Model;
 public class Producto {
     
     int id;
-    String nombre;
-    int precio;
-    String fechaVencimineto;
+    String nombre, imgurl;
+    int cantidad, idafiliado;
+    double precioproveedor, precioventa;
 
-    public Producto(int id, String nombre, int precio, String fechaVencimineto) {
+    public Producto(){
+        
+    }    
+
+    public Producto(int id, String nombre, String imgurl, int cantidad, int idafiliado, double precioproveedor, double precioventa) {
         this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
-        this.fechaVencimineto = fechaVencimineto;
+        this.imgurl = imgurl;
+        this.cantidad = cantidad;
+        this.idafiliado = idafiliado;
+        this.precioproveedor = precioproveedor;
+        this.precioventa = precioventa;
     }
 
     public int getId() {
@@ -31,12 +38,24 @@ public class Producto {
         return nombre;
     }
 
-    public int getPrecio() {
-        return precio;
+    public String getImgurl() {
+        return imgurl;
     }
 
-    public String getFechaVencimineto() {
-        return fechaVencimineto;
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public int getIdafiliado() {
+        return idafiliado;
+    }
+
+    public double getPrecioproveedor() {
+        return precioproveedor;
+    }
+
+    public double getPrecioventa() {
+        return precioventa;
     }
 
     public void setId(int id) {
@@ -47,15 +66,27 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
     }
 
-    public void setFechaVencimineto(String fechaVencimineto) {
-        this.fechaVencimineto = fechaVencimineto;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
+
+    public void setIdafiliado(int idafiliado) {
+        this.idafiliado = idafiliado;
+    }
+
+    public void setPrecioproveedor(double precioproveedor) {
+        this.precioproveedor = precioproveedor;
+    }
+
+    public void setPrecioventa(double precioventa) {
+        this.precioventa = precioventa;
+    }
+      
     
     
-        
     
 }
