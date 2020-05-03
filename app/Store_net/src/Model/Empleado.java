@@ -12,94 +12,117 @@ package Model;
 public class Empleado {
     
     private int id;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String usuario;
-    private String contrasena;
-    private String telefono;
-    private String rango;
+    private int idafilidado;
+    private String mail;
+    private String password;
+    private String direccion;
+    private int telefono;
+    private int rango;
+    private double sueldo;
+    private String nombres;
+    private String apellidos;
+
+    
+    
     
     public Empleado(){
         
     }
-    
 
-    public Empleado(int id, String nombre, String apellido, String correo, String usuario, String contraseña, String telefono, String rango) {
+    public Empleado(int id, int idafilidado, String mail, String password, String direccion, int telefono, int rango, double sueldo, String nombres, String apellidos) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.usuario = usuario;
-        this.contrasena = contraseña;
+        this.idafilidado = idafilidado;
+        this.mail = mail;
+        this.password = password;
+        this.direccion = direccion;
         this.telefono = telefono;
         this.rango = rango;
+        this.sueldo = sueldo;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getIdafilidado() {
+        return idafilidado;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getMail() {
+        return mail;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getPassword() {
+        return password;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public String getContraseña() {
-        return contrasena;
-    }
-
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public String getRango() {
+    public int getRango() {
         return rango;
+    }
+
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdafilidado(int idafilidado) {
+        this.idafilidado = idafilidado;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contrasena = contraseña;
-    }
-
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
-    public void setRango(String rango) {
+    public void setRango(int rango) {
         this.rango = rango;
+    }
+
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
     
     
     
+
 }
