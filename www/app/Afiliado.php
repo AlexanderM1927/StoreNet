@@ -9,13 +9,13 @@ class Afiliado
 
     public function listarAfiliados()
     {
-        $arrayAfiliados = DB::select("SELECT * FROM afiliado");
+        $arrayAfiliados = DB::select("SELECT * FROM afiliado WHERE estado = 1");
         return json_encode($arrayAfiliados);
     }
 
     public function listarAfiliados_nombre($nombre)
     {
-        $arrayAfiliados = DB::select("SELECT * FROM afiliado WHERE nombre = '$nombre'");
+        $arrayAfiliados = DB::select("SELECT * FROM afiliado WHERE nombre = '$nombre' AND estado = 1");
         return json_encode($arrayAfiliados);
     }
 
@@ -31,7 +31,8 @@ class Afiliado
 
     public function eliminarAfiliado($id)
     {
-        DB::delete("DELETE FROM afiliado WHERE id = $id");
+        DB::update("UPDATE afiliado SET estado = 0 WHERE id = $id");
+        DB::update("UPDATE empleado SET estado = 0 WHERE idafiliado = $id");
     }
     
 }

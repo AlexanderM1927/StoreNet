@@ -2105,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
       sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido eliminado", "", "success");
     },
     getEstado: function getEstado(valor) {
-      if (valor == 1) return 'Inactivo';else return 'Activo';
+      if (valor == 0) return 'Inactivo';else return 'Activo';
     }
   }
 });
@@ -95370,11 +95370,11 @@ var render = function() {
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "0" } }, [
+                              _c("option", { attrs: { value: "1" } }, [
                                 _vm._v("Activo")
                               ]),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
+                              _c("option", { attrs: { value: "0" } }, [
                                 _vm._v("Inactivo")
                               ])
                             ]
@@ -95516,11 +95516,11 @@ var render = function() {
                               }
                             },
                             [
-                              _c("option", { attrs: { value: "0" } }, [
+                              _c("option", { attrs: { value: "1" } }, [
                                 _vm._v("Activo")
                               ]),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "1" } }, [
+                              _c("option", { attrs: { value: "0" } }, [
                                 _vm._v("Inactivo")
                               ])
                             ]

@@ -9,18 +9,18 @@ class Producto
 
     public function listarProductos($idafiliado){
         if($idafiliado=='0')
-            $arrayProductos = DB::select("SELECT * FROM producto LIMIT 50");
+            $arrayProductos = DB::select("SELECT * FROM producto WHERE estado = 1 LIMIT 50");
         else
-            $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = ".$idafiliado." LIMIT 50");
+            $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = ".$idafiliado." AND estado = 1 LIMIT 50");
 
         return json_encode($arrayProductos);
     }
 
     public function listarProductos_param($param,$data,$idafiliado){
         if($idafiliado=='0')
-            $arrayProductos = DB::select("SELECT * FROM producto WHERE ".$param." LIKE '%$data%' LIMIT 50");
+            $arrayProductos = DB::select("SELECT * FROM producto WHERE ".$param." LIKE '%$data%' AND estado = 1 LIMIT 50");
         else
-            $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = ".$idafiliado." AND ".$param." LIKE '%$data%' LIMIT 50");
+            $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = ".$idafiliado." AND ".$param." LIKE '%$data%' AND estado = 1 LIMIT 50");
         
             return json_encode($arrayProductos);
     }
@@ -37,7 +37,7 @@ class Producto
 
     public function eliminarProducto($id,$idafiliado)
     {
-        DB::delete('DELETE FROM producto WHERE id = ? AND idafiliado = ?', [ $id,$idafiliado ]);
+        DB::update('UPDATE producto SET estado = 0 WHERE id = ? AND idafiliado = ?', [ $id,$idafiliado ]);
     }
 
     public function listarInventario($filtro,$idafiliado)
