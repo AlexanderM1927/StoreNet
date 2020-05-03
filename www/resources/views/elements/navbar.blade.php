@@ -22,6 +22,7 @@
             <a href="#"><span class="uk-margin-small-right" uk-icon="icon: world"></span>Ajustes generales</a>
             <ul class="uk-nav-sub">
                 <li><a href="afiliados">Gestionar almacenes</a></li>
+                <li><a href="reportes">Gestionar reportes</a></li>
             </ul>
         </li>
         <?php } ?>
@@ -72,30 +73,33 @@
     </ul>
 </div>
 <br><br>
-<?php if($usuario->getRango()>3){ ?>
 <div class="reportes">
-<div onclick="report()" style="width:100%; padding:3px;"><span class="uk-margin-small-right" uk-icon="icon: list"></span>Reportes</div>
+<div onclick="report()" style="width:100%; padding:3px;"><span class="uk-margin-small-right" uk-icon="icon: list"></span>Enviar reportes</div>
 <div id="list-reportes" class="barra">
-<li>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-<ul>Prueba</ul>
-</li>
+<center>
+<form action="" onsubmit="enviar(); return false">
+<div class="uk-margin">
+<div class="uk-inline">
+<span class="uk-form-icon" uk-icon="icon: mail"></span>
+<input class="uk-input field" type="mail" id="mail" placeholder="Correo eléctronico" required>
+</div>
+</div>
+<div class="uk-margin">
+<div class="uk-inline">
+<span class="uk-form-icon" uk-icon="icon: tag"></span>
+<input class="uk-input field" type="text" id="title" placeholder="Título" required>
+</div>
+</div>
+<div class="uk-margin">
+<textarea class="uk-textarea" id="content" rows="4" maxlength="590" placeholder="Contenido" required></textarea>
+</div>
+<button class="uk-button uk-button-primary">Enviar</button>
+</form>
+</center>
 </div>
 </div>
 <script>
-    let activo=0
+let activo=0
 function report()
 {
     if(activo===0)
@@ -107,8 +111,25 @@ function report()
         activo=0
     }
 }
+function enviar()
+{
+    var mail = document.getElementById("mail").value;
+    var title = document.getElementById("title").value;
+    var content = document.getElementById("content").value;
+    var xhttp = new XMLHttpRequest();
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    xhttp.withCredentials = true;
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Reporte enviado correctamente',pos: 'top-right',status:'success'})
+        report()
+    }
+    };
+    xhttp.open("POST", "procesarReportes/1", true);
+    xhttp.setRequestHeader('x-csrf-token', csrfToken);
+    xhttp.send(JSON.stringify({correo: mail,titulo: title, contenido: content}));
+}
 </script>
 <?php
-    }
     }
 ?>

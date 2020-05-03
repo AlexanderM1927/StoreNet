@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             metodo: '',
-            id: 0,
+            id: '',
             mensaje: ''
         }
     },

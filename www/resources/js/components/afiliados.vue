@@ -47,8 +47,8 @@
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
             <select class="uk-input field" v-model="estado" name="estado">
-                  <option value="0">Activo</option>
-                  <option value="1">Inactivo</option>
+                  <option value="1">Activo</option>
+                  <option value="0">Inactivo</option>
                 </select>
           </div>
         </div>
@@ -72,8 +72,8 @@
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
             <select class="uk-input field" v-model="estado" name="estado">
-                  <option value="0">Activo</option>
-                  <option value="1">Inactivo</option>
+                  <option value="1">Activo</option>
+                  <option value="0">Inactivo</option>
                 </select>
           </div>
         </div>
@@ -177,7 +177,7 @@ export default {
     },
     getEstado(valor)
     {
-      if(valor==1)
+      if(valor == 0)
       return 'Inactivo'
       else
       return 'Activo'

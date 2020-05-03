@@ -9,7 +9,7 @@ class Nomina
 {
     public function getNomina($idafiliado,$idusuario)
     {
-        $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND idempleado = $idusuario");
+        $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND idempleado = $idusuario ORDER BY id DESC");
         return json_encode($arrayNominas);
     }
 
@@ -20,14 +20,14 @@ class Nomina
         {
             $desde = date("Y-m-d",strtotime($fechas->desde));
             $hasta = date("Y-m-d",strtotime($fechas->hasta));
-            $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND idempleado = $idusuario AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE))");
+            $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND idempleado = $idusuario AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE)) ORDER BY id DESC");
             return json_encode($arrayNominas);
         }
     }
 
     public function getNominaAfiliado($idafiliado)
     {
-        $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado");
+        $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado  ORDER BY id DESC");
         return json_encode($arrayNominas);
     }
 
@@ -38,7 +38,7 @@ class Nomina
         {
             $desde = date("Y-m-d",strtotime($fechas->desde));
             $hasta = date("Y-m-d",strtotime($fechas->hasta));
-            $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE))");
+            $arrayNominas = DB::select("SELECT * FROM nomina WHERE idafiliado = $idafiliado AND (fecha BETWEEN CAST('$desde' AS DATE) AND CAST('$hasta' AS DATE))  ORDER BY id DESC");
             return json_encode($arrayNominas);
         }
     }

@@ -41,25 +41,13 @@ public class ControladorLogin implements ActionListener{
         if(ae.getActionCommand().equalsIgnoreCase("Ingresar")){
            String user= login.getUsuario();
            String password= login.getContrasena();
-           Cliente cl= cliente.getClienteByUsername(user);
-           if(cl!=null&&password.equals(cl.getContraseña())){
-               
-               JOptionPane.showMessageDialog(null, "Bienvenido "+cl.getNombre());
-               
-               //Pasa a la ventana que veran los clientes
-               
-           }else{
-               Empleado e= emp.getEmpleado(user);
-               if(e!=null&&password.equals(e.getContraseña())){
-                   JOptionPane.showMessageDialog(null, "Bienvenido "+e.getNombre());
-                   
-                   //Pasa a la ventana que veran los empleados
-                   
+           Empleado e= emp.getEmpleado(user);
+               if(e!=null&&password.equals(e.getPassword())){
+                   JOptionPane.showMessageDialog(null, "Bienvenido "+e.getNombres());
+                   ppal.activarFactura();
                }else{
-                   JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
+                   JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");  
                }
-               
-           }
         }
         
     }

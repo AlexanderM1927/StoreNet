@@ -126,4 +126,10 @@ class WebsiteController extends Controller
     {
         return view('nominas')->with('usuario',session('usuario'));
     }
+
+    public function reportes()
+    {
+        return view('reportes')->with('usuario',session('usuario'));
+    }
+
 }
