@@ -2983,7 +2983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       metodo: '',
-      id: 0,
+      id: '',
       mensaje: ''
     };
   },
@@ -5270,6 +5270,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_barcode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-barcode */ "./node_modules/vue-barcode/index.js");
+/* harmony import */ var vue_barcode__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_barcode__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -5298,6 +5300,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5316,6 +5324,9 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('../procesarTarjetas/0/' + this.idcliente).then(function (response) {
       return _this.tarjetas = response.data;
     });
+  },
+  components: {
+    'barcode': vue_barcode__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   methods: {
     agregarCeros: function agregarCeros(id) {
@@ -101107,6 +101118,30 @@ var render = function() {
                       attrs: { src: "img/tarjeta.jpg" }
                     })
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "codigoTarjeta" },
+                    [
+                      _c(
+                        "barcode",
+                        {
+                          attrs: {
+                            value: tarjeta["idcliente"],
+                            format: "CODE39",
+                            width: "3",
+                            height: "50"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n          Error generando codigo de barras\n          "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("span", { staticClass: "numeroTarjeta" }, [
                     _vm._v(_vm._s(_vm.agregarCeros(tarjeta["id"])))
