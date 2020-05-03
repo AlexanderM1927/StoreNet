@@ -12,6 +12,7 @@ body {
   height: 100%;
   background: url(/images/bg3.jpg?5e22c901e71a325e2113322379fd50bb);
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 .loginForm {
@@ -317,6 +318,15 @@ body {
   padding: 20px;
 }
 
+.codigoTarjeta {
+  position: absolute;
+  top: 40%;
+  left: 46.7%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #FFF;
+}
+
 .numeroTarjeta {
   position: absolute;
   top: 50%;
@@ -503,5 +513,14 @@ body {
 
 .balance_productos {
   height: 100px;
+}
+
+.mensajeReporte {
+  height: 100px;
+  overflow: auto;
+}
+
+pre {
+  border: none;
 }
 

@@ -5,6 +5,11 @@
     <div v-for="tarjeta in tarjetas" v-if="rango==0">
             <center>
             <a  uk-toggle="target: #modal-center"><img src="img/tarjeta.jpg" style="width:700px;"></a>
+            <span class="codigoTarjeta">
+            <barcode v-bind:value="tarjeta['idcliente']" format="CODE39" width="3" height="50">
+            Error generando codigo de barras
+            </barcode>
+            </span>
             <span class="numeroTarjeta">{{agregarCeros(tarjeta['id'])}}</span>
             <span class="nombreTarjeta">{{nombre}}</span>
             </center>
@@ -29,6 +34,7 @@
 <script>
 import $ from 'jquery'
 import swal from 'sweetalert'
+import VueBarcode from 'vue-barcode';
 
 export default {
   name: 'tarjeta',
@@ -44,6 +50,9 @@ export default {
     axios
       .get('../procesarTarjetas/0/'+this.idcliente)
       .then(response => (this.tarjetas=response.data))
+  },
+  components: {
+    'barcode': VueBarcode
   },
   methods: {
     agregarCeros(id)
