@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SoftCorp - StoreNet</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <link type="text/css" href="css/app.css" rel="stylesheet" />
+    </head>
+    <body>
+    <?php
+            if(!empty($usuario))
+            {
+        ?>
+        <div class="informe">
+        <h1>Informe - <?=$balance['nombre']?></h1>
+        <hr>
+        Desde: <?=$desde?><br>
+        Hasta: <?=$hasta?>
+        <hr>
+        <center>
+        <table id="balance">
+        <tr>
+            <th>Concepto</th>
+            <th>Ingresos</th>
+            <th>Egresos</th>
+            <th>Totales</th>
+        </tr>
+        <tr>
+            <td>Ventas realizadas</td>
+            <td><?=$balance['ventas']?></td>
+            <td><?=$balance['costosv']?></td>
+            <td><?=$balance['utilidades']?></td>
+        </tr>
+        <tr>
+            <td>Pagos por nomina</td>
+            <td>0</td>
+            <td><?=$balance['nominas']?></td>
+            <td><?=$balance['nominas']?></td>
+        </tr>
+        <?php
+        $total = $balance['utilidades']-$balance['nominas'];
+        ?>
+        <tr>
+            <th colspan="3">Total</th>
+            <th><?=$total?></th>
+        </tr>
+        </table>
+        </center>
+        <br>
+        <br>
+        <div class="balance_productos">
+        <table id="balance_productos">
+        <tr>
+            <th>Productos vendidos</th>
+        </tr>
+        <tr>
+            <td><?=$balance['nventas']?></td>
+        </tr>
+        </table>
+        </div>
+        <br><br>
+        <hr>
+        <b style="color:red;">*</b>Si el saldo total, tiene un valor negativo, es posible que <?=$balance['nombre']?> presente perdidas.<br>
+        <b style="color:red;">*</b>Es importante tener en cuenta que los balances están hechos en el rango de fechas que usted solicito.
+        </div>
+        <div class="footer">Balance generador por StoreNet - a product by SoftCorp</div>
+        <?php
+            }else{
+                echo '<script>window.location.href = "/";</script>';
+            }
+        ?>
+    </body>
+</html>

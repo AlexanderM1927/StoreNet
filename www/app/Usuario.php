@@ -38,7 +38,12 @@ class Usuario
         $this->password=$array->password;
         $this->direccion=$array->direccion;
         $this->telefono=$array->telefono;
-        $this->idafiliado=$array->idafiliado;
+        if($array->rango==4)
+        {
+            $this->idafiliado=0;
+        }else{
+            $this->idafiliado=$array->idafiliado;
+        }
         $this->rango=$array->rango;
         $this->sueldo=$array->sueldo;
     }
@@ -70,6 +75,10 @@ class Usuario
             $rango='Super administrador';
         }
         return $rango;
+    }
+
+    public function setIdAfiliado($id){
+        $this->idafiliado = $id;
     }
 
 }

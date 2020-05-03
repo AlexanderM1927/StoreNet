@@ -12,6 +12,7 @@ body {
   height: 100%;
   background: url(/images/bg3.jpg?5e22c901e71a325e2113322379fd50bb);
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 .loginForm {
@@ -236,7 +237,7 @@ body {
 .titulo-seccion {
   background: #DF7401;
   color: #FFF;
-  border-bottom: 2px solid #000;
+  padding-left: 10px;
 }
 
 .subtitulo-seccion {
@@ -303,5 +304,223 @@ body {
 
 #modificarCliente {
   display: none;
+}
+
+.results {
+  padding: 5px;
+  background: #088A08;
+  color: #FFF;
+  display: none;
+  float: right;
+}
+
+.tarjetaInformacion {
+  padding: 20px;
+}
+
+.codigoTarjeta {
+  position: absolute;
+  top: 40%;
+  left: 46.7%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #FFF;
+}
+
+.numeroTarjeta {
+  position: absolute;
+  top: 50%;
+  left: 46.7%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #FFF;
+}
+
+.nombreTarjeta {
+  position: absolute;
+  top: 77%;
+  left: 46.7%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #FFF;
+}
+
+.carritoCompra {
+  width: auto;
+  height: 200px;
+  overflow: auto;
+  border-radius: 0px 0px 8px 8px;
+  list-style: none;
+  background: #f0f0f0;
+}
+
+.devoluciones {
+  width: 100%;
+  height: 170px;
+}
+
+.devoluciones .izq {
+  float: left;
+  background: #1e87f0;
+  width: 48%;
+  color: #FFF;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 150px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 120px;
+  font-size: 25px;
+}
+
+.devoluciones .der {
+  float: right;
+  width: 48%;
+  background: #1e87f0;
+  color: #FFF;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 150px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 120px;
+  font-size: 25px;
+}
+
+.contenidoD {
+  width: 70%;
+  background: #f0f0f0;
+  padding: 20px;
+}
+
+.filtrosEstadisticas {
+  width: 46%;
+  float: left;
+  padding: 20px;
+  height: 260px;
+  background: #f0f0f0;
+}
+
+.circuloEstadisticas {
+  width: 45%;
+  float: right;
+  padding: 20px;
+  height: 260px;
+  background: #f0f0f0;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  position: absolute;
+  background: #000;
+  left: 0;
+  color: #FFF;
+}
+
+.informe {
+  padding: 20px;
+}
+
+.reportes {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  background: #DF7401;
+  color: #FFF;
+  width: 20%;
+  border-radius: 4px 0px 0px 0px;
+  cursor: pointer;
+}
+
+#list-reportes {
+  display: none;
+  background: #FFF;
+  padding: 5px;
+  color: #000;
+  height: 300px;
+  overflow: auto;
+}
+
+#list-reportes li {
+  list-style: none;
+}
+
+#list-reportes li ul:hover {
+  background: #000;
+  color: #FFF;
+}
+
+#balance {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#balance td,
+#balance th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#balance tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#balance tr:hover {
+  background-color: #ddd;
+}
+
+#balance th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #DF7401;
+  color: white;
+}
+
+#balance_productos {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: auto;
+  float: left;
+}
+
+#balance_productos td,
+#balance_productos th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#balance_productos tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#balance_productos tr:hover {
+  background-color: #ddd;
+}
+
+#balance_productos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0080FF;
+  color: white;
+}
+
+.balance_productos {
+  height: 100px;
+}
+
+.mensajeReporte {
+  height: 100px;
+  overflow: auto;
+}
+
+pre {
+  border: none;
 }
 

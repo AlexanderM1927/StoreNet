@@ -35,7 +35,9 @@
                 <td>{{producto['precioventa']}}</td>
                 <td>{{producto['cantidad']}}</td>
                 <td>{{producto['imgurl'].substr(0,20)}}</td>
-                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(producto)">Editar</a> / <a href="#" @click="eliminar(producto)">Eliminar</a></td>
+                <td>
+                  <center><a href="#" uk-toggle="target: #modal-center" @click="codigo(producto)">Cod barra</a> <br> <a href="#" uk-toggle="target: #modal-center" @click="modificar(producto)">Editar</a> / <a href="#" @click="eliminar(producto)">Eliminar</a></center>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -126,6 +128,18 @@
         <button class="uk-modal-close-default" type="button" uk-close></button>
         </center>
       </div>
+      <div class="content" id="codigoProducto">
+        <center>
+          <div ref="codigo">
+          {{nombre}}:
+          <barcode v-bind:value="id" format="CODE39" width="3" height="50">
+          Error generando codigo de barras
+          </barcode>
+          </div>
+          <br>
+          <button class="uk-button uk-button-danger" @click="imprimir">Imprimir</button>
+        </center>
+      </div>
     </div>
     </div>
   </div>
@@ -134,6 +148,7 @@
 <script>
 import $ from 'jquery'
 import swal from 'sweetalert';
+import VueBarcode from 'vue-barcode';
 
 export default {
   name: 'producto',
@@ -147,8 +162,8 @@ export default {
         metodo: 'Agregar producto',
         id: '',
         cantidad: '',
-        precioventa: 0,
-        precioproveedor: 0,
+        precioventa: '',
+        precioproveedor: '',
         imgurl: ''
     }
   },
@@ -158,8 +173,11 @@ export default {
       .get('../procesarProductos/0/0/0/'+this.idafiliado)
       .then(response => (this.productos = response.data))
   },
+  components: {
+    'barcode': VueBarcode
+  },
   methods: {
-    limipiar()
+    limpiar()
     {
       $('#modal-center').removeClass('uk-open').hide();
       this.id = ""
@@ -172,9 +190,16 @@ export default {
     },
     buscar()
     {
-      axios
-      .get('../procesarProductos/0/'+this.tipo+'/'+this.datos+'/'+this.idafiliado) //Filtros
-      .then(response => (this.productos = response.data))
+      if(this.datos==''){
+        axios
+          .get('../procesarProductos/0/0/0/'+this.idafiliado)
+          .then(response => (this.productos = response.data))
+      }else{
+        axios
+          .get('../procesarProductos/0/'+this.tipo+'/'+this.datos+'/'+this.idafiliado) //Filtros
+          .then(response => (this.productos = response.data))
+      }
+      
     },
     modificar(producto)
     {
@@ -186,13 +211,29 @@ export default {
       this.imgurl = producto['imgurl']
       $('#agregarProducto').hide()
       $('#modificarProducto').show()
+      $('#codigoProducto').hide()
       this.metodo = 'Modificar producto'
     },
     agregar()
     {
+      this.limpiar()
       $('#agregarProducto').show()
       $('#modificarProducto').hide()
+      $('#codigoProducto').hide()
       this.metodo = 'Agregar producto'
+    },
+    codigo(producto)
+    {
+      this.id = producto['id']
+      this.nombre= producto['nombre']
+      this.cantidad= producto['cantidad']
+      this.precioventa= producto['precioventa']
+      this.precioproveedor = producto['precioproveedor']
+      this.imgurl = producto['imgurl']
+      $('#modificarProducto').hide()
+      $('#agregarProducto').hide()
+      $('#codigoProducto').show()
+      this.metodo = 'Imprimir producto'
     },
     insertar()
     {
@@ -206,7 +247,7 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => (this.productos = response.data))
-      this.limipiar();
+      this.limpiar()
       swal("El producto ha sido agregado", "", "success");
     },
     actualizar()
@@ -221,7 +262,7 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => (this.productos = response.data))
-      this.limipiar();
+      this.limpiar()
       swal("El producto ha sido actualizado", "", "success");
     },
     eliminar(producto)
@@ -231,6 +272,15 @@ export default {
       .then(response => (this.productos = response.data))
       swal("El producto ha sido eliminado", "", "success");
     },
+    imprimir()
+    {
+      let ficha = this.$refs.codigo;
+	    let ventimp = window.open(' ', 'popimpr');
+	    ventimp.document.write( ficha.innerHTML );
+	    ventimp.document.close();
+	    ventimp.print( );
+	    ventimp.close();
+    }
   }
 };
 </script>
