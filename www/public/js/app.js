@@ -95244,7 +95244,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Eliminar")]
+                      [_vm._v("Deshabilitar")]
                     )
                   ])
                 ])
@@ -95880,7 +95880,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Eliminar")]
+                      [_vm._v("Deshabilitar")]
                     )
                   ])
                 ])
@@ -95902,7 +95902,7 @@ var render = function() {
             attrs: { type: "button", "uk-toggle": "target: #modal-center" },
             on: { click: _vm.agregar }
           },
-          [_vm._v(_vm._s(_vm.metodo))]
+          [_vm._v("Agregar")]
         )
       ]),
       _vm._v(" "),
@@ -97283,7 +97283,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Eliminar")]
+                      [_vm._v("Deshabilitar")]
                     )
                   ])
                 ])
@@ -97305,7 +97305,7 @@ var render = function() {
             attrs: { type: "button", "uk-toggle": "target: #modal-center" },
             on: { click: _vm.agregar }
           },
-          [_vm._v(_vm._s(_vm.metodo))]
+          [_vm._v("Agregar")]
         )
       ]),
       _vm._v(" "),
@@ -100148,7 +100148,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Eliminar")]
+                          [_vm._v("Deshabilitar")]
                         )
                       ])
                     ],
@@ -100173,7 +100173,7 @@ var render = function() {
             attrs: { type: "button", "uk-toggle": "target: #modal-center" },
             on: { click: _vm.agregar }
           },
-          [_vm._v(_vm._s(_vm.metodo))]
+          [_vm._v("Agregar")]
         )
       ]),
       _vm._v(" "),
@@ -101280,7 +101280,7 @@ var render = function() {
             attrs: { type: "button", "uk-toggle": "target: #modal-center" },
             on: { click: _vm.agregar }
           },
-          [_vm._v(_vm._s(_vm.metodo))]
+          [_vm._v("Agregar")]
         )
       ]),
       _vm._v(" "),
