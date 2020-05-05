@@ -45,9 +45,12 @@ class Visor
         $desde=$desde->format("Y-m-d");
         $hasta=date_create_from_format('D M d Y H:i:s e+', $hasta);
         $hasta=$hasta->format("Y-m-d");
+        
+        $afiliadoQ = DB::select("SELECT nombre
+        FROM afiliado
+        WHERE id = $idafiliado");
 
-        $nominasQ = DB::select("SELECT SUM(n.totalnomina) as nominas,
-        a.nombre as nombre
+        $nominasQ = DB::select("SELECT SUM(n.totalnomina) as nominas
         FROM nomina as n, afiliado as a
         WHERE n.idafiliado = $idafiliado AND n.idafiliado = a.id");
 
@@ -60,7 +63,7 @@ class Visor
         LEFT JOIN producto as p ON v.idproducto = p.id AND p.idafiliado = $idafiliado
         WHERE f.idafiliado = $idafiliado AND f.anulada = 0");
 
-        $nombre = $nominasQ[0]->nombre;
+        $nombre = $afiliadoQ[0]->nombre;
         $nominas = $nominasQ[0]->nominas;
         $ventas = $ventasQ[0]->ventas;
         $nventas = $ventasQ[0]->nventas;

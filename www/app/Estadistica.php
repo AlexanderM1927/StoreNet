@@ -11,15 +11,15 @@ class Estadistica
     {
         $arrayProductos = DB::select("SELECT SUM(v.cantidad) as ventas 
         FROM factura as f,venta as v
-        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), INTERVAL 1 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 MONTH)) AND f.idafiliado = $idafiliado AND v.idfactura = f.id");
+        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), INTERVAL 1 DAY) AND DATE_SUB(CURDATE(), INTERVAL 2 MONTH)) AND f.idafiliado = $idafiliado AND v.idfactura = f.id AND v.idafiliado = $idafiliado");
         $mes1 = $arrayProductos[0]->ventas;
         $arrayProductos1 = DB::select("SELECT SUM(v.cantidad) as ventas 
         FROM factura as f,venta as v 
-        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 2 MONTH), INTERVAL 1 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND f.idafiliado = $idafiliado AND v.idfactura = f.id");
+        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 2 MONTH), INTERVAL 1 DAY) AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) AND f.idafiliado = $idafiliado AND v.idfactura = f.id AND v.idafiliado = $idafiliado");
         $mes2 = $arrayProductos1[0]->ventas;
         $arrayProductos2 = DB::select("SELECT SUM(v.cantidad) as ventas 
         FROM factura as f, venta as v
-        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), INTERVAL 1 DAY) AND CURDATE()) AND f.idafiliado = $idafiliado AND v.idfactura = f.id");
+        WHERE (f.fecha BETWEEN DATE_ADD(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), INTERVAL 1 DAY) AND CURDATE()) AND f.idafiliado = $idafiliado AND v.idfactura = f.id AND v.idafiliado = $idafiliado");
         $mes3 = $arrayProductos2[0]->ventas;
         
         return response()->json(["label"=> "Ventas", "backgroundColor"=> "#1e87f0", "data"=> [$mes1,$mes2,$mes3]]);

@@ -68,15 +68,6 @@
             <input class="uk-input field" type="text" name="nombre" placeholder="Nombre" required v-model="nombre">
           </div>
         </div>
-        <div class="uk-margin">
-          <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <select class="uk-input field" v-model="estado" name="estado">
-                  <option value="1">Activo</option>
-                  <option value="0">Inactivo</option>
-                </select>
-          </div>
-        </div>
         <button class="uk-button uk-button-default">Modificar</button>
         </form>
         <button class="uk-modal-close-default" type="button" uk-close></button>

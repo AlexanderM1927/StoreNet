@@ -27,13 +27,14 @@ class Pedido
         $arrayPedidos = DB::select("SELECT * FROM pedido WHERE idcliente = $idcliente  ORDER BY id DESC");
         foreach($arrayPedidos as $pedido)
         {
+            $id = $pedido->id;
             $idafiliado = $pedido->idafiliado;
-            $idfactura = $pedido->id;
+            $idfactura = $pedido->idfactura;
             $fecha = $pedido->fecha;
             $estado = $this->getEstado($pedido->estado);
             $afiliadoQ = DB::select("SELECT nombre FROM afiliado WHERE id = $idafiliado");
             $afiliado = $afiliadoQ[0]->nombre;
-            array_push($listaPedidos, ['id' => $idfactura, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
+            array_push($listaPedidos, ['id' => $id, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
         }
         return $listaPedidos;
     }
@@ -71,13 +72,14 @@ class Pedido
 
         foreach($arrayPedidos as $pedido)
         {
+            $id = $pedido->id;
             $idafiliado = $pedido->idafiliado;
-            $idfactura = $pedido->id;
+            $idfactura = $pedido->idfactura;
             $fecha = $pedido->fecha;
             $estado = $this->getEstado($pedido->estado);
             $afiliadoQ = DB::select("SELECT nombre FROM afiliado WHERE id = $idafiliado");
             $afiliado = $afiliadoQ[0]->nombre;
-            array_push($listaPedidos, ['id' => $idfactura, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
+            array_push($listaPedidos, ['id' => $id, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
         }
         return $listaPedidos;
     }
@@ -129,13 +131,14 @@ class Pedido
         
         foreach($arrayPedidos as $pedido)
         {
+            $id = $pedido->id;
             $idafiliado = $pedido->idafiliado;
-            $idfactura = $pedido->id;
+            $idfactura = $pedido->idfactura;
             $fecha = $pedido->fecha;
             $estado = $this->getEstado($pedido->estado);
             $afiliadoQ = DB::select("SELECT nombre FROM afiliado WHERE id = $idafiliado");
             $afiliado = $afiliadoQ[0]->nombre;
-            array_push($listaPedidos, ['id' => $idfactura, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
+            array_push($listaPedidos, ['id' => $id, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'idfactura' => $idfactura, 'estado' => $estado]);
         }
         return $listaPedidos;
         }else{

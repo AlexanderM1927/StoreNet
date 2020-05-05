@@ -20,7 +20,7 @@ class Compra
             $stock = $stockQ[0]->cuenta;
             $afiliadoQ = DB::select("SELECT nombre FROM afiliado WHERE id = $idafiliado");
             $afiliado = $afiliadoQ[0]->nombre;
-            $valortotalQ = DB::select("SELECT SUM(P.precioventa*V.cantidad) as suma FROM producto as P, venta as V WHERE V.idproducto=P.id AND V.idfactura = $idfactura AND V.idafiliado = $idafiliado");
+            $valortotalQ = DB::select("SELECT SUM(P.precioventa*V.cantidad) as suma FROM producto as P, venta as V WHERE V.idproducto=P.id AND V.idfactura = $idfactura AND V.idafiliado = $idafiliado AND P.idafiliado = $idafiliado");
             $valortotal = $valortotalQ[0]->suma;
             array_push($productos, ['id' => $idfactura, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'valortotal' => $valortotal, 'stock' => $stock]);
         }
@@ -45,7 +45,7 @@ class Compra
             $stock = $stockQ[0]->cuenta;
             $afiliadoQ = DB::select("SELECT nombre FROM afiliado WHERE id = $idafiliado");
             $afiliado = $afiliadoQ[0]->nombre;
-            $valortotalQ = DB::select("SELECT SUM(P.precioventa*V.cantidad) as suma FROM producto as P, venta as V WHERE V.idproducto=P.id AND V.idfactura = $idfactura AND V.idafiliado = $idafiliado");
+            $valortotalQ = DB::select("SELECT SUM(P.precioventa*V.cantidad) as suma FROM producto as P, venta as V WHERE V.idproducto=P.id AND V.idfactura = $idfactura AND V.idafiliado = $idafiliado AND P.idafiliado = $idafiliado");
             $valortotal = $valortotalQ[0]->suma;
             array_push($productos, ['id' => $idfactura, 'idafiliado' => $idafiliado, 'afiliado' => $afiliado, 'fecha' => $fecha, 'valortotal' => $valortotal, 'stock' => $stock]);
         }
@@ -62,7 +62,7 @@ class Compra
         $arrayCompras = DB::select("SELECT * FROM venta WHERE idfactura = $idfactura AND idafiliado = $idafiliado");
         foreach($arrayCompras as $compra)
         {
-            $id=$compra->id;
+            $id=$compra->idproducto;
             $cantidad=$compra->cantidad;
             $idproducto=$compra->idproducto;
             $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = $idafiliado AND id = $idproducto");
@@ -140,7 +140,7 @@ class Compra
             $idcliente = $factura[0]->idcliente;
             DB::update("UPDATE factura SET anulada = 1 WHERE idafiliado = $idafiliado AND id = $idfactura");
             DB::update("UPDATE producto as p, venta as v SET p.cantidad = p.cantidad + v.cantidad
-                                                         WHERE p.id = v.idproducto AND v.idfactura = $idfactura AND v.idafiliado = $idafiliado");
+                                                         WHERE p.id = v.idproducto AND v.idfactura = $idfactura AND P.idafiliado = $idafiliado AND v.idafiliado = $idafiliado");
             DB::update("UPDATE pedido as p SET p.estado = 2 WHERE p.idfactura = $idfactura AND p.idafiliado = $idafiliado");
             $arrayVentas = DB::select("SELECT * FROM venta WHERE idafiliado = $idafiliado AND idfactura = $idfactura");
             DB::delete("DELETE FROM venta WHERE idfactura = $idfactura AND idafiliado = $idafiliado"); //ESTO PUEDE CAMBIAR CON EL TIEMPO

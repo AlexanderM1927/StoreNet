@@ -56,10 +56,11 @@
         <div class="uk-margin">
         <div class="uk-inline">
         <span class="uk-form-icon" uk-icon="icon: mail"></span>
-        <input class="uk-input field" type="mail" id="mail" placeholder="Correo eléctronico" v-model="mail" required>
+        <input class="uk-input field" type="mail" id="mail" placeholder="Correo eléctronico" disabled="true" v-model="mail" required>
         </div>
         </div>
         <div class="mensajeReporte barra">
+            <b>{{titulo}}</b>
             <pre>{{contenido}}</pre>
         </div>
         <hr>
@@ -95,7 +96,9 @@ export default {
             },
             reportes: [],
             mail: '',
+            titulo: '',
             contenido: '',
+            titulo: '',
             respuesta: '',
             asunto: '',
             id: 0
@@ -146,6 +149,7 @@ export default {
         },
         mostrar(reporte)
         {
+            this.titulo = reporte['titulo']
             this.mail = reporte['mail']
             this.contenido = reporte['contenido']
             this.asunto = reporte['titulo']
