@@ -36,7 +36,7 @@
                 <td>{{producto['cantidad']}}</td>
                 <td>{{producto['imgurl'].substr(0,20)}}</td>
                 <td>
-                  <center><a href="#" uk-toggle="target: #modal-center" @click="codigo(producto)">Cod barra</a> <br> <a href="#" uk-toggle="target: #modal-center" @click="modificar(producto)">Editar</a> / <a href="#" @click="eliminar(producto)">Eliminar</a></center>
+                  <center><a href="#" uk-toggle="target: #modal-center" @click="codigo(producto)">Cod barra</a> <br> <a href="#" uk-toggle="target: #modal-center" @click="modificar(producto)">Editar</a> / <a href="#" @click="eliminar(producto)">Deshabilitar</a></center>
                 </td>
             </tr>
         </tbody>
@@ -44,7 +44,7 @@
     </div>
     <center>
       <br><br>
-      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">{{metodo}}</button>
+      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">Agregar</button>
     </center>
         <div id="modal-center" class="uk-flex-top" uk-modal>
         <div class="creadorForm">

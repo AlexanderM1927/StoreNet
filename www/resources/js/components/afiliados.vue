@@ -21,7 +21,7 @@
                 <td>{{afiliado['id']}}</td>
                 <td>{{afiliado['nombre']}}</td>
                 <td>{{getEstado(afiliado['estado'])}}</td>
-                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(afiliado)">Editar</a> / <a href="#" @click="eliminar(afiliado)">Eliminar</a></td>
+                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(afiliado)">Editar</a> / <a href="#" @click="eliminar(afiliado)">Deshabilitar</a></td>
             </tr>
         </tbody>
     </table>

@@ -35,14 +35,14 @@
                 <td>{{cliente['mail']}}</td>
                 <td>{{cliente['direccion']}}</td>
                 <td>{{cliente['telefono']}}</td>
-                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(cliente)">Editar</a> / <a href="#" @click="eliminar(cliente)">Eliminar</a></td>
+                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(cliente)">Editar</a> / <a href="#" @click="eliminar(cliente)">Deshabilitar</a></td>
             </tr>
         </tbody>
     </table>
     </div>
     <center>
       <br><br>
-      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">{{metodo}}</button>
+      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">Agregar</button>
     </center>
         <div id="modal-center" class="uk-flex-top" uk-modal>
         <div class="creadorForm">

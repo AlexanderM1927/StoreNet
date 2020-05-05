@@ -38,14 +38,14 @@
                 <td>{{empleado['mail']}}</td>
                 <td>{{empleado['direccion']}}</td>
                 <td>{{empleado['telefono']}}</td>
-                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(empleado)">Editar</a> / <a href="#" @click="eliminar(empleado)">Eliminar</a></td>
+                <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(empleado)">Editar</a> / <a href="#" @click="eliminar(empleado)">Deshabilitar</a></td>
             </tr>
         </tbody>
     </table>
     </div>
     <center>
       <br><br>
-      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">{{metodo}}</button>
+      <button @click="agregar" class="uk-button uk-button-primary uk-margin-small-right" type="button" uk-toggle="target: #modal-center">Agregar</button>
     </center>
       <div id="modal-center" class="uk-flex-top" uk-modal>
       <div class="creadorForm">
