@@ -98,6 +98,7 @@ export default {
             mail: '',
             titulo: '',
             contenido: '',
+            titulo: '',
             respuesta: '',
             asunto: '',
             id: 0
