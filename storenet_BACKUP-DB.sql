@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
@@ -95,10 +95,9 @@ INSERT INTO `empleado` (`id`, `idafiliado`, `mail`, `password`, `direccion`, `te
 --
 -- Disparadores `empleado`
 --
-DELIMITER $$
+
 CREATE TRIGGER `empleado_BEFORE_INSERT` BEFORE INSERT ON `empleado` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM empleado WHERE idafiliado = NEW.idafiliado) + 1;
-$$
-DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -114,6 +113,13 @@ CREATE TABLE `factura` (
   `anulada` int(11) NOT NULL DEFAULT '0',
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Disparadores `factura`
+--
+
+CREATE TRIGGER `factura_BEFORE_INSERT` BEFORE INSERT ON `factura` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM factura WHERE idafiliado = NEW.idafiliado) + 1;
+
 
 -- --------------------------------------------------------
 
@@ -140,10 +146,9 @@ CREATE TABLE `nomina` (
 --
 -- Disparadores `nomina`
 --
-DELIMITER $$
+
 CREATE TRIGGER `nomina_BEFORE_INSERT` BEFORE INSERT ON `nomina` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM nomina WHERE idafiliado = NEW.idafiliado) + 1;
-$$
-DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -163,10 +168,9 @@ CREATE TABLE `pedido` (
 --
 -- Disparadores `pedido`
 --
-DELIMITER $$
+
 CREATE TRIGGER `pedido_BEFORE_INSERT` BEFORE INSERT ON `pedido` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM pedido WHERE idafiliado = NEW.idafiliado) + 1;
-$$
-DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -188,10 +192,9 @@ CREATE TABLE `producto` (
 --
 -- Disparadores `producto`
 --
-DELIMITER $$
+
 CREATE TRIGGER `producto_BEFORE_INSERT` BEFORE INSERT ON `producto` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM producto WHERE idafiliado = NEW.idafiliado) + 1;
-$$
-DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -231,6 +234,13 @@ CREATE TABLE `tarjeta` (
   `puntos` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tarjeta`
+--
+
+INSERT INTO `tarjeta` (`id`, `idcliente`, `saldo`, `puntos`) VALUES
+(1, 1, 12000000, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -248,10 +258,9 @@ CREATE TABLE `venta` (
 --
 -- Disparadores `venta`
 --
-DELIMITER $$
-CREATE TRIGGER `venta_BEFORE_INSERT` BEFORE INSERT ON `venta` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM venta WHERE idafiliado = NEW.idafiliado) + 1
-$$
-DELIMITER ;
+
+CREATE TRIGGER `venta_BEFORE_INSERT` BEFORE INSERT ON `venta` FOR EACH ROW SET NEW.id = (SELECT IFNULL(MAX(id),0) FROM venta WHERE idafiliado = NEW.idafiliado) + 1;
+
 
 --
 -- Índices para tablas volcadas
@@ -356,7 +365,7 @@ ALTER TABLE `reporte`
 -- AUTO_INCREMENT de la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

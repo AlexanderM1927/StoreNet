@@ -2004,15 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5136,6 +5127,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -5155,6 +5147,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       reportes: [],
       mail: '',
+      titulo: '',
       contenido: '',
       respuesta: '',
       asunto: '',
@@ -5247,6 +5240,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     mostrar: function mostrar(reporte) {
+      this.titulo = reporte['titulo'];
       this.mail = reporte['mail'];
       this.contenido = reporte['contenido'];
       this.asunto = reporte['titulo'];
@@ -95489,56 +95483,6 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "uk-margin" }, [
-                        _c("div", { staticClass: "uk-inline" }, [
-                          _c("span", {
-                            staticClass: "uk-form-icon",
-                            attrs: { "uk-icon": "icon: user" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.estado,
-                                  expression: "estado"
-                                }
-                              ],
-                              staticClass: "uk-input field",
-                              attrs: { name: "estado" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.estado = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "1" } }, [
-                                _vm._v("Activo")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "0" } }, [
-                                _vm._v("Inactivo")
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "button",
                         { staticClass: "uk-button uk-button-default" },
@@ -100980,6 +100924,7 @@ var render = function() {
                       type: "mail",
                       id: "mail",
                       placeholder: "Correo eléctronico",
+                      disabled: "true",
                       required: ""
                     },
                     domProps: { value: _vm.mail },
@@ -100996,6 +100941,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mensajeReporte barra" }, [
+                _c("b", [_vm._v(_vm._s(_vm.titulo))]),
+                _vm._v(" "),
                 _c("pre", [_vm._v(_vm._s(_vm.contenido))])
               ]),
               _vm._v(" "),
