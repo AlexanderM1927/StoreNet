@@ -375,50 +375,50 @@ ALTER TABLE `tarjeta`
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
-  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`);
+  ADD CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`),
-  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`),
-  ADD CONSTRAINT `factura_ibfk_3` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`);
+  ADD CONSTRAINT `factura_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `factura_ibfk_3` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `nomina`
 --
 ALTER TABLE `nomina`
-  ADD CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`id`),
-  ADD CONSTRAINT `nomina_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`);
+  ADD CONSTRAINT `nomina_ibfk_1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `nomina_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idfactura`) REFERENCES `factura` (`id`),
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`),
-  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`);
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idfactura`) REFERENCES `factura` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`);
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`);
+  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idfactura`) REFERENCES `factura` (`id`),
-  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`id`),
-  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`);
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idfactura`) REFERENCES `factura` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

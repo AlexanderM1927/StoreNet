@@ -9,7 +9,7 @@ class Producto
 
     public function listarProductos($idafiliado){
         if($idafiliado=='0')
-            $arrayProductos = DB::select("SELECT * FROM producto WHERE estado = 1 LIMIT 50");
+            $arrayProductos = DB::select("SELECT * FROM producto WHERE estado = 1 ORDER BY RAND() LIMIT 50");
         else
             $arrayProductos = DB::select("SELECT * FROM producto WHERE idafiliado = ".$idafiliado." AND estado = 1 LIMIT 50");
 
