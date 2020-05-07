@@ -12,6 +12,12 @@ ECHO ---------------------------------------------------------------------------
 @ECHO.
 IF "%1"=="" (
 ECHO Se necesita el parametro 1: URL
+ECHO Enlaces disponibles:
+ECHO https://www.alkomprar.com/celulares/telefonos-celulares/c/BI_101
+ECHO https://www.alkomprar.com/computadores-tablets/computadores-portatiles/c/BI_104
+ECHO https://www.alkomprar.com/videojuegos/juegos/c/BI_132
+ECHO https://www.alkomprar.com/tv-video/televisores/c/BI_120
+ECHO https://www.alkomprar.com/muebles/armarios/c/BI_400
 ) ELSE (
 IF "%2"=="" (
 ECHO Se necesita el parametro 2: ID empresa
@@ -36,12 +42,19 @@ del result.txt
 curl %1 >> result.txt
 php index.php TV %2
 ) ELSE (
+IF "%1"=="https://www.alkomprar.com/muebles/armarios/c/BI_400" (
+del result.txt
+curl %1 >> result.txt
+php index.php Armario %2
+) ELSE (
 ECHO No se tiene listo el contenido de esta página debido a que no fue hecho para este enlace.
 ECHO Enlaces disponibles:
 ECHO https://www.alkomprar.com/celulares/telefonos-celulares/c/BI_101
 ECHO https://www.alkomprar.com/computadores-tablets/computadores-portatiles/c/BI_104
 ECHO https://www.alkomprar.com/videojuegos/juegos/c/BI_132
 ECHO https://www.alkomprar.com/tv-video/televisores/c/BI_120
+ECHO https://www.alkomprar.com/muebles/armarios/c/BI_400
+)
 )
 )
 )

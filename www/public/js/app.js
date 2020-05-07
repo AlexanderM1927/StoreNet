@@ -2687,6 +2687,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       for (var i = 0; i < this.myProductos.length; i++) {
         this.contarCantidades(this.myProductos[i]);
       }
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -95357,7 +95366,7 @@ var render = function() {
                                 }
                               ],
                               staticClass: "uk-input field",
-                              attrs: { name: "estado" },
+                              attrs: { required: "", name: "estado" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -96564,12 +96573,12 @@ var render = function() {
                     _c("br")
                   ]),
                   _vm._v(" "),
-                  _c("b", [_vm._v(_vm._s(producto["nombre"]))]),
-                  _c("br"),
-                  _vm._v(" "),
                   _c("span", { staticClass: "precio" }, [
-                    _vm._v("$" + _vm._s(producto["precioventa"]))
-                  ])
+                    _vm._v("$" + _vm._s(_vm.miles(producto["precioventa"])))
+                  ]),
+                  _vm._v(" "),
+                  _c("b", [_vm._v(_vm._s(producto["nombre"]))]),
+                  _c("br")
                 ])
               ],
               1

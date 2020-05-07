@@ -110,6 +110,9 @@ html, body {
     float:left;
     margin-left:10px;
     margin-bottom: 10px;
+    width:10%;
+    height:250px;
+    overflow:hidden;
 }
 
 .producto img{
@@ -121,7 +124,7 @@ html, body {
     background:#088A08;
     color:#FFF;
     padding:5px;
-    border-radius:2px solid;
+    border-radius: 10px;
 }
 
 .producto a{

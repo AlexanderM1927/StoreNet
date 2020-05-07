@@ -46,7 +46,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <select class="uk-input field" v-model="estado" name="estado">
+            <select class="uk-input field" required v-model="estado" name="estado">
                   <option value="1">Activo</option>
                   <option value="0">Inactivo</option>
                 </select>

@@ -16,8 +16,8 @@
         <div class="producto-i">
           <img v-bind:src="producto['imgurl']"><br>
         </div>
+        <span class="precio">${{miles(producto['precioventa'])}}</span>
         <b>{{producto['nombre']}}</b><br>
-        <span class="precio">${{producto['precioventa']}}</span>
         </center>
         </a>
       </li>
@@ -176,6 +176,15 @@ export default {
       for(let i=0;i<this.myProductos.length;i++)
       {
         this.contarCantidades(this.myProductos[i])
+      }
+    },
+    miles(input)
+    {
+    var num = input;
+    if(!isNaN(num)){
+      num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+      num = num.split('').reverse().join('').replace(/^[\.]/,'');
+      return num;
       }
     }
   }

@@ -23,7 +23,7 @@ function desglosar($linea){
         if($atributos[$i] == 'alt="'.$this->tipo.'')
         {
             array_push($this->imagenes, $this->retornaLink($atributos[$i-1]));
-            array_push($this->nombres, $atributos[$i+1]." ".$atributos[$i+2]." ".$atributos[$i+3]);
+            array_push($this->nombres, $this->tipo." ".$atributos[$i+1]." ".$atributos[$i+2]." ".$atributos[$i+3]);
         }else{
             $newContenido = str_replace('<spanclass="price">','<spanclass="price"> ',$atributos[$i]);
             $newContenido2 = str_replace('</span>',' </span>',$newContenido);
