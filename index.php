@@ -1,5 +1,3 @@
 <?php
-
-header("Location: www/");
-
+echo 'Welcome to StoreNet';
 ?>
