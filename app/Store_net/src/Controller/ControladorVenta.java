@@ -196,6 +196,9 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
                   productodao.updateExistencias(idprod, existencias-cant);
                   Venta ven= new Venta(0, idfac, idprod, idafi, cant);
                   ventadao.registrarVenta(ven);
+                  
+              }
+                  
                   double descontado =(double)productos.get(productos.size()-1)[4];
                   if(saldo<descontado){
                       descontado=0;
@@ -204,7 +207,6 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
                   }
                   tarjetadao.updateTarjeta(cliente.getId(), descontado);
                   JOptionPane.showMessageDialog(null, "VENTA REALIZADA CON EXITO");
-              }
                   limpiarCampos();
           }
     }
