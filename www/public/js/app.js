@@ -2630,8 +2630,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     agregar: function agregar(item) {
-      if (item['cantidad'] > 0) {
-        item['cantidad']--;
+      item['cantidad']--;
+
+      if (item['cantidad'] >= 0) {
         this.myProductos.push(item);
         this.preciototal += parseInt(item['precioventa']);
 
@@ -2645,6 +2646,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     eliminar: function eliminar(item) {
       var index;
+      if (item['cantidad'] == -1) item['cantidad']++;
       item['cantidad']++;
       this.preciototal -= parseInt(item['precioventa']);
       index = this.myProductos.indexOf(item);
@@ -2654,6 +2656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var longitud, i, item, pos;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2667,13 +2670,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
+                longitud = _this3.myProductos.length;
+
+                for (i = 0; i < longitud; i++) {
+                  item = _this3.myProductos[i];
+                  pos = _this3.productos.indexOf(item);
+                  if (_this3.productos[pos]['cantidad'] == -1) _this3.productos[pos]['cantidad']++;
+                  _this3.productos[pos]['cantidad']++;
+                }
+
                 _this3.myProductos = [];
                 _this3.factura = [];
                 _this3.preciototal = 0;
                 jquery__WEBPACK_IMPORTED_MODULE_1___default()('#modal-center').removeClass('uk-open').hide();
                 sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", _this3.mensaje.texto, _this3.mensaje.type);
 
-              case 7:
+              case 9:
               case "end":
                 return _context.stop();
             }
