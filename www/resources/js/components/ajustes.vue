@@ -19,13 +19,13 @@
     </div>
     <div class="uk-margin">
     <div class="uk-inline">
-    <span class="uk-form-icon" uk-icon="icon: user"></span>
+    <span class="uk-form-icon" uk-icon="icon: location"></span>
     <input class="uk-input field" type="text" name="direccion" placeholder="Direccion" required v-model="usuario['direccion']">
     </div>
     </div>
     <div class="uk-margin">
     <div class="uk-inline">
-    <span class="uk-form-icon" uk-icon="icon: user"></span>
+    <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
     <input class="uk-input field" type="text" name="telefono" placeholder="Telefono" required v-model="usuario['telefono']">
     </div>
     </div>
@@ -65,7 +65,8 @@ export default {
                 direccion: this.usuario['direccion'],
                 telefono: this.usuario['telefono']
             })
-            .then(response => (this.usuario=response.data))
+            .then(response => {this.usuario=response.data;swal("Empleado modificado","","success")})
+            .catch(e => {swal("Error", e.response.data.message,"error")})
       }
   }
 }

@@ -2190,7 +2190,10 @@ __webpack_require__.r(__webpack_exports__);
         direccion: this.usuario['direccion'],
         telefono: this.usuario['telefono']
       }).then(function (response) {
-        return _this2.usuario = response.data;
+        _this2.usuario = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Empleado modificado", "", "success");
+      })["catch"](function (e) {
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Error", e.response.data.message, "error");
       });
     }
   }
@@ -95693,7 +95696,7 @@ var render = function() {
               _c("div", { staticClass: "uk-inline" }, [
                 _c("span", {
                   staticClass: "uk-form-icon",
-                  attrs: { "uk-icon": "icon: user" }
+                  attrs: { "uk-icon": "icon: location" }
                 }),
                 _vm._v(" "),
                 _c("input", {
@@ -95729,7 +95732,7 @@ var render = function() {
               _c("div", { staticClass: "uk-inline" }, [
                 _c("span", {
                   staticClass: "uk-form-icon",
-                  attrs: { "uk-icon": "icon: user" }
+                  attrs: { "uk-icon": "icon: hashtag" }
                 }),
                 _vm._v(" "),
                 _c("input", {
