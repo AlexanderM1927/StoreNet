@@ -86,7 +86,7 @@ body {
 
 .productos {
   width: 97%;
-  height: 300px;
+  max-height: 45vh;
   overflow: auto;
   border-radius: 0px 0px 8px 8px;
   list-style: none;
@@ -400,7 +400,6 @@ body {
   width: 46%;
   float: left;
   padding: 20px;
-  height: 260px;
   background: #f0f0f0;
 }
 
@@ -408,7 +407,6 @@ body {
   width: 45%;
   float: right;
   padding: 20px;
-  height: 260px;
   background: #f0f0f0;
 }
 

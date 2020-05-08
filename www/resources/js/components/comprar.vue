@@ -16,7 +16,7 @@
         <div class="producto-i">
           <img v-bind:src="producto['imgurl']"><br>
         </div>
-        <span class="precio">${{miles(producto['precioventa'])}}</span>
+        <span class="precio">${{miles(producto['precioventa'])}}</span><br>
         <b>{{producto['nombre']}}</b><br>
         </center>
         </a>
@@ -135,9 +135,9 @@ export default {
       }
     },
     agregar(item){
-      if(item['cantidad']>0)
+      item['cantidad']--
+      if(item['cantidad']>=0)
       {
-        item['cantidad']--
         this.myProductos.push(item)
         this.preciototal+=parseInt(item['precioventa'])
         if(this.aviso==0)
@@ -152,9 +152,10 @@ export default {
     eliminar(item)
     {
       let index
+      if(item['cantidad']==-1) item['cantidad']++
       item['cantidad']++
       this.preciototal-=parseInt(item['precioventa'])
-      index= this.myProductos.indexOf(item)
+      index=this.myProductos.indexOf(item)
       this.myProductos.splice(index,1)
     },
     async realizarCompra()
@@ -164,6 +165,14 @@ export default {
         {productos: this.factura,
         idcliente: this.idcliente})
         .then(response => (this.mensaje = response.data))
+      const longitud = this.myProductos.length
+      for(let i=0;i<longitud;i++)
+      {
+        let item=this.myProductos[i]
+        const pos=this.productos.indexOf(item)
+        if(this.productos[pos]['cantidad']==-1) this.productos[pos]['cantidad']++
+        this.productos[pos]['cantidad']++
+      }
       this.myProductos=[]
       this.factura=[]
       this.preciototal=0
