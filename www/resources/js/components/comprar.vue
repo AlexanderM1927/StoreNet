@@ -16,7 +16,7 @@
         <div class="producto-i">
           <img v-bind:src="producto['imgurl']"><br>
         </div>
-        <span class="precio">${{miles(producto['precioventa'])}}</span>
+        <span class="precio">${{miles(producto['precioventa'])}}</span><br>
         <b>{{producto['nombre']}}</b><br>
         </center>
         </a>

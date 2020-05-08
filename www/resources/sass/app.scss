@@ -77,7 +77,7 @@ html, body {
 
 .productos {
     width: 97%;
-    height:300px;
+    max-height: 45vh;
     overflow:auto;
     border-radius: 0px 0px 8px 8px;
     list-style: none;

@@ -96577,6 +96577,7 @@ var render = function() {
                   _c("span", { staticClass: "precio" }, [
                     _vm._v("$" + _vm._s(_vm.miles(producto["precioventa"])))
                   ]),
+                  _c("br"),
                   _vm._v(" "),
                   _c("b", [_vm._v(_vm._s(producto["nombre"]))]),
                   _c("br")
