@@ -101072,6 +101072,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { overflow: "hidden" } },
     [
       _c("h1", { staticClass: "titulo-seccion" }, [_vm._v("Tus tarjetas")]),
       _vm._v(
@@ -101086,7 +101087,7 @@ var render = function() {
                   _c("a", { attrs: { "uk-toggle": "target: #modal-center" } }, [
                     _c("img", {
                       staticStyle: { width: "700px" },
-                      attrs: { src: "img/tarjeta.jpg" }
+                      attrs: { src: "img/tarjeta.png" }
                     })
                   ]),
                   _vm._v(" "),
