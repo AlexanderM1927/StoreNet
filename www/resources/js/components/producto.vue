@@ -246,9 +246,9 @@ export default {
         precioventa: this.precioventa,
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
-      .then(response => (this.productos = response.data))
+      .then(response => {this.productos = response.data;swal("El producto ha sido agregado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar()
-      swal("El producto ha sido agregado", "", "success");
     },
     actualizar()
     {
@@ -261,16 +261,16 @@ export default {
         precioventa: this.precioventa,
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
-      .then(response => (this.productos = response.data))
+      .then(response => {this.productos = response.data;swal("El producto ha sido actualizado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar()
-      swal("El producto ha sido actualizado", "", "success");
     },
     eliminar(producto)
     {
       axios
       .get('../procesarProductos/3/'+producto['id']+'/0/'+producto['idafiliado']) //Filtros
-      .then(response => (this.productos = response.data))
-      swal("El producto ha sido eliminado", "", "success");
+      .then(response => {this.productos = response.data;swal("El producto ha sido eliminado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
     },
     imprimir()
     {

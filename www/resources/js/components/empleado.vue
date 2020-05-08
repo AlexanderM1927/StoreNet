@@ -275,9 +275,9 @@ export default {
                                     direccion: this.direccion,
                                     telefono: this.telefono
                                     })
-      .then(response => (this.empleados = response.data))
+      .then(response => {this.empleados = response.data;swal("El empleado ha sido agregado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El empleado ha sido agregado", "", "success");
     },
     actualizar()
     {
@@ -294,16 +294,16 @@ export default {
                                     direccion: this.direccion,
                                     telefono: this.telefono
                                     })
-      .then(response => (this.empleados = response.data))
+      .then(response => {this.empleados = response.data;swal("El empleado ha sido actualizado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El empleado ha sido actualizado", "", "success");
     },
     eliminar(empleado)
     {
       axios
       .get('../procesarEmpleados/3/'+empleado['idafiliado']+'/'+empleado['id']) //Filtros
-      .then(response => (this.empleados = response.data))
-      swal("El empleado ha sido eliminado", "", "success");
+      .then(response => {this.empleados = response.data;swal("El empleado ha sido eliminado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
     },
   }
 };

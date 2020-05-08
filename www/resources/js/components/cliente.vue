@@ -227,9 +227,9 @@ export default {
                                     direccion: this.direccion,
                                     telefono: this.telefono,
                                     }) //Filtros
-      .then(response => (this.clientes = response.data))
+      .then(response => {this.clientes = response.data;swal("El cliente ha sido agregado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El cliente ha sido agregado", "", "success");
     },
     actualizar()
     {
@@ -242,16 +242,16 @@ export default {
                                     direccion: this.direccion,
                                     telefono: this.telefono,
                                     })
-      .then(response => (this.clientes = response.data))
+      .then(response => {this.clientes = response.data;swal("El cliente ha sido actualizado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El cliente ha sido actualizado", "", "success");
     },
     eliminar(cliente)
     {
       axios
       .get('../procesarClientes/3/'+cliente['id']) //Filtros
-      .then(response => (this.clientes = response.data))
-      swal("El cliente ha sido eliminado", "", "success");
+      .then(response => {this.clientes = response.data;swal("El cliente ha sido eliminado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
     },
   }
 };

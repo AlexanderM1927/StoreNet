@@ -2069,10 +2069,12 @@ __webpack_require__.r(__webpack_exports__);
         nombre: this.nombre,
         estado: this.estado
       }).then(function (response) {
-        return _this3.afiliados = response.data;
+        _this3.afiliados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido agregado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido agregado", "", "success");
     },
     actualizar: function actualizar() {
       var _this4 = this;
@@ -2082,18 +2084,22 @@ __webpack_require__.r(__webpack_exports__);
         nombre: this.nombre,
         estado: this.estado
       }).then(function (response) {
-        return _this4.afiliados = response.data;
+        _this4.afiliados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido actualizado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido actualizado", "", "success");
     },
     eliminar: function eliminar(afiliado) {
       var _this5 = this;
 
       axios.get('../procesarAfiliados/3/' + afiliado['id']).then(function (response) {
-        return _this5.afiliados = response.data;
+        _this5.afiliados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido eliminado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido eliminado", "", "success");
     },
     getEstado: function getEstado(valor) {
       if (valor == 0) return 'Inactivo';else return 'Activo';
@@ -2434,10 +2440,12 @@ __webpack_require__.r(__webpack_exports__);
         telefono: this.telefono
       }) //Filtros
       .then(function (response) {
-        return _this3.clientes = response.data;
+        _this3.clientes = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido agregado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido agregado", "", "success");
     },
     actualizar: function actualizar() {
       var _this4 = this;
@@ -2451,19 +2459,23 @@ __webpack_require__.r(__webpack_exports__);
         direccion: this.direccion,
         telefono: this.telefono
       }).then(function (response) {
-        return _this4.clientes = response.data;
+        _this4.clientes = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido actualizado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido actualizado", "", "success");
     },
     eliminar: function eliminar(cliente) {
       var _this5 = this;
 
       axios.get('../procesarClientes/3/' + cliente['id']) //Filtros
       .then(function (response) {
-        return _this5.clientes = response.data;
+        _this5.clientes = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido eliminado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido eliminado", "", "success");
     }
   }
 });
@@ -3322,10 +3334,12 @@ __webpack_require__.r(__webpack_exports__);
         direccion: this.direccion,
         telefono: this.telefono
       }).then(function (response) {
-        return _this3.empleados = response.data;
+        _this3.empleados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido agregado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido agregado", "", "success");
     },
     actualizar: function actualizar() {
       var _this4 = this;
@@ -3342,19 +3356,23 @@ __webpack_require__.r(__webpack_exports__);
         direccion: this.direccion,
         telefono: this.telefono
       }).then(function (response) {
-        return _this4.empleados = response.data;
+        _this4.empleados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido actualizado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido actualizado", "", "success");
     },
     eliminar: function eliminar(empleado) {
       var _this5 = this;
 
       axios.get('../procesarEmpleados/3/' + empleado['idafiliado'] + '/' + empleado['id']) //Filtros
       .then(function (response) {
-        return _this5.empleados = response.data;
+        _this5.empleados = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido eliminado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido eliminado", "", "success");
     }
   }
 });
@@ -5006,10 +5024,12 @@ __webpack_require__.r(__webpack_exports__);
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl
       }).then(function (response) {
-        return _this3.productos = response.data;
+        _this3.productos = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido agregado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido agregado", "", "success");
     },
     actualizar: function actualizar() {
       var _this4 = this;
@@ -5023,19 +5043,23 @@ __webpack_require__.r(__webpack_exports__);
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl
       }).then(function (response) {
-        return _this4.productos = response.data;
+        _this4.productos = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido actualizado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
       this.limpiar();
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido actualizado", "", "success");
     },
     eliminar: function eliminar(producto) {
       var _this5 = this;
 
       axios.get('../procesarProductos/3/' + producto['id'] + '/0/' + producto['idafiliado']) //Filtros
       .then(function (response) {
-        return _this5.productos = response.data;
+        _this5.productos = response.data;
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido eliminado", "", "success");
+      })["catch"](function (e) {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
       });
-      sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido eliminado", "", "success");
     },
     imprimir: function imprimir() {
       var ficha = this.$refs.codigo;

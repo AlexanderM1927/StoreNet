@@ -144,9 +144,9 @@ export default {
       .post('../procesarAfiliados/1/',{nombre: this.nombre,
                                     estado: this.estado
                                     })
-      .then(response => (this.afiliados = response.data))
+      .then(response => {this.afiliados = response.data;swal("El afiliado ha sido agregado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El afiliado ha sido agregado", "", "success");
     },
     actualizar()
     {
@@ -155,16 +155,16 @@ export default {
                                     nombre: this.nombre,
                                     estado: this.estado
                                     })
-      .then(response => (this.afiliados = response.data))
+      .then(response => {this.afiliados = response.data;swal("El afiliado ha sido actualizado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
       this.limpiar();
-      swal("El afiliado ha sido actualizado", "", "success");
     },
     eliminar(afiliado)
     {
       axios
       .get('../procesarAfiliados/3/'+afiliado['id']) 
-      .then(response => (this.afiliados = response.data))
-      swal("El afiliado ha sido eliminado", "", "success");
+      .then(response => {this.afiliados = response.data;swal("El afiliado ha sido eliminado", "", "success")})
+      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
     },
     getEstado(valor)
     {

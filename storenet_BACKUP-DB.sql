@@ -54,7 +54,7 @@ CREATE TABLE `cliente` (
   `mail` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
   `direccion` varchar(100) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` bigint(20) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -77,7 +77,7 @@ CREATE TABLE `empleado` (
   `mail` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
   `direccion` varchar(100) NOT NULL,
-  `telefono` int(11) NOT NULL,
+  `telefono` bigint(20) NOT NULL,
   `rango` int(11) NOT NULL,
   `sueldo` double NOT NULL,
   `nombres` varchar(255) NOT NULL,
