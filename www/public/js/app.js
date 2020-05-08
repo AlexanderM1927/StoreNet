@@ -3495,8 +3495,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 labels: cabecera,
                 datasets: [datos]
               };
+              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#filtros").height(jquery__WEBPACK_IMPORTED_MODULE_1___default()("#circulo").height());
 
-            case 13:
+            case 14:
             case "end":
               return _context.stop();
           }
@@ -98110,7 +98111,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filtrosEstadisticas" },
+        { staticClass: "filtrosEstadisticas", attrs: { id: "filtros" } },
         [
           _c("center", [
             _c("h2", { staticClass: "titulo-seccion" }, [
@@ -98235,7 +98236,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "circuloEstadisticas" },
+        { staticClass: "circuloEstadisticas", attrs: { id: "circulo" } },
         [
           _c("h2", { staticClass: "titulo-seccion" }, [
             _vm._v("Más vendidos este mes")

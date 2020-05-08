@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="titulo-seccion">Estadísticas</h1>
-    <div class="filtrosEstadisticas">
+    <div class="filtrosEstadisticas" id="filtros">
         <center>
             <h2 class="titulo-seccion">Facturas y balances</h2>
             <table>
@@ -38,7 +38,7 @@
             </table>
         </center>
     </div>
-    <div class="circuloEstadisticas">
+    <div class="circuloEstadisticas" id="circulo">
         <h2 class="titulo-seccion">Más vendidos este mes</h2>
         <circulo :data="chartData" :width="300" :height="150"></circulo>
     </div>
@@ -96,6 +96,7 @@ export default {
                 .get('../procesarEstadisticas/4/'+this.idafiliado)
                 .then(response => (cabecera = response.data))  
                 this.chartData={labels: cabecera,datasets: [datos]}
+        $("#filtros").height($("#circulo").height())
     },
     methods: {
         cargarFacturas(){
