@@ -22,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mauri
  */
-public class Venta extends javax.swing.JPanel {
+public class VentaView extends javax.swing.JPanel {
 
     /**
      * Creates new form Venta
      */
-    public Venta() {
+    public VentaView() {
         initComponents();
     }
 
@@ -79,6 +79,14 @@ public class Venta extends javax.swing.JPanel {
         btCancelar.setActionCommand("Cancelar");
         btCancelar.addActionListener(al);
     }
+    public void AddListenerBtAceptar(ActionListener al){
+        btAceptar.setActionCommand("Aceptar");
+        btAceptar.addActionListener(al);
+    }
+    public void AddListenerBtVenta(ActionListener al){
+        btVenta.setActionCommand("Venta");
+        btVenta.addActionListener(al);
+    }
     
     public void AddKeyPressedtxtNombreProducto(KeyListener kl){
         txtnombreProducto.addKeyListener(kl);
@@ -90,6 +98,10 @@ public class Venta extends javax.swing.JPanel {
     
     public void setEnablebtEliminar(boolean bl){
         btEliminar.setEnabled(bl);
+    }
+    
+    public void setEnabledVenta(boolean bl){
+        btVenta.setEnabled(bl);
     }
    
     /**
@@ -114,9 +126,11 @@ public class Venta extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtCantidadProducto = new javax.swing.JTextField();
         btAgregar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btVenta = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtTotalConDescuento = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
@@ -131,6 +145,8 @@ public class Venta extends javax.swing.JPanel {
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         btAceptar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtSaldo = new javax.swing.JTextField();
 
         jPanel1.setBorder(BorderFactory.createTitledBorder(null,
             "Inventario",
@@ -228,12 +244,17 @@ tableVenta.setModel(new javax.swing.table.DefaultTableModel(
         }
     });
 
-    jButton1.setText("Realizar Venta");
+    btVenta.setEnabled(false);
+    btVenta.setText("Realizar Venta");
 
     btEliminar.setEnabled(false);
     btEliminar.setText("Eliminar");
 
     btCancelar.setText("Cancelar");
+
+    jLabel11.setText("Total Con Descuento: ");
+
+    txtTotalConDescuento.setEditable(false);
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -242,14 +263,17 @@ tableVenta.setModel(new javax.swing.table.DefaultTableModel(
         .addGroup(jPanel2Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtTotalConDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -287,9 +311,13 @@ tableVenta.setModel(new javax.swing.table.DefaultTableModel(
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtTotalConDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
 
@@ -324,6 +352,10 @@ txtTelefono.setEditable(false);
 
 btAceptar.setText("Aceptar");
 
+jLabel10.setText("Saldo: ");
+
+txtSaldo.setEditable(false);
+
 javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
 jPanel3.setLayout(jPanel3Layout);
 jPanel3Layout.setHorizontalGroup(
@@ -340,16 +372,22 @@ jPanel3Layout.setHorizontalGroup(
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCorreo)
-                    .addComponent(txtId)
-                    .addComponent(txtNombres)
-                    .addComponent(txtApellidos)
-                    .addComponent(txtDireccion)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
-            .addComponent(btAceptar))
-        .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 46, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                        .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.TRAILING))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSaldo)))
+        .addGap(23, 23, 23))
     );
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +417,10 @@ jPanel3Layout.setHorizontalGroup(
                 .addComponent(jLabel9)
                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(btAceptar)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btAceptar)
+                .addComponent(jLabel10)
+                .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -423,8 +464,10 @@ jPanel3Layout.setHorizontalGroup(
     private javax.swing.JButton btAgregar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btEliminar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btVenta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -447,7 +490,9 @@ jPanel3Layout.setHorizontalGroup(
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtIdProducto;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTotalConDescuento;
     private javax.swing.JTextField txtnombreProducto;
     // End of variables declaration//GEN-END:variables
 
@@ -525,6 +570,13 @@ jPanel3Layout.setHorizontalGroup(
 
     public void setTxtnombreProducto(String txtnombreProducto) {
         this.txtnombreProducto.setText(txtnombreProducto);
+    }
+    
+    public void setTxtSaldo(String saldo){
+        txtSaldo.setText(saldo);
+    }
+    public void setTxtTotalConDescuento(String total){
+        txtTotalConDescuento.setText(total);
     }
     
 }

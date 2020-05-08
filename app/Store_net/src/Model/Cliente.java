@@ -15,23 +15,26 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String correo;
-    private String usuario;
+    private String direccion;
     private String contrasena;
-    private String telefono;
+    private int telefono;
+    private int estado;
     
     public Cliente(){
         
     }
 
-    public Cliente(int id, String nombre, String apellido, String correo, String usuario, String contraseña, String telefono) {
+    public Cliente(int id, String nombre, String apellido, String correo, String direccion, String contrasena, int telefono, int estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.usuario = usuario;
-        this.contrasena = contraseña;
+        this.direccion = direccion;
+        this.contrasena = contrasena;
         this.telefono = telefono;
+        this.estado = estado;
     }
+    
 
     public int getId() {
         return id;
@@ -49,16 +52,20 @@ public class Cliente {
         return correo;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public String getContraseña() {
+    public String getContrasena() {
         return contrasena;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
+    }
+
+    public int getEstado() {
+        return estado;
     }
 
     public void setId(int id) {
@@ -77,18 +84,22 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contrasena = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
     
     
-    
+
 }

@@ -18,48 +18,7 @@ import javax.swing.JOptionPane;
  * @author mauri
  */
 public class ClienteDAO {
-    
-    
-    
-    public int ingresarCliente(Cliente c){      
-        Connection con = null;
-        PreparedStatement pstm;
-        pstm = null;
-        int rtdo;
-        rtdo = 0;
-        try{
-            con = Fachada.getConnection();
-            
-            String sql = "INSERT INTO cliente values (?,?,?,?,?,?,?)";
-            
-            pstm = con.prepareStatement(sql);
-            pstm.setInt(1, c.getId());
-            pstm.setString(2, c.getNombre());
-            pstm.setString(3,c.getApellido());
-            pstm.setString(4,c.getCorreo());
-            pstm.setString(5,c.getUsuario());
-            pstm.setString(6,c.getContraseña());
-            pstm.setString(7,c.getTelefono());
-            
-            
-            rtdo = pstm.executeUpdate();  
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-        }
-        finally{
-            try{
-                if(pstm!=null) pstm.close();                
-            }
-            catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-        }
-        return rtdo;
-    }
-    
+     
     
     public Cliente getClienteByEmail(String email){
          Connection con = null;
@@ -69,7 +28,7 @@ public class ClienteDAO {
         try{
             con = Fachada.getConnection();
             String sql="";
-            sql = "SELECT * FROM cliente WHERE usuario = ?";
+            sql = "SELECT * FROM cliente WHERE mail = ?";
                          
             pstm = con.prepareStatement(sql);
             pstm.setString(1, email);
@@ -78,12 +37,13 @@ public class ClienteDAO {
             while(rs.next()){
                cliente= new Cliente();
                cliente.setId(rs.getInt("id"));
-               cliente.setNombre(rs.getString("nombre"));
-               cliente.setApellido(rs.getString("apellido"));
-               cliente.setCorreo(rs.getString("correo"));
-               cliente.setUsuario(rs.getString("usuario"));
-               cliente.setContraseña(rs.getString("contrasena"));
-               cliente.setTelefono(rs.getString("telefono"));
+               cliente.setNombre(rs.getString("nombres"));
+               cliente.setApellido(rs.getString("apellidos"));
+               cliente.setCorreo(rs.getString("mail"));
+               cliente.setTelefono(rs.getInt("telefono"));
+               cliente.setDireccion(rs.getString("direccion"));
+               cliente.setContrasena(rs.getString("password"));
+               cliente.setEstado(rs.getInt("estado"));
            
             }
            
@@ -124,12 +84,12 @@ public class ClienteDAO {
             while(rs.next()){
                cliente= new Cliente();
                cliente.setId(rs.getInt("id"));
-               cliente.setNombre(rs.getString("nombre"));
-               cliente.setApellido(rs.getString("apellido"));
-               cliente.setCorreo(rs.getString("correo"));
-               cliente.setUsuario(rs.getString("usuario"));
-               cliente.setContraseña(rs.getString("contrasena"));
-               cliente.setTelefono(rs.getString("telefono"));
+               cliente.setNombre(rs.getString("nombres"));
+               cliente.setApellido(rs.getString("apellidos"));
+               cliente.setCorreo(rs.getString("mail"));
+               cliente.setTelefono(rs.getInt("telefono"));
+               cliente.setContrasena(rs.getString("password"));
+               cliente.setEstado(rs.getInt("estado"));
            
             }
            
@@ -152,47 +112,7 @@ public class ClienteDAO {
         return cliente;
     
     }
-    
-    
-    public int modificarCliente(Cliente c){      
-        Connection con = null;
-        PreparedStatement pstm;
-        pstm = null;
-        int rtdo;
-        rtdo = 0;
-        try{
-            con = Fachada.getConnection();
-            String sql = "UPDATE cliente " +
-                         "SET name = ?, apellido = ?, correo = ?, usuario = ?, contrasena = ? "
-                    +    "telefono = ? "
-                    +    "WHERE id=?";
-            pstm = con.prepareStatement(sql);            
-            pstm.setString(1, c.getNombre());
-            pstm.setString(2, c.getApellido());
-            pstm.setString(3, c.getCorreo());
-            pstm.setString(4, c.getUsuario());
-            pstm.setString(5, c.getContraseña());
-            pstm.setString(6, c.getTelefono());
-            pstm.setInt(7, c.getId());
-            rtdo = pstm.executeUpdate();  
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-        }
-        finally{
-            try{
-                if(pstm!=null) pstm.close();                
-            }
-            catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-        }
-        return rtdo;
-    }
-    
-    
+   
     public ArrayList<Cliente> listaClientes(){      
         Connection con = null;
         PreparedStatement pstm = null;
@@ -210,14 +130,14 @@ public class ClienteDAO {
 
             Cliente cliente=null;
             while(rs.next()){
-                cliente=new Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setApellido(rs.getString("apellido"));
-                cliente.setCorreo(rs.getString("correo"));
-                cliente.setUsuario(rs.getString("usuario"));
-                cliente.setContraseña(rs.getString("contrasena"));
-                cliente.setTelefono(rs.getString("telefono"));            
+                cliente= new Cliente();
+               cliente.setId(rs.getInt("id"));
+               cliente.setNombre(rs.getString("nombres"));
+               cliente.setApellido(rs.getString("apellidos"));
+               cliente.setCorreo(rs.getString("mail"));
+               cliente.setTelefono(rs.getInt("telefono"));
+               cliente.setContrasena(rs.getString("password"));
+               cliente.setEstado(rs.getInt("estado"));        
                 
                 listado.add(cliente);
             }

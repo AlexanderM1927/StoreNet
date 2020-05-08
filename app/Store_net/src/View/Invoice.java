@@ -14,21 +14,14 @@ import javax.swing.JTabbedPane;
  */
 public class Invoice extends JFrame{
     
-    private JTabbedPane tabbs;
-    private Venta venta;
-    private Busqueda busqueda;
+    private VentaView venta;
     
-    public Invoice(Venta venta, Busqueda busqueda){
+    public Invoice(VentaView venta){
         
-                 
-         tabbs= new JTabbedPane();
          this.venta= venta;
-         this.busqueda= busqueda;
          
-         tabbs.addTab("Venta", venta);
-         tabbs.addTab("Busqueda", busqueda);
+         add(venta);
          
-         add(tabbs);
          pack();
          setLocationRelativeTo(null);
          setDefaultCloseOperation(EXIT_ON_CLOSE);

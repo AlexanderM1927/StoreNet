@@ -22,13 +22,11 @@ import javax.swing.JOptionPane;
 public class ControladorLogin implements ActionListener{
     
     private LoginUserGI login;
-    private ClienteDAO cliente;
     private EmpleadoDAO emp;
     private Main ppal;
     
-    public ControladorLogin(LoginUserGI login, ClienteDAO cliente, EmpleadoDAO emp, Main ppal){
+    public ControladorLogin(LoginUserGI login, EmpleadoDAO emp, Main ppal){
         this.login= login;
-        this.cliente= cliente;
         this.emp= emp;
         this.ppal= ppal;
         
@@ -44,7 +42,9 @@ public class ControladorLogin implements ActionListener{
            Empleado e= emp.getEmpleado(user);
                if(e!=null&&password.equals(e.getPassword())){
                    JOptionPane.showMessageDialog(null, "Bienvenido "+e.getNombres());
+                   ppal.setEmpleado(e);
                    ppal.activarFactura();
+                   
                }else{
                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");  
                }

@@ -5,9 +5,17 @@
  */
 package Controller;
 
+import Model.Cliente;
+import Model.ClienteDAO;
+import Model.Factura;
+import Model.FacturaDAO;
 import Model.Producto;
 import Model.ProductoDAO;
-import View.Venta;
+import Model.TarjetaDAO;
+import Model.Venta;
+import Model.VentaDAO;
+import View.Main;
+import View.VentaView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -18,6 +26,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.Date;
+
 
 /**
  *
@@ -25,21 +35,40 @@ import javax.swing.JOptionPane;
  */
 public class ControladorVenta implements  KeyListener, MouseListener, ActionListener{
     
-    private Venta venta;
+    private VentaView venta;
     private ProductoDAO productodao;
+    private ClienteDAO clientedao;
+    private FacturaDAO facturadao;
+    private VentaDAO ventadao;
+    private TarjetaDAO tarjetadao;
     int seleccion;
+    double total;
+    double saldo;
     private ArrayList<Object[]> productos;
+    private Cliente cliente;
+    private Main ppal;
     
-    public ControladorVenta(Venta venta, ProductoDAO productodao){
+    public ControladorVenta(Main ppal, VentaView venta, ProductoDAO productodao, ClienteDAO clientedao, 
+                            FacturaDAO facturadao, VentaDAO ventadao, TarjetaDAO tarjetadao){
         this.venta=venta;
-        this.productodao= productodao;      
+        this.productodao= productodao;
+        this.clientedao= clientedao;
+        this.facturadao= facturadao;
+        this.ventadao= ventadao;
+        this.tarjetadao= tarjetadao;
+        this.ppal=ppal;
+        cliente = null;
         venta.AddListenerBtAgregar(this);
         venta.AddListenerBtEliminar(this);
         venta.AddListenerBtCancelar(this);
+        venta.AddListenerBtAceptar(this);
+        venta.AddListenerBtVenta(this); 
         venta.AddKeyPressedtxtNombreProducto(this);
         venta.addTableVentaMouseClicked(this);
         productos= new ArrayList<Object[]>();
         seleccion=-1;
+        saldo=0;
+        total=0;
     }
     
 
@@ -88,11 +117,21 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
                  productos.add(valores);
                  caluclarTotalesAbsolutos();
                  venta.agregarProductoTablaVenta(productos);
-                 productodao.updateExistencias(id, p.getCantidad()-cantidad);
+                 total= (double)productos.get(productos.size()-1)[4]-saldo;
+                 if(total<0){
+                     venta.setTxtTotalConDescuento(0+"");
+                 }else{
+                     venta.setTxtTotalConDescuento(total+"");
+                 }
+                 
                  venta.setTxtCantidadProducto("");
-                 venta.setTxtIdProducto(""); 
+                 venta.setTxtIdProducto("");
+                 if(cliente!=null){
+                     venta.setEnabledVenta(true);
+                 }
               }else{
-                  JOptionPane.showMessageDialog(null, "Del producto "+ p.getNombre()+" quedan "+ p.getCantidad()+" existencias");
+                  JOptionPane.showMessageDialog(null, "Del producto "+ p.getNombre()+" quedan "+ p.getCantidad()
+                                               +" existencias");
               }   
            }catch(Exception e){
                JOptionPane.showMessageDialog(null, "Campos ingresados incorrectamente");
@@ -101,22 +140,72 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
          
          if(ae.getActionCommand().equalsIgnoreCase("Eliminar")){
             
-             Producto p= productodao.getProductoById((int)productos.get(seleccion)[0]);
-             productodao.updateExistencias((int)productos.get(seleccion)[0],p.getCantidad()+(int)productos.get(seleccion)[2]);
              productos.remove(seleccion);
              caluclarTotalesAbsolutos();
+             total= (double)productos.get(productos.size()-1)[4]-saldo;
+             if(total<0){
+                     venta.setTxtTotalConDescuento(0+"");
+                 }else{
+                     venta.setTxtTotalConDescuento(total+"");
+                 }
              venta.agregarProductoTablaVenta(productos);
          }
          
           if(ae.getActionCommand().equalsIgnoreCase("Cancelar")){
-              
-              for(int i=0; i<productos.size(); i++){
-                  Producto p= productodao.getProductoById((int)productos.get(i)[0]);
-                  productodao.updateExistencias((int)productos.get(i)[0],p.getCantidad()+(int)productos.get(i)[2]);
+              limpiarCampos();
+          }
+          
+          if(ae.getActionCommand().equalsIgnoreCase("Aceptar")){
+              String correo= venta.getTxtCorreo();
+              Cliente c= clientedao.getClienteByEmail(correo);
+              if(c == null){
+                  JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+              }else{
+                  venta.setTxtId(c.getId()+"");
+                  venta.setTxtNombres(c.getNombre());
+                  venta.setTxtApellidos(c.getApellido());
+                  venta.setTxtDireccion(c.getDireccion());
+                  venta.setTxtTelefono(c.getTelefono()+"");
+                  saldo=tarjetadao.getTarjetaByClienteId(c.getId()).getSaldo();
+                  venta.setTxtSaldo("$"+saldo);
+                  
+                  cliente = c;
+                  if(productos.size()>0){
+                      total= (double)productos.get(productos.size()-1)[4]-saldo;
+                      if(total<0){
+                        venta.setTxtTotalConDescuento(0+""); 
+                      }else{
+                         venta.setTxtTotalConDescuento(total+"");
+                      }
+                      venta.setEnabledVenta(true);
+                  }
               }
-              productos= new ArrayList<Object[]>();
-              venta.agregarProductoTablaVenta(productos);
-              venta.setEnablebtEliminar(false);
+          }
+          
+          if(ae.getActionCommand().equalsIgnoreCase("Venta")){
+              Date date= new Date(System.currentTimeMillis());
+              Factura factura= new Factura(0, ppal.getEmpleado().getIdafilidado(), cliente.getId(), 
+                                           ppal.getEmpleado().getId(), 0, date);
+              facturadao.registrarFactura(factura);
+              for(int i=0; i< productos.size();i++){
+                  int idfac= facturadao.getLastID(factura.getIdafilidado());
+                  int idprod= (int)productos.get(i)[0];
+                  int idafi= factura.getIdafilidado();
+                  int cant= (int)productos.get(i)[2];
+                  int existencias=productodao.getProductoById(idprod).getCantidad();
+                  productodao.updateExistencias(idprod, existencias-cant);
+                  Venta ven= new Venta(0, idfac, idprod, idafi, cant);
+                  ventadao.registrarVenta(ven);
+                  double descontado =(double)productos.get(productos.size()-1)[4];
+                  if(saldo<descontado){
+                      descontado=0;
+                  }else{
+                      descontado= saldo-descontado;
+                  }
+                  tarjetadao.updateTarjeta(cliente.getId(), descontado);
+                  JOptionPane.showMessageDialog(null, "VENTA REALIZADA CON EXITO");
+              }
+                  limpiarCampos();
           }
     }
     
@@ -135,7 +224,30 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
               
         }    
     }
-
+    
+    public void limpiarCampos(){
+        venta.setTxtId("");
+        venta.setTxtIdProducto("");
+        venta.setTxtNombres("");
+        venta.setTxtCantidadProducto("");
+        venta.setTxtApellidos("");
+        venta.setTxtSaldo("");
+        venta.setTxtCorreo("");
+        venta.setTxtTelefono("");
+        venta.setTxtTotalConDescuento("");
+        venta.setTxtDireccion("");
+        venta.setTxtId("");
+        
+        productos= new ArrayList<Object[]>();
+        venta.agregarProductoTablaVenta(productos);
+        venta.setEnablebtEliminar(false);
+        venta.setEnabledVenta(false);
+        cliente= null;
+        saldo=0;
+        total=0;
+        
+    }
+    
     @Override
     public void keyTyped(KeyEvent ke) {
         
@@ -147,7 +259,7 @@ public class ControladorVenta implements  KeyListener, MouseListener, ActionList
     }
 
     @Override
-    public void keyReleased(KeyEvent ke) {
+    public void keyReleased(KeyEvent e) {
         ArrayList<Object[]> objetosprodcs=  new ArrayList<Object[]>();
         String name=venta.getTxtnombreProducto(); 
         ArrayList<Producto> prodcs=productodao.listaProductos(name);
