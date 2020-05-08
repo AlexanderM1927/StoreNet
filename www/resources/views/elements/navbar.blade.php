@@ -111,6 +111,12 @@ function report()
         activo=0
     }
 }
+function limpiar()
+{
+    document.getElementById("mail").value = ""
+    document.getElementById("title").value = ""
+    document.getElementById("content").value = ""
+}
 function enviar()
 {
     var mail = document.getElementById("mail").value;
@@ -123,6 +129,7 @@ function enviar()
     if (this.readyState == 4 && this.status == 200) {
         UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Reporte enviado correctamente',pos: 'top-right',status:'success'})
         report()
+        limpiar()
     }
     };
     xhttp.open("POST", "procesarReportes/1", true);

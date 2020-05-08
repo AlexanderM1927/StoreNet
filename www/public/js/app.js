@@ -100951,7 +100951,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mensajeReporte barra" }, [
-                _c("b", [_vm._v(_vm._s(_vm.titulo))]),
+                _c("b", [_vm._v(_vm._s(_vm.titulo.toUpperCase()))]),
                 _vm._v(" "),
                 _c("pre", [_vm._v(_vm._s(_vm.contenido))])
               ]),

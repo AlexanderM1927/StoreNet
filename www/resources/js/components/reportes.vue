@@ -60,7 +60,7 @@
         </div>
         </div>
         <div class="mensajeReporte barra">
-            <b>{{titulo}}</b>
+            <b>{{titulo.toUpperCase()}}</b>
             <pre>{{contenido}}</pre>
         </div>
         <hr>
