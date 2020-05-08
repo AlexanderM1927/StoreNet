@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div style="overflow:hidden;">
     <h1 class="titulo-seccion">Tus tarjetas</h1>
     Para acceder a la información de tu tarjeta, debes darle click a la imagen.
     <div v-for="tarjeta in tarjetas" v-if="rango==0">
             <center>
-            <a  uk-toggle="target: #modal-center"><img src="img/tarjeta.jpg" style="width:700px;"></a>
+            <a  uk-toggle="target: #modal-center"><img src="img/tarjeta.png" style="width:700px;"></a>
             <span class="codigoTarjeta">
             <barcode v-bind:value="tarjeta['idcliente']" format="CODE39" width="3" height="50">
             Error generando codigo de barras
