@@ -1,5 +1,9 @@
 <IfModule mod_rewrite.c>
-WriteEngine On
+<IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+RewriteEngine On
 RewriteBase /laravel/public/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
