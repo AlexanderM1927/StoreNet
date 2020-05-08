@@ -164,7 +164,8 @@ export default {
         .post('../procesarCompras/1',
         {productos: this.factura,
         idcliente: this.idcliente})
-        .then(response => (this.mensaje = response.data))
+        .then(response => {this.mensaje = response.data; swal("Información de la compra", this.mensaje.texto, this.mensaje.type)})
+        .catch(e => {swal("Información de la compra", r.response.data.message, "error")})
       const longitud = this.myProductos.length
       for(let i=0;i<longitud;i++)
       {
@@ -177,7 +178,6 @@ export default {
       this.factura=[]
       this.preciototal=0
       $('#modal-center').removeClass('uk-open').hide();
-      swal("Información de la compra", this.mensaje.texto, this.mensaje.type);
     },
     generarFactura()
     {

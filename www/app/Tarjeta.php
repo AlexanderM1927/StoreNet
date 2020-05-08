@@ -13,7 +13,7 @@ class Tarjeta
     }
 
     public function listarTarjetas_cliente($idcliente){
-        $arrayTarjetas = DB::select("SELECT * FROM tarjeta WHERE idcliente = $idcliente LIMIT 10");
+        $arrayTarjetas = DB::select("SELECT t.idcliente as idcliente,t.saldo as saldo,t.puntos as puntos,t.id as id,CONCAT(c.nombres,' ',c.apellidos) as nombre FROM tarjeta as t LEFT JOIN cliente as c ON c.id = $idcliente WHERE t.idcliente = $idcliente LIMIT 10");
         return json_encode($arrayTarjetas);
     }
 

@@ -2681,7 +2681,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   productos: _this3.factura,
                   idcliente: _this3.idcliente
                 }).then(function (response) {
-                  return _this3.mensaje = response.data;
+                  _this3.mensaje = response.data;
+                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", _this3.mensaje.texto, _this3.mensaje.type);
+                })["catch"](function (e) {
+                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", r.response.data.message, "error");
                 });
 
               case 2:
@@ -2698,9 +2701,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.factura = [];
                 _this3.preciototal = 0;
                 jquery__WEBPACK_IMPORTED_MODULE_1___default()('#modal-center').removeClass('uk-open').hide();
-                sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", _this3.mensaje.texto, _this3.mensaje.type);
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -5360,7 +5362,7 @@ __webpack_require__.r(__webpack_exports__);
       informacion: ''
     };
   },
-  props: ['idcliente', 'nombre', 'rango'],
+  props: ['idcliente', 'rango'],
   mounted: function mounted() {
     var _this = this;
 
@@ -101147,7 +101149,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "nombreTarjeta" }, [
-                    _vm._v(_vm._s(_vm.nombre))
+                    _vm._v(_vm._s(tarjeta["nombre"]))
                   ])
                 ]),
                 _vm._v(" "),

@@ -11,7 +11,7 @@
             </barcode>
             </span>
             <span class="numeroTarjeta">{{agregarCeros(tarjeta['id'])}}</span>
-            <span class="nombreTarjeta">{{nombre}}</span>
+            <span class="nombreTarjeta">{{tarjeta['nombre']}}</span>
             </center>
         <div id="modal-center" class="uk-flex-top" uk-modal>
             <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -44,7 +44,7 @@ export default {
         informacion: ''
     }
   },
-  props: ['idcliente','nombre','rango'],
+  props: ['idcliente','rango'],
   mounted(){
     //axios
     axios
