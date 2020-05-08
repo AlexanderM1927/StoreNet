@@ -19,7 +19,7 @@ class LoginController extends Controller
     {
         $mail = $_POST["mail"];
         $password = $_POST["password"];
-        $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE mail = '$mail' and password = '$password' AND estado = 1");
+        $arrayEmpleados = DB::select("SELECT * FROM empleado WHERE mail = '$mail' and password = '$password' AND (estado = 1 OR rango = 4) ");
         if(!empty($arrayEmpleados))
         {
             foreach($arrayEmpleados as $empleado)
