@@ -24,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (config('app.production')) {
+            $url->forceScheme('https');
+        }
         //
     }
 }
