@@ -240,7 +240,7 @@ export default {
       this.precioproveedor = this.precioproveedor.replace(/\./g,'')
       this.precioventa = this.precioventa.replace(/\./g,'')
       axios
-      .post('../procesarProductos/1',
+      .post('../procesarProductos/1/',
       { idafiliado: this.idafiliado,
         id: this.id, 
         cantidad: this.cantidad,
@@ -257,7 +257,7 @@ export default {
       this.precioproveedor = this.precioproveedor.replace(/\./g,'')
       this.precioventa = this.precioventa.replace(/\./g,'')
       axios
-      .post('../procesarProductos/2',
+      .post('../procesarProductos/2/',
       { idafiliado: this.idafiliado,
         id: this.id, 
         cantidad: this.cantidad,

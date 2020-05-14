@@ -141,7 +141,7 @@ export default {
     insertar()
     {
       axios
-      .post('../procesarAfiliados/1',{nombre: this.nombre,
+      .post('../procesarAfiliados/1/',{nombre: this.nombre,
                                     estado: this.estado
                                     })
       .then(response => {this.afiliados = response.data;swal("El afiliado ha sido agregado", "", "success")})
@@ -151,7 +151,7 @@ export default {
     actualizar()
     {
       axios
-      .post('../procesarAfiliados/2',{id: this.id,
+      .post('../procesarAfiliados/2/',{id: this.id,
                                     nombre: this.nombre,
                                     estado: this.estado
                                     })

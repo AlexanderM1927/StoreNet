@@ -265,7 +265,7 @@ export default {
     {
       this.sueldo = this.sueldo.replace(/\./g,'')
       axios
-      .post('../procesarEmpleados/1',{
+      .post('../procesarEmpleados/1/',{
                                     idafiliado: this.idafiliado,
                                     rango: this.rango,
                                     sueldo: this.sueldo,
@@ -284,7 +284,7 @@ export default {
     {
       this.sueldo = this.sueldo.replace(/\./g,'')
       axios
-      .post('../procesarEmpleados/2',{
+      .post('../procesarEmpleados/2/',{
                                     idafiliado: this.idafiliado,
                                     id: this.id,
                                     rango: this.rango,
