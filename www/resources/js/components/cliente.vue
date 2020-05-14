@@ -220,7 +220,7 @@ export default {
     insertar()
     {
       axios
-      .post('../procesarClientes/1/',{nombres: this.nombres,
+      .post('../procesarClientes/1',{nombres: this.nombres,
                                     apellidos: this.apellidos,
                                     mail: this.mail,
                                     password: this.password,
@@ -234,7 +234,7 @@ export default {
     actualizar()
     {
       axios
-      .post('../procesarClientes/2/',{id: this.id,
+      .post('../procesarClientes/2',{id: this.id,
                                     nombres: this.nombres,
                                     apellidos: this.apellidos,
                                     mail: this.mail,

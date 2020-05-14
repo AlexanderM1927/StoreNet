@@ -136,7 +136,7 @@ export default {
         async responder()
         {
             await axios
-                .post('../procesarReportes/2/',{
+                .post('../procesarReportes/2',{
                     correo: this.mail,
                     contenido: this.respuesta,
                     titulo: this.asunto,
