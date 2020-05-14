@@ -37,7 +37,7 @@ class ActionController extends Controller
     public function procesaProductos($type,$params = '0',$data = '0',$idafiliado='0')
     {
         $producto = new Producto();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type==0 && $params=='0')
         {
             return $producto->listarProductos($idafiliado);
@@ -79,7 +79,7 @@ class ActionController extends Controller
     public function procesaClientes($type,$params = '0',$data='0')
     {
         $cliente = new Cliente();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type==0 && $params=='0')
         {
             return $cliente->listarClientes();
@@ -118,7 +118,7 @@ class ActionController extends Controller
     public function procesaEmpleados($type,$idafiliado='0',$params = '0',$data='0')
     {
         $empleado = new Empleado();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type==0 && $params=='0')
         {
             return $empleado->listarEmpleados($idafiliado);
@@ -163,7 +163,7 @@ class ActionController extends Controller
     public function procesaTarjetas($type,$idcliente='0')
     {
         $tarjeta = new Tarjeta();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type=='0' && $idcliente == '0')
         {
             return $tarjeta->listarTarjetas();
@@ -192,7 +192,7 @@ class ActionController extends Controller
     public function procesaCompras($type,$idcliente='0',$idfactura='0',$idafiliado='0')
     {
         $compra = new Compra();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
 
         if($type == 0 && $idfactura=='0' && $idafiliado == '0')
         {
@@ -226,7 +226,7 @@ class ActionController extends Controller
     public function procesaPedidos($type,$idcliente='0',$fecha='0',$estado='0',$idafiliado='0')
     {
         $pedido = new Pedido();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type == 0 && $fecha == '0')
         {
             return $pedido->listarPedidos($idcliente);
@@ -249,7 +249,7 @@ class ActionController extends Controller
     public function procesaDevoluciones()
     {
         $compra = new Compra();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
 
         $idafiliado = $_POST['idafiliado'];
         $idfactura = $_POST['idfactura'];
@@ -287,7 +287,7 @@ class ActionController extends Controller
     public function procesaAfiliados($type,$idafiliado="0")
     {
         $afiliado = new Afiliado();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
 
         if($type==0)
         {
@@ -323,7 +323,7 @@ class ActionController extends Controller
     {
         $cliente = new Cliente();
         $empleado = new Empleado();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
 
         if($type==0)
         {
@@ -365,7 +365,7 @@ class ActionController extends Controller
     public function procesaNomina($type,$idafiliado="",$idusuario="",$fechas="")
     {
         $nomina = new Nomina();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         if($type == 0)
         {
             if($fechas=="")
@@ -409,7 +409,7 @@ class ActionController extends Controller
     public function procesaReportes($type,$fechas="")
     {
         $reporte = new Reporte();
-        $_POST = json_decode(file_get_contents("php://input"),true);
+        $_POST = file_get_contents("php://input");
         
         if($type==0){
             if($fechas=="")
