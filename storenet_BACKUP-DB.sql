@@ -412,6 +412,25 @@ ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`idafiliado`) REFERENCES `afiliado` (`id`) ON DELETE CASCADE;
 COMMIT;
 
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `GanadorSemanal` ON SCHEDULE EVERY 1 WEEK STARTS '2020-05-01 00:00:00' ENDS '2022-01-31 00:00:00' ON COMPLETION PRESERVE ENABLE DO UPDATE tarjeta SET puntos = 0;
+
+--
+-- VISTAS
+--
+CREATE VIEW balanceVentas AS 
+  SELECT SUM(p.precioventa*v.cantidad) as ventas, 
+  SUM(v.cantidad) as nventas, 
+  SUM(p.precioproveedor*v.cantidad) as costosv, 
+  SUM((p.precioventa-p.precioproveedor)*v.cantidad) as utilidades,
+  f.idafiliado as idafiliado
+  FROM factura as f 
+  LEFT JOIN venta as v ON f.id = v.idfactura AND v.idafiliado = f.idafiliado 
+  LEFT JOIN producto as p ON v.idproducto = p.id AND p.idafiliado = f.idafiliado 
+  WHERE f.anulada = 0 GROUP BY f.idafiliado;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

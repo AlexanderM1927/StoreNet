@@ -71,7 +71,7 @@
               <th>Cantidad</th>
               <th>Precio total</th>
             </tr>
-            <tr v-for="item in productos">
+            <tr v-for="item in productos" v-bind:key="item.id">
               <td>{{item['id']}}</td>
               <td>{{item['nombre']}}</td>
               <td>{{miles(item['valorUnitario'])}}</td>

@@ -54,14 +54,7 @@ class Visor
         FROM nomina as n, afiliado as a
         WHERE n.idafiliado = $idafiliado AND n.idafiliado = a.id");
 
-        $ventasQ = DB::select("SELECT SUM(p.precioventa*v.cantidad) as ventas,
-        SUM(v.cantidad) as nventas,
-        SUM(p.precioproveedor*v.cantidad) as costosv,
-        SUM((p.precioventa-p.precioproveedor)*v.cantidad) as utilidades
-        FROM factura as f
-        LEFT JOIN venta as v ON f.id = v.idfactura AND v.idafiliado = $idafiliado
-        LEFT JOIN producto as p ON v.idproducto = p.id AND p.idafiliado = $idafiliado
-        WHERE f.idafiliado = $idafiliado AND f.anulada = 0");
+        $ventasQ = DB::select("SELECT * FROM balanceVentas WHERE idafiliado = $idafiliado");
 
         $nombre = $afiliadoQ[0]->nombre;
         $nominas = $nominasQ[0]->nominas;

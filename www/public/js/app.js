@@ -97131,7 +97131,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _vm._l(_vm.productos, function(item) {
-                              return _c("tr", [
+                              return _c("tr", { key: item.id }, [
                                 _c("td", [_vm._v(_vm._s(item["id"]))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item["nombre"]))]),
