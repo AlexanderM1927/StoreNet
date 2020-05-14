@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(array('middleware' => 'forceSSL'), function() {
+
 Route::get('/', 'WebsiteController@index')->name('index');
 Route::get('/home', 'WebsiteController@home');
 Route::get('/homeadm', 'WebsiteController@homeadm')->name('afiliado');
@@ -49,6 +49,7 @@ Route::get('/procesarVisor/{type}/{idafiliado}/{fecha?}', 'ActionController@proc
 Route::get('/procesarNomina/{type}/{idafiliado}/{idusuario?}/{fechas?}', 'ActionController@procesaNomina');
 Route::get('/procesarReportes/{type}/{fechas?}', 'ActionController@procesaReportes');
 
+
 //FORMULARIOS POST
 Route::post('/', 'LoginController@login');
 Route::post('/action_comprar', 'ActionController@comprar');
@@ -64,4 +65,3 @@ Route::post('/procesarAjustes/{type}', 'ActionController@procesaAjustes');
 Route::post('/procesarNomina/{type}', 'ActionController@procesaNomina');
 Route::post('/procesarReportes/{type}', 'ActionController@procesaReportes');
 Route::post('/administrador', 'ActionController@administrador');
-});
