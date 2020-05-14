@@ -49,7 +49,6 @@ Route::get('/procesarVisor/{type}/{idafiliado}/{fecha?}', 'ActionController@proc
 Route::get('/procesarNomina/{type}/{idafiliado}/{idusuario?}/{fechas?}', 'ActionController@procesaNomina');
 Route::get('/procesarReportes/{type}/{fechas?}', 'ActionController@procesaReportes');
 
-
 //FORMULARIOS POST
 Route::post('/', 'LoginController@login');
 Route::post('/action_comprar', 'ActionController@comprar');
@@ -65,4 +64,4 @@ Route::post('/procesarAjustes/{type}', 'ActionController@procesaAjustes');
 Route::post('/procesarNomina/{type}', 'ActionController@procesaNomina');
 Route::post('/procesarReportes/{type}', 'ActionController@procesaReportes');
 Route::post('/administrador', 'ActionController@administrador');
-}
+});
