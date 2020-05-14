@@ -2065,7 +2065,7 @@ __webpack_require__.r(__webpack_exports__);
     insertar: function insertar() {
       var _this3 = this;
 
-      axios.post('../procesarAfiliados/1/', {
+      axios.post('../procesarAfiliados/1', {
         nombre: this.nombre,
         estado: this.estado
       }).then(function (response) {
@@ -2079,7 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this4 = this;
 
-      axios.post('../procesarAfiliados/2/', {
+      axios.post('../procesarAfiliados/2', {
         id: this.id,
         nombre: this.nombre,
         estado: this.estado
@@ -2434,7 +2434,7 @@ __webpack_require__.r(__webpack_exports__);
     insertar: function insertar() {
       var _this3 = this;
 
-      axios.post('../procesarClientes/1/', {
+      axios.post('../procesarClientes/1', {
         nombres: this.nombres,
         apellidos: this.apellidos,
         mail: this.mail,
@@ -2453,7 +2453,7 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this4 = this;
 
-      axios.post('../procesarClientes/2/', {
+      axios.post('../procesarClientes/2', {
         id: this.id,
         nombres: this.nombres,
         apellidos: this.apellidos,
@@ -3338,7 +3338,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.sueldo = this.sueldo.replace(/\./g, '');
-      axios.post('../procesarEmpleados/1/', {
+      axios.post('../procesarEmpleados/1', {
         idafiliado: this.idafiliado,
         rango: this.rango,
         sueldo: this.sueldo,
@@ -3360,7 +3360,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.sueldo = this.sueldo.replace(/\./g, '');
-      axios.post('../procesarEmpleados/2/', {
+      axios.post('../procesarEmpleados/2', {
         idafiliado: this.idafiliado,
         id: this.id,
         rango: this.rango,
@@ -5078,7 +5078,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.precioproveedor = this.precioproveedor.replace(/\./g, '');
       this.precioventa = this.precioventa.replace(/\./g, '');
-      axios.post('../procesarProductos/1/', {
+      axios.post('../procesarProductos/1', {
         idafiliado: this.idafiliado,
         id: this.id,
         cantidad: this.cantidad,
@@ -5099,7 +5099,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.precioproveedor = this.precioproveedor.replace(/\./g, '');
       this.precioventa = this.precioventa.replace(/\./g, '');
-      axios.post('../procesarProductos/2/', {
+      axios.post('../procesarProductos/2', {
         idafiliado: this.idafiliado,
         id: this.id,
         cantidad: this.cantidad,
@@ -5344,7 +5344,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post('../procesarReportes/2/', {
+                return axios.post('../procesarReportes/2', {
                   correo: _this3.mail,
                   contenido: _this3.respuesta,
                   titulo: _this3.asunto,
