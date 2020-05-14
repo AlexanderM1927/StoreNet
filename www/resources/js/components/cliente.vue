@@ -228,7 +228,7 @@ export default {
                                     telefono: this.telefono,
                                     }) //Filtros
       .then(response => {this.clientes = response.data;swal("El cliente ha sido agregado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     actualizar()
@@ -243,7 +243,7 @@ export default {
                                     telefono: this.telefono,
                                     })
       .then(response => {this.clientes = response.data;swal("El cliente ha sido actualizado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     eliminar(cliente)
@@ -251,7 +251,7 @@ export default {
       axios
       .get('../procesarClientes/3/'+cliente['id']) //Filtros
       .then(response => {this.clientes = response.data;swal("El cliente ha sido eliminado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
     },
   }
 };

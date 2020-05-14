@@ -44,9 +44,8 @@
         <h2 class="uk-modal-title">Confirmación de tu compra</h2>
         Por favor verifica que todos tus productos estén en orden
         </div>
-        <center>
         <div class="carritoCompra barra">
-          <table>
+          <table class="factura">
             <tr>
               <th>Nombre producto</th>
               <th>Precio</th>
@@ -54,12 +53,13 @@
             </tr>
             <tr v-for="item in factura">
               <td>{{item.producto['nombre']}}</td>
-              <td>{{item.producto['precioventa']}}</td>
+              <td>{{miles(item.producto['precioventa'])}}</td>
               <td>{{item.cantidad}}</td>
             </tr>
           </table>
         </div>
-        <b>Total a pagar:   {{preciototal}}</b><br>
+        <center>
+        <b>Total a pagar:   {{miles(preciototal)}}</b><br>
         <button class="uk-button uk-button-primary" @click="realizarCompra">Confirmar compra</button>
         </center>
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -165,7 +165,7 @@ export default {
         {productos: this.factura,
         idcliente: this.idcliente})
         .then(response => {this.mensaje = response.data; swal("Información de la compra", this.mensaje.texto, this.mensaje.type)})
-        .catch(e => {swal("Información de la compra", r.response.data.message, "error")})
+        .catch(e => {swal("Información de la compra", "Por favor comunicarte a través de un reporte", "error")})
       const longitud = this.myProductos.length
       for(let i=0;i<longitud;i++)
       {

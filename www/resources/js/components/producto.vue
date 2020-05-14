@@ -31,8 +31,8 @@
             <tr>
                 <td>{{producto['id']}}</td>
                 <td>{{producto['nombre']}}</td>
-                <td>{{producto['precioproveedor']}}</td>
-                <td>{{producto['precioventa']}}</td>
+                <td>{{miles(producto['precioproveedor'])}}</td>
+                <td>{{miles(producto['precioventa'])}}</td>
                 <td>{{producto['cantidad']}}</td>
                 <td>{{producto['imgurl'].substr(0,20)}}</td>
                 <td>
@@ -68,13 +68,13 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-            <input class="uk-input field" type="text" name="precioproveedor" placeholder="Precio proveedor" required v-model="precioproveedor">
+            <input class="uk-input field" type="text" name="precioproveedor" @keyup="milesInput('precioproveedor')" placeholder="Precio proveedor" required v-model="precioproveedor">
           </div>
         </div>
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-            <input class="uk-input field" type="text" name="precioventa" placeholder="Precio venta" required v-model="precioventa">
+            <input class="uk-input field" type="text" name="precioventa" @keyup="milesInput('precioventa')" placeholder="Precio venta" required v-model="precioventa">
           </div>
         </div>
         <div class="uk-margin">
@@ -108,13 +108,13 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-            <input class="uk-input field" type="text" name="precioproveedor" placeholder="Precio proveedor" required v-model="precioproveedor">
+            <input class="uk-input field" type="text" name="precioproveedor" @keyup="milesInput('precioproveedor')" placeholder="Precio proveedor" required v-model="precioproveedor">
           </div>
         </div>
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-            <input class="uk-input field" type="text" name="precioventa" placeholder="Precio venta" required v-model="precioventa">
+            <input class="uk-input field" type="text" name="precioventa" @keyup="milesInput('precioventa')" placeholder="Precio venta" required v-model="precioventa">
           </div>
         </div>
         <div class="uk-margin">
@@ -206,8 +206,8 @@ export default {
       this.id = producto['id']
       this.nombre= producto['nombre']
       this.cantidad= producto['cantidad']
-      this.precioventa= producto['precioventa']
-      this.precioproveedor = producto['precioproveedor']
+      this.precioventa= this.miles(producto['precioventa'])
+      this.precioproveedor = this.miles(producto['precioproveedor'])
       this.imgurl = producto['imgurl']
       $('#agregarProducto').hide()
       $('#modificarProducto').show()
@@ -227,8 +227,8 @@ export default {
       this.id = producto['id']
       this.nombre= producto['nombre']
       this.cantidad= producto['cantidad']
-      this.precioventa= producto['precioventa']
-      this.precioproveedor = producto['precioproveedor']
+      this.precioventa= this.miles(producto['precioventa'])
+      this.precioproveedor = this.miles(producto['precioproveedor'])
       this.imgurl = producto['imgurl']
       $('#modificarProducto').hide()
       $('#agregarProducto').hide()
@@ -237,6 +237,8 @@ export default {
     },
     insertar()
     {
+      this.precioproveedor = this.precioproveedor.replace(/\./g,'')
+      this.precioventa = this.precioventa.replace(/\./g,'')
       axios
       .post('../procesarProductos/1/',
       { idafiliado: this.idafiliado,
@@ -247,11 +249,13 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => {this.productos = response.data;swal("El producto ha sido agregado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar()
     },
     actualizar()
     {
+      this.precioproveedor = this.precioproveedor.replace(/\./g,'')
+      this.precioventa = this.precioventa.replace(/\./g,'')
       axios
       .post('../procesarProductos/2/',
       { idafiliado: this.idafiliado,
@@ -262,7 +266,7 @@ export default {
         precioproveedor: this.precioproveedor,
         imgurl: this.imgurl})
       .then(response => {this.productos = response.data;swal("El producto ha sido actualizado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar()
     },
     eliminar(producto)
@@ -270,7 +274,7 @@ export default {
       axios
       .get('../procesarProductos/3/'+producto['id']+'/0/'+producto['idafiliado']) //Filtros
       .then(response => {this.productos = response.data;swal("El producto ha sido eliminado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
     },
     imprimir()
     {
@@ -280,6 +284,24 @@ export default {
 	    ventimp.document.close();
 	    ventimp.print( );
 	    ventimp.close();
+    },
+    miles(input)
+    {
+    var num = input;
+    if(!isNaN(num)){
+      num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+      num = num.split('').reverse().join('').replace(/^[\.]/,'');
+      return num;
+      }
+    },
+    milesInput(input)
+    {
+      if(input === 'precioventa')
+      {
+        this.precioventa = this.miles(this.precioventa.replace(/\./g,''))
+      }else{
+        this.precioproveedor = this.miles(this.precioproveedor.replace(/\./g,''))
+      }
     }
   }
 };

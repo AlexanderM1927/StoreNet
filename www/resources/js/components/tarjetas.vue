@@ -21,7 +21,7 @@
             <tr>
                 <td>{{tarjeta['id']}}</td>
                 <td>{{tarjeta['idcliente']}}</td>
-                <td>{{tarjeta['saldo']}}</td>
+                <td>{{miles(tarjeta['saldo'])}}</td>
                 <td>{{tarjeta['puntos']}}</td>
                 <td><a href="#" uk-toggle="target: #modal-center" @click="modificar(tarjeta)">Recargar</a> / <a href="#" @click="eliminar(tarjeta)">Eliminar</a></td>
             </tr>
@@ -58,7 +58,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-            <input class="uk-input field" type="text" name="saldo" placeholder="Saldo" required v-model="saldo">
+            <input class="uk-input field" type="text" name="saldo" @keyup="milesInput()" placeholder="Saldo" required v-model="saldo">
           </div>
         </div>
         <button class="uk-button uk-button-default">Recargar</button>
@@ -112,7 +112,7 @@ export default {
     },
     modificar(tarjeta)
     {
-      this.saldo = 0
+      this.saldo = ''
       this.id = tarjeta['id']
       this.idcliente= tarjeta['idcliente']
       this.puntos= tarjeta['puntos']
@@ -138,6 +138,7 @@ export default {
     },
     actualizar()
     {
+      this.saldo = this.saldo.replace(/\./g,'')
       axios
       .post('../procesarTarjetas/2',
       { id: this.id, 
@@ -153,6 +154,24 @@ export default {
       .then(response => (this.tarjetas = response.data))
       swal("La tarjeta ha sido eliminado", "", "success");
     },
+    miles(input)
+    {
+    var num = input;
+    if(!isNaN(num)){
+      num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+      num = num.split('').reverse().join('').replace(/^[\.]/,'');
+      return num;
+      }
+    },
+    milesInput()
+    {
+      var num = this.saldo.replace(/\./g,'');
+      if(!isNaN(num)){
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/,'');
+        this.saldo = num;
+      }
+    }
   }
 };
 </script>

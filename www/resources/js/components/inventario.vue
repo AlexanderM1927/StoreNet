@@ -33,10 +33,10 @@
             <tr>
                 <td>{{producto['id']}}</td>
                 <td>{{producto['nombre']}}</td>
-                <td>{{producto['precioproveedor']}}</td>
-                <td>{{producto['precioventa']}}</td>
+                <td>{{miles(producto['precioproveedor'])}}</td>
+                <td>{{miles(producto['precioventa'])}}</td>
                 <td>{{producto['cantidad']}}</td>
-                <td>{{producto['utilidad']}}</td>
+                <td>{{miles(producto['utilidad'])}}</td>
                 <td>{{calcularUtilidad(producto['precioventa'],producto['precioproveedor'])}}%</td>
                 <td>{{producto['ventas']}}</td>
             </tr>
@@ -76,6 +76,15 @@ export default {
             let porcentaje
             porcentaje = parseFloat((pv-pp)*100/pp)
             return porcentaje
+        },
+        miles(input)
+        {
+            var num = input;
+            if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            return num;
+            }
         }
     }
 }

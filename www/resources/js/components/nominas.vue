@@ -46,10 +46,10 @@
                 <td>{{nomina['id']}}</td>
                 <td>{{nomina['fecha']}}</td>
                 <td>{{nomina['idempleado']}}</td>
-                <td>{{nomina['totaldevengado']}}</td>
-                <td>{{nomina['totaldeducido']}}</td>
-                <td>{{nomina['totalpago']}}</td>
-                <td>{{nomina['totalnomina']}}</td>
+                <td>{{miles(parseInt(nomina['totaldevengado']))}}</td>
+                <td>{{miles(parseInt(nomina['totaldeducido']))}}</td>
+                <td>{{miles(parseInt(nomina['totalpago']))}}</td>
+                <td>{{miles(parseInt(nomina['totalnomina']))}}</td>
                 <td><a href="#" @click="eliminar(nomina)">Eliminar</a></td>
             </tr>
         </tbody>
@@ -169,18 +169,18 @@
         <tbody>
             <tr>
                 <td>{{empleado['nombres']+" "+empleado['apellidos']}}</td>
-                <td>{{salariob}}</td>
-                <td>{{salariod}}</td>
-                <td>{{horase}}</td>
-                <td>{{recargo}}</td>
-                <td>{{dominicales}}</td>
-                <td>{{auxiliot}}</td>
+                <td>{{miles(salariob)}}</td>
+                <td>{{miles(salariod)}}</td>
+                <td>{{miles(horase)}}</td>
+                <td>{{miles(recargo)}}</td>
+                <td>{{miles(dominicales)}}</td>
+                <td>{{miles(auxiliot)}}</td>
             </tr>
         </tbody>
     </table>
     </div>
     <hr>
-    Total devengado: {{totaldevengado}}
+    Total devengado: {{miles(totaldevengado)}}
     <!-- DEDUCCIONES -->
     <h3 class="titulo-seccion">Deducciones</h3>
       <div class="uk-overflow-auto tabla barra">
@@ -197,17 +197,17 @@
         <tbody>
             <tr>
                 <td>{{empleado['nombres']+" "+empleado['apellidos']}}</td>
-                <td>{{salud}}</td>
-                <td>{{pension}}</td>
-                <td>{{fsp}}</td>
-                <td>{{deducciones}}</td>
+                <td>{{miles(salud)}}</td>
+                <td>{{miles(pension)}}</td>
+                <td>{{miles(fsp)}}</td>
+                <td>{{miles(deducciones)}}</td>
             </tr>
         </tbody>
     </table>
     </div>
     <hr>
-    Total deducciones: {{totaldeducciones}}
-      <h4 class="titulo-seccion">Total a pagar: {{totalpagar}}</h4>
+    Total deducciones: {{miles(totaldeducciones)}}
+      <h4 class="titulo-seccion">Total a pagar: {{miles(totalpagar)}}</h4>
     <h2 class="titulo-seccion">Apropiaciones de nómina</h2>
     <!-- SEGURIDAD SOCIAL -->
     <h3 class="titulo-seccion">Seguridad social</h3>
@@ -224,15 +224,15 @@
         <tbody>
             <tr>
                 <td>{{empleado['nombres']+" "+empleado['apellidos']}}</td>
-                <td>{{esalud}}</td>
-                <td>{{epension}}</td>
-                <td>{{earl}}</td>
+                <td>{{miles(esalud)}}</td>
+                <td>{{miles(epension)}}</td>
+                <td>{{miles(earl)}}</td>
             </tr>
         </tbody>
     </table>
     </div>
     <hr>
-    Total seguridad social: {{totalss}}
+    Total seguridad social: {{miles(totalss)}}
     <!-- APORTES PARAFISCALES -->
     <h3 class="titulo-seccion">Seguridad social</h3>
       <div class="uk-overflow-auto tabla barra">
@@ -248,15 +248,15 @@
         <tbody>
             <tr>
                 <td>{{empleado['nombres']+" "+empleado['apellidos']}}</td>
-                <td>{{sena}}</td>
-                <td>{{caja}}</td>
-                <td>{{icbf}}</td>
+                <td>{{miles(sena)}}</td>
+                <td>{{miles(caja)}}</td>
+                <td>{{miles(icbf)}}</td>
             </tr>
         </tbody>
     </table>
     </div>
     <hr>
-    Total aportes parafiscales: {{tap}}
+    Total aportes parafiscales: {{miles(tap)}}
     <!-- PRESTACIONES SOCIALES -->
     <h3 class="titulo-seccion">Prestaciones sociales</h3>
       <div class="uk-overflow-auto tabla barra">
@@ -273,18 +273,18 @@
         <tbody>
             <tr>
                 <td>{{empleado['nombres']+" "+empleado['apellidos']}}</td>
-                <td>{{cesantias}}</td>
-                <td>{{isc}}</td>
-                <td>{{prima}}</td>
-                <td>{{vacaciones}}</td>
+                <td>{{miles(cesantias)}}</td>
+                <td>{{miles(isc)}}</td>
+                <td>{{miles(prima)}}</td>
+                <td>{{miles(vacaciones)}}</td>
             </tr>
         </tbody>
     </table>
     </div>
     <hr>
-    Total prestaciones sociales: {{tps}}
-      <h4 class="titulo-seccion">Total apropiaciones: {{totalapropiaciones}}</h4>
-      <h3 class="titulo-seccion">Total nomina: {{totalnomina}}</h3>
+    Total prestaciones sociales: {{miles(tps)}}
+      <h4 class="titulo-seccion">Total apropiaciones: {{miles(totalapropiaciones)}}</h4>
+      <h3 class="titulo-seccion">Total nomina: {{miles(totalnomina)}}</h3>
     </div>
     <center><button class="uk-button uk-button-danger" v-show="liquidada==1" @click="imprimir">Imprimir</button><button class="uk-button uk-button-primary" v-show="liquidada==1" @click="guardar">Guardar</button></center>
   </div>
@@ -382,43 +382,43 @@ export default {
                 .then(response => (this.empleado=response.data))
         //devengado
         this.salariob = parseInt(this.empleado['sueldo'])
-        this.salariod = parseFloat((this.salariob/30)*parseInt(this.dias))
-        this.horase = parseFloat(((this.salariod/720)*1.25)*parseInt(this.horas))
-        this.recargo = parseFloat(((this.salariod/720)*0.35)*parseInt(this.horasn))
-        this.dominicales = parseFloat(((this.salariod/720)*2)*parseInt(this.horasd))
-        this.auxiliot = parseFloat(this.salariob < (877803*2) ? 102854 : 0 )
-        this.totaldevengado = parseFloat(this.salariod+this.horase+this.recargo+this.dominicales+this.auxiliot)
+        this.salariod = parseInt((this.salariob/30)*parseInt(this.dias))
+        this.horase = parseInt(((this.salariod/720)*1.25)*parseInt(this.horas))
+        this.recargo = parseInt(((this.salariod/720)*0.35)*parseInt(this.horasn))
+        this.dominicales = parseInt(((this.salariod/720)*2)*parseInt(this.horasd))
+        this.auxiliot = parseInt(this.salariob < (877803*2) ? 102854 : 0 )
+        this.totaldevengado = parseInt(this.salariod+this.horase+this.recargo+this.dominicales+this.auxiliot)
 
         //deducciones
-        this.salud = parseFloat(this.salariod*0.04)
-        this.pension = parseFloat(this.salariod*0.04)
-        this.fsp = parseFloat(this.salariob > (877803*4) ? (this.salariod*0.01) : 0 )
-        this.totaldeducciones = parseFloat(this.salud+this.pension+this.fsp+parseFloat(this.deducciones))
+        this.salud = parseInt(this.salariod*0.04)
+        this.pension = parseInt(this.salariod*0.04)
+        this.fsp = parseInt(this.salariob > (877803*4) ? (this.salariod*0.01) : 0 )
+        this.totaldeducciones = parseInt(this.salud+this.pension+this.fsp+parseInt(this.deducciones))
 
-        this.totalpagar = parseFloat(this.totaldevengado-this.totaldeducciones)
+        this.totalpagar = parseInt(this.totaldevengado-this.totaldeducciones)
 
         //seguridad social
-        this.esalud = parseFloat(this.salariod*0.085)
-        this.epension = parseFloat(this.salariod*0.12)
-        this.earl = parseFloat(this.salariod*0.00522)
-        this.totalss = parseFloat(this.esalud+this.epension+this.earl)
+        this.esalud = parseInt(this.salariod*0.085)
+        this.epension = parseInt(this.salariod*0.12)
+        this.earl = parseInt(this.salariod*0.00522)
+        this.totalss = parseInt(this.esalud+this.epension+this.earl)
 
         //aportes parafiscales
-        this.sena = parseFloat(this.salariob*0.02)
-        this.caja = parseFloat(this.salariob*0.04)
-        this.icbf = parseFloat(this.salariob*0.03)
-        this.tap = parseFloat(this.sena+this.caja+this.icbf)
+        this.sena = parseInt(this.salariob*0.02)
+        this.caja = parseInt(this.salariob*0.04)
+        this.icbf = parseInt(this.salariob*0.03)
+        this.tap = parseInt(this.sena+this.caja+this.icbf)
 
         //prestaciones sociales
-        this.cesantias = parseFloat((this.salariod)/360)
-        this.isc = parseFloat(((this.cesantias*parseInt(this.dias))*0.12)/360)
-        this.prima = parseFloat((this.salariod)/360)
-        this.vacaciones = parseFloat((this.salariod)/720)
-        this.tps = parseFloat(this.cesantias+this.isc+this.prima+this.vacaciones)
+        this.cesantias = parseInt((this.salariod)/360)
+        this.isc = parseInt(((this.cesantias*parseInt(this.dias))*0.12)/360)
+        this.prima = parseInt((this.salariod)/360)
+        this.vacaciones = parseInt((this.salariod)/720)
+        this.tps = parseInt(this.cesantias+this.isc+this.prima+this.vacaciones)
 
-        this.totalapropiaciones = parseFloat(this.totalss+this.tap+this.tps)
+        this.totalapropiaciones = parseInt(this.totalss+this.tap+this.tps)
 
-        this.totalnomina = parseFloat(this.totalpagar+this.totalapropiaciones)
+        this.totalnomina = parseInt(this.totalpagar+this.totalapropiaciones)
         this.liquidada=1
       },
       imprimir()
@@ -471,7 +471,16 @@ export default {
         .get('../procesarNomina/3/'+nomina['idafiliado']+'/'+nomina['id']) //Filtros
         .then(response => (this.nominas = response.data))
         swal("La nomina ha sido eliminada", "", "success");
-      }
+      },
+      miles(input)
+        {
+            var num = input;
+            if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            return num;
+            }
+        }
     }
 }
 </script>

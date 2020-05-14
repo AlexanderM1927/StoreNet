@@ -34,7 +34,7 @@
           Error generando codigo de barras
           </barcode>
         <div class="carritoCompra barra">
-          <table>
+          <table class="factura">
             <tr>
               <th>ID producto</th>
               <th>Nombre producto</th>
@@ -45,9 +45,9 @@
             <tr v-for="item in productos">
               <td>{{item['id']}}</td>
               <td>{{item['nombre']}}</td>
-              <td>{{item['valorUnitario']}}</td>
+              <td>{{miles(item['valorUnitario'])}}</td>
               <td>{{item['cantidad']}}</td>
-              <td>{{item['valorUnitario']*item['cantidad']}}</td>
+              <td>{{miles(item['valorUnitario']*item['cantidad'])}}</td>
             </tr>
           </table>
         </div>
@@ -124,6 +124,15 @@ export default {
 	        ventimp.document.close();
 	        ventimp.print( );
 	        ventimp.close();
+        },
+        miles(input)
+        {
+            var num = input;
+            if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            return num;
+            }
         }
     }
 }

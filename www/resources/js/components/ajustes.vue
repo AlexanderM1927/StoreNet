@@ -66,7 +66,7 @@ export default {
                 telefono: this.usuario['telefono']
             })
             .then(response => {this.usuario=response.data;swal("Empleado modificado","","success")})
-            .catch(e => {swal("Error", e.response.data.message,"error")})
+            .catch(e => {swal("Error", "Por favor comunicarte a través de un reporte","error")})
       }
   }
 }

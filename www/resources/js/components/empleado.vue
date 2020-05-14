@@ -68,7 +68,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: plus"></span>
-            <input class="uk-input field" type="text" name="sueldo" placeholder="Sueldo" required v-model="sueldo">
+            <input class="uk-input field" type="text" @keyup="milesInput()" name="sueldo" placeholder="Sueldo" required v-model="sueldo">
           </div>
         </div>
         <div class="uk-margin">
@@ -131,7 +131,7 @@
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: plus"></span>
-            <input class="uk-input field" type="text" name="sueldo" placeholder="Sueldo" required v-model="sueldo">
+            <input class="uk-input field" type="text" name="sueldo" @keyup="milesInput()" placeholder="Sueldo" required v-model="sueldo">
           </div>
         </div>
         <div class="uk-margin">
@@ -243,7 +243,7 @@ export default {
     {
       this.id = empleado['id']
       this.rango= empleado['rango']
-      this.sueldo= empleado['sueldo']
+      this.sueldo= this.miles(empleado['sueldo'])
       this.nombres = empleado['nombres']
       this.apellidos = empleado['apellidos']
       this.mail = empleado['mail']
@@ -263,6 +263,7 @@ export default {
     },
     insertar()
     {
+      this.sueldo = this.sueldo.replace(/\./g,'')
       axios
       .post('../procesarEmpleados/1/',{
                                     idafiliado: this.idafiliado,
@@ -276,11 +277,12 @@ export default {
                                     telefono: this.telefono
                                     })
       .then(response => {this.empleados = response.data;swal("El empleado ha sido agregado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     actualizar()
     {
+      this.sueldo = this.sueldo.replace(/\./g,'')
       axios
       .post('../procesarEmpleados/2/',{
                                     idafiliado: this.idafiliado,
@@ -295,7 +297,7 @@ export default {
                                     telefono: this.telefono
                                     })
       .then(response => {this.empleados = response.data;swal("El empleado ha sido actualizado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     eliminar(empleado)
@@ -303,8 +305,26 @@ export default {
       axios
       .get('../procesarEmpleados/3/'+empleado['idafiliado']+'/'+empleado['id']) //Filtros
       .then(response => {this.empleados = response.data;swal("El empleado ha sido eliminado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
     },
+    miles(input)
+    {
+    var num = input;
+    if(!isNaN(num)){
+      num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+      num = num.split('').reverse().join('').replace(/^[\.]/,'');
+      return num;
+      }
+    },
+    milesInput()
+    {
+      var num = this.sueldo.replace(/\./g,'');
+      if(!isNaN(num)){
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/,'');
+        this.sueldo = num;
+      }
+    }
   }
 };
 </script>

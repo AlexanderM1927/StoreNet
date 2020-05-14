@@ -145,7 +145,7 @@ export default {
                                     estado: this.estado
                                     })
       .then(response => {this.afiliados = response.data;swal("El afiliado ha sido agregado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     actualizar()
@@ -156,7 +156,7 @@ export default {
                                     estado: this.estado
                                     })
       .then(response => {this.afiliados = response.data;swal("El afiliado ha sido actualizado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
       this.limpiar();
     },
     eliminar(afiliado)
@@ -164,7 +164,7 @@ export default {
       axios
       .get('../procesarAfiliados/3/'+afiliado['id']) 
       .then(response => {this.afiliados = response.data;swal("El afiliado ha sido eliminado", "", "success")})
-      .catch(e => (swal("Ha surgido un problema", e.response.data.message, "error")))
+      .catch(e => (swal("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error")))
     },
     getEstado(valor)
     {

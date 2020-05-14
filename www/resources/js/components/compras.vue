@@ -44,7 +44,7 @@
                 <td>{{compra['id']}}</td>
                 <td>{{compra['afiliado']}}</td>
                 <td>{{compra['fecha']}}</td>
-                <td>{{compra['valortotal']}}</td>
+                <td>{{miles(compra['valortotal'])}}</td>
                 <td>{{compra['stock']}}</td>
                 <td><a href="#modal-center" uk-toggle @click="detalles(compra)">Ver detalles</a></td>
             </tr>
@@ -74,13 +74,13 @@
             <tr v-for="item in productos">
               <td>{{item['id']}}</td>
               <td>{{item['nombre']}}</td>
-              <td>{{item['valorUnitario']}}</td>
+              <td>{{miles(item['valorUnitario'])}}</td>
               <td>{{item['cantidad']}}</td>
-              <td>{{item['valorUnitario']*item['cantidad']}}</td>
+              <td>{{miles(item['valorUnitario']*item['cantidad'])}}</td>
             </tr>
           </table>
         </div>
-        <b>Total:   {{preciototal}}</b><br>
+        <b>Total:   {{miles(preciototal)}}</b><br>
         </center>
         </div>
         <center>
@@ -169,7 +169,16 @@ export default {
 	        ventimp.document.close();
 	        ventimp.print( );
 	        ventimp.close();
+        },
+        miles(input)
+        {
+            var num = input;
+            if(!isNaN(num)){
+                num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            return num;
         }
+    }
     }
 }
 </script>

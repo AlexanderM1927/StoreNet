@@ -2072,7 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.afiliados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido agregado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -2087,7 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.afiliados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido actualizado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -2098,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.afiliados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El afiliado ha sido eliminado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
     },
     getEstado: function getEstado(valor) {
@@ -2193,7 +2193,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.usuario = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Empleado modificado", "", "success");
       })["catch"](function (e) {
-        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Error", e.response.data.message, "error");
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Error", "Por favor comunicarte a través de un reporte", "error");
       });
     }
   }
@@ -2446,7 +2446,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clientes = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido agregado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -2465,7 +2465,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.clientes = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido actualizado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -2477,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.clientes = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El cliente ha sido eliminado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
     }
   }
@@ -2684,7 +2684,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.mensaje = response.data;
                   sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", _this3.mensaje.texto, _this3.mensaje.type);
                 })["catch"](function (e) {
-                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", r.response.data.message, "error");
+                  sweetalert__WEBPACK_IMPORTED_MODULE_2___default()("Información de la compra", "Por favor comunicarte a través de un reporte", "error");
                 });
 
               case 2:
@@ -2959,6 +2959,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ventimp.document.close();
       ventimp.print();
       ventimp.close();
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -3308,7 +3317,7 @@ __webpack_require__.r(__webpack_exports__);
     modificar: function modificar(empleado) {
       this.id = empleado['id'];
       this.rango = empleado['rango'];
-      this.sueldo = empleado['sueldo'];
+      this.sueldo = this.miles(empleado['sueldo']);
       this.nombres = empleado['nombres'];
       this.apellidos = empleado['apellidos'];
       this.mail = empleado['mail'];
@@ -3328,6 +3337,7 @@ __webpack_require__.r(__webpack_exports__);
     insertar: function insertar() {
       var _this3 = this;
 
+      this.sueldo = this.sueldo.replace(/\./g, '');
       axios.post('../procesarEmpleados/1/', {
         idafiliado: this.idafiliado,
         rango: this.rango,
@@ -3342,13 +3352,14 @@ __webpack_require__.r(__webpack_exports__);
         _this3.empleados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido agregado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
     actualizar: function actualizar() {
       var _this4 = this;
 
+      this.sueldo = this.sueldo.replace(/\./g, '');
       axios.post('../procesarEmpleados/2/', {
         idafiliado: this.idafiliado,
         id: this.id,
@@ -3364,7 +3375,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.empleados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido actualizado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -3376,8 +3387,26 @@ __webpack_require__.r(__webpack_exports__);
         _this5.empleados = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El empleado ha sido eliminado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
+    },
+    milesInput: function milesInput() {
+      var num = this.sueldo.replace(/\./g, '');
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        this.sueldo = num;
+      }
     }
   }
 });
@@ -3885,6 +3914,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var porcentaje;
       porcentaje = parseFloat((pv - pp) * 100 / pp);
       return porcentaje;
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -4048,6 +4086,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -4469,36 +4516,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 4:
                 //devengado
                 _this2.salariob = parseInt(_this2.empleado['sueldo']);
-                _this2.salariod = parseFloat(_this2.salariob / 30 * parseInt(_this2.dias));
-                _this2.horase = parseFloat(_this2.salariod / 720 * 1.25 * parseInt(_this2.horas));
-                _this2.recargo = parseFloat(_this2.salariod / 720 * 0.35 * parseInt(_this2.horasn));
-                _this2.dominicales = parseFloat(_this2.salariod / 720 * 2 * parseInt(_this2.horasd));
-                _this2.auxiliot = parseFloat(_this2.salariob < 877803 * 2 ? 102854 : 0);
-                _this2.totaldevengado = parseFloat(_this2.salariod + _this2.horase + _this2.recargo + _this2.dominicales + _this2.auxiliot); //deducciones
+                _this2.salariod = parseInt(_this2.salariob / 30 * parseInt(_this2.dias));
+                _this2.horase = parseInt(_this2.salariod / 720 * 1.25 * parseInt(_this2.horas));
+                _this2.recargo = parseInt(_this2.salariod / 720 * 0.35 * parseInt(_this2.horasn));
+                _this2.dominicales = parseInt(_this2.salariod / 720 * 2 * parseInt(_this2.horasd));
+                _this2.auxiliot = parseInt(_this2.salariob < 877803 * 2 ? 102854 : 0);
+                _this2.totaldevengado = parseInt(_this2.salariod + _this2.horase + _this2.recargo + _this2.dominicales + _this2.auxiliot); //deducciones
 
-                _this2.salud = parseFloat(_this2.salariod * 0.04);
-                _this2.pension = parseFloat(_this2.salariod * 0.04);
-                _this2.fsp = parseFloat(_this2.salariob > 877803 * 4 ? _this2.salariod * 0.01 : 0);
-                _this2.totaldeducciones = parseFloat(_this2.salud + _this2.pension + _this2.fsp + parseFloat(_this2.deducciones));
-                _this2.totalpagar = parseFloat(_this2.totaldevengado - _this2.totaldeducciones); //seguridad social
+                _this2.salud = parseInt(_this2.salariod * 0.04);
+                _this2.pension = parseInt(_this2.salariod * 0.04);
+                _this2.fsp = parseInt(_this2.salariob > 877803 * 4 ? _this2.salariod * 0.01 : 0);
+                _this2.totaldeducciones = parseInt(_this2.salud + _this2.pension + _this2.fsp + parseInt(_this2.deducciones));
+                _this2.totalpagar = parseInt(_this2.totaldevengado - _this2.totaldeducciones); //seguridad social
 
-                _this2.esalud = parseFloat(_this2.salariod * 0.085);
-                _this2.epension = parseFloat(_this2.salariod * 0.12);
-                _this2.earl = parseFloat(_this2.salariod * 0.00522);
-                _this2.totalss = parseFloat(_this2.esalud + _this2.epension + _this2.earl); //aportes parafiscales
+                _this2.esalud = parseInt(_this2.salariod * 0.085);
+                _this2.epension = parseInt(_this2.salariod * 0.12);
+                _this2.earl = parseInt(_this2.salariod * 0.00522);
+                _this2.totalss = parseInt(_this2.esalud + _this2.epension + _this2.earl); //aportes parafiscales
 
-                _this2.sena = parseFloat(_this2.salariob * 0.02);
-                _this2.caja = parseFloat(_this2.salariob * 0.04);
-                _this2.icbf = parseFloat(_this2.salariob * 0.03);
-                _this2.tap = parseFloat(_this2.sena + _this2.caja + _this2.icbf); //prestaciones sociales
+                _this2.sena = parseInt(_this2.salariob * 0.02);
+                _this2.caja = parseInt(_this2.salariob * 0.04);
+                _this2.icbf = parseInt(_this2.salariob * 0.03);
+                _this2.tap = parseInt(_this2.sena + _this2.caja + _this2.icbf); //prestaciones sociales
 
-                _this2.cesantias = parseFloat(_this2.salariod / 360);
-                _this2.isc = parseFloat(_this2.cesantias * parseInt(_this2.dias) * 0.12 / 360);
-                _this2.prima = parseFloat(_this2.salariod / 360);
-                _this2.vacaciones = parseFloat(_this2.salariod / 720);
-                _this2.tps = parseFloat(_this2.cesantias + _this2.isc + _this2.prima + _this2.vacaciones);
-                _this2.totalapropiaciones = parseFloat(_this2.totalss + _this2.tap + _this2.tps);
-                _this2.totalnomina = parseFloat(_this2.totalpagar + _this2.totalapropiaciones);
+                _this2.cesantias = parseInt(_this2.salariod / 360);
+                _this2.isc = parseInt(_this2.cesantias * parseInt(_this2.dias) * 0.12 / 360);
+                _this2.prima = parseInt(_this2.salariod / 360);
+                _this2.vacaciones = parseInt(_this2.salariod / 720);
+                _this2.tps = parseInt(_this2.cesantias + _this2.isc + _this2.prima + _this2.vacaciones);
+                _this2.totalapropiaciones = parseInt(_this2.totalss + _this2.tap + _this2.tps);
+                _this2.totalnomina = parseInt(_this2.totalpagar + _this2.totalapropiaciones);
                 _this2.liquidada = 1;
 
               case 32:
@@ -4603,6 +4650,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee4);
       }))();
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -4990,8 +5046,8 @@ __webpack_require__.r(__webpack_exports__);
       this.id = producto['id'];
       this.nombre = producto['nombre'];
       this.cantidad = producto['cantidad'];
-      this.precioventa = producto['precioventa'];
-      this.precioproveedor = producto['precioproveedor'];
+      this.precioventa = this.miles(producto['precioventa']);
+      this.precioproveedor = this.miles(producto['precioproveedor']);
       this.imgurl = producto['imgurl'];
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#agregarProducto').hide();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modificarProducto').show();
@@ -5009,8 +5065,8 @@ __webpack_require__.r(__webpack_exports__);
       this.id = producto['id'];
       this.nombre = producto['nombre'];
       this.cantidad = producto['cantidad'];
-      this.precioventa = producto['precioventa'];
-      this.precioproveedor = producto['precioproveedor'];
+      this.precioventa = this.miles(producto['precioventa']);
+      this.precioproveedor = this.miles(producto['precioproveedor']);
       this.imgurl = producto['imgurl'];
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#modificarProducto').hide();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#agregarProducto').hide();
@@ -5020,6 +5076,8 @@ __webpack_require__.r(__webpack_exports__);
     insertar: function insertar() {
       var _this3 = this;
 
+      this.precioproveedor = this.precioproveedor.replace(/\./g, '');
+      this.precioventa = this.precioventa.replace(/\./g, '');
       axios.post('../procesarProductos/1/', {
         idafiliado: this.idafiliado,
         id: this.id,
@@ -5032,13 +5090,15 @@ __webpack_require__.r(__webpack_exports__);
         _this3.productos = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido agregado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
     actualizar: function actualizar() {
       var _this4 = this;
 
+      this.precioproveedor = this.precioproveedor.replace(/\./g, '');
+      this.precioventa = this.precioventa.replace(/\./g, '');
       axios.post('../procesarProductos/2/', {
         idafiliado: this.idafiliado,
         id: this.id,
@@ -5051,7 +5111,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.productos = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido actualizado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
       this.limpiar();
     },
@@ -5063,7 +5123,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.productos = response.data;
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("El producto ha sido eliminado", "", "success");
       })["catch"](function (e) {
-        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", e.response.data.message, "error");
+        return sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Ha surgido un problema", "Por favor comunicarte a través de un reporte", "error");
       });
     },
     imprimir: function imprimir() {
@@ -5073,6 +5133,22 @@ __webpack_require__.r(__webpack_exports__);
       ventimp.document.close();
       ventimp.print();
       ventimp.close();
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
+    },
+    milesInput: function milesInput(input) {
+      if (input === 'precioventa') {
+        this.precioventa = this.miles(this.precioventa.replace(/\./g, ''));
+      } else {
+        this.precioproveedor = this.miles(this.precioproveedor.replace(/\./g, ''));
+      }
     }
   }
 });
@@ -5386,6 +5462,15 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return numero;
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -5518,7 +5603,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     modificar: function modificar(tarjeta) {
-      this.saldo = 0;
+      this.saldo = '';
       this.id = tarjeta['id'];
       this.idcliente = tarjeta['idcliente'];
       this.puntos = tarjeta['puntos'];
@@ -5546,6 +5631,7 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this4 = this;
 
+      this.saldo = this.saldo.replace(/\./g, '');
       axios.post('../procesarTarjetas/2', {
         id: this.id,
         saldo: this.saldo
@@ -5563,6 +5649,24 @@ __webpack_require__.r(__webpack_exports__);
         return _this5.tarjetas = response.data;
       });
       sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("La tarjeta ha sido eliminado", "", "success");
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
+    },
+    milesInput: function milesInput() {
+      var num = this.saldo.replace(/\./g, '');
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        this.saldo = num;
+      }
     }
   }
 });
@@ -5736,6 +5840,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ventimp.document.close();
       ventimp.print();
       ventimp.close();
+    },
+    miles: function miles(input) {
+      var num = input;
+
+      if (!isNaN(num)) {
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/, '');
+        return num;
+      }
     }
   }
 });
@@ -96707,37 +96820,36 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
+              _c("div", { staticClass: "carritoCompra barra" }, [
+                _c(
+                  "table",
+                  { staticClass: "factura" },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._l(_vm.factura, function(item) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(item.producto["nombre"]))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm.miles(item.producto["precioventa"]))
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.cantidad))])
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
               _c("center", [
-                _c("div", { staticClass: "carritoCompra barra" }, [
-                  _c(
-                    "table",
-                    [
-                      _c("tr", [
-                        _c("th", [_vm._v("Nombre producto")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Precio")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Cantidad")])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.factura, function(item) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(item.producto["nombre"]))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(item.producto["precioventa"]))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.cantidad))])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ]),
-                _vm._v(" "),
                 _c("b", [
-                  _vm._v("Total a pagar:   " + _vm._s(_vm.preciototal))
+                  _vm._v(
+                    "Total a pagar:   " + _vm._s(_vm.miles(_vm.preciototal))
+                  )
                 ]),
                 _c("br"),
                 _vm._v(" "),
@@ -96776,6 +96888,18 @@ var staticRenderFns = [
       _vm._v(
         "\n      Por favor verifica que todos tus productos estén en orden\n      "
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Nombre producto")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Precio")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Cantidad")])
     ])
   }
 ]
@@ -96916,7 +97040,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(compra["fecha"]))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(compra["valortotal"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(compra["valortotal"])))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(compra["stock"]))]),
                 _vm._v(" "),
@@ -97013,7 +97137,9 @@ var render = function() {
                                 _c("td", [_vm._v(_vm._s(item["nombre"]))]),
                                 _vm._v(" "),
                                 _c("td", [
-                                  _vm._v(_vm._s(item["valorUnitario"]))
+                                  _vm._v(
+                                    _vm._s(_vm.miles(item["valorUnitario"]))
+                                  )
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item["cantidad"]))]),
@@ -97021,7 +97147,9 @@ var render = function() {
                                 _c("td", [
                                   _vm._v(
                                     _vm._s(
-                                      item["valorUnitario"] * item["cantidad"]
+                                      _vm.miles(
+                                        item["valorUnitario"] * item["cantidad"]
+                                      )
                                     )
                                   )
                                 ])
@@ -97032,7 +97160,9 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("b", [_vm._v("Total:   " + _vm._s(_vm.preciototal))]),
+                      _c("b", [
+                        _vm._v("Total:   " + _vm._s(_vm.miles(_vm.preciototal)))
+                      ]),
                       _c("br")
                     ],
                     1
@@ -97476,6 +97606,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.sueldo },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput()
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -97849,6 +97982,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.sueldo },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput()
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -98681,13 +98817,15 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(producto["nombre"]))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(producto["precioproveedor"]))]),
+                _c("td", [
+                  _vm._v(_vm._s(_vm.miles(producto["precioproveedor"])))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(producto["precioventa"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(producto["precioventa"])))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(producto["cantidad"]))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(producto["utilidad"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(producto["utilidad"])))]),
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(
@@ -98881,13 +99019,13 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(nomina["horasdyf"]))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(nomina["deducciones"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(nomina["deducciones"])))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(nomina["totaldevengado"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(nomina["totaldevengado"])))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(nomina["totaldeducido"]))]),
+                _c("td", [_vm._v(_vm._s(_vm.miles(nomina["totaldeducido"])))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(nomina["totalpago"]))])
+                _c("td", [_vm._v(_vm._s(_vm.miles(nomina["totalpago"])))])
               ])
             ])
           })
@@ -99086,13 +99224,23 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(nomina["idempleado"]))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(nomina["totaldevengado"]))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.miles(parseInt(nomina["totaldevengado"])))
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(nomina["totaldeducido"]))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.miles(parseInt(nomina["totaldeducido"]))))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(nomina["totalpago"]))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.miles(parseInt(nomina["totalpago"]))))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(nomina["totalnomina"]))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.miles(parseInt(nomina["totalnomina"]))))
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _c(
@@ -99456,17 +99604,17 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.salariob))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.salariob)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.salariod))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.salariod)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.horase))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.horase)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.recargo))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.recargo)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.dominicales))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.dominicales)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.auxiliot))])
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.auxiliot)))])
                 ])
               ])
             ]
@@ -99474,7 +99622,11 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("hr"),
-        _vm._v("\n  Total devengado: " + _vm._s(_vm.totaldevengado) + "\n  "),
+        _vm._v(
+          "\n  Total devengado: " +
+            _vm._s(_vm.miles(_vm.totaldevengado)) +
+            "\n  "
+        ),
         _vm._v(" "),
         _c("h3", { staticClass: "titulo-seccion" }, [_vm._v("Deducciones")]),
         _vm._v(" "),
@@ -99497,13 +99649,13 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.salud))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.salud)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.pension))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.pension)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.fsp))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.fsp)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.deducciones))])
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.deducciones)))])
                 ])
               ])
             ]
@@ -99512,10 +99664,12 @@ var render = function() {
         _vm._v(" "),
         _c("hr"),
         _vm._v(
-          "\n  Total deducciones: " + _vm._s(_vm.totaldeducciones) + "\n    "
+          "\n  Total deducciones: " +
+            _vm._s(_vm.miles(_vm.totaldeducciones)) +
+            "\n    "
         ),
         _c("h4", { staticClass: "titulo-seccion" }, [
-          _vm._v("Total a pagar: " + _vm._s(_vm.totalpagar))
+          _vm._v("Total a pagar: " + _vm._s(_vm.miles(_vm.totalpagar)))
         ]),
         _vm._v(" "),
         _c("h2", { staticClass: "titulo-seccion" }, [
@@ -99545,11 +99699,11 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.esalud))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.esalud)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.epension))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.epension)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.earl))])
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.earl)))])
                 ])
               ])
             ]
@@ -99557,7 +99711,11 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("hr"),
-        _vm._v("\n  Total seguridad social: " + _vm._s(_vm.totalss) + "\n  "),
+        _vm._v(
+          "\n  Total seguridad social: " +
+            _vm._s(_vm.miles(_vm.totalss)) +
+            "\n  "
+        ),
         _vm._v(" "),
         _c("h3", { staticClass: "titulo-seccion" }, [
           _vm._v("Seguridad social")
@@ -99582,11 +99740,11 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.sena))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.sena)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.caja))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.caja)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.icbf))])
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.icbf)))])
                 ])
               ])
             ]
@@ -99594,7 +99752,11 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("hr"),
-        _vm._v("\n  Total aportes parafiscales: " + _vm._s(_vm.tap) + "\n  "),
+        _vm._v(
+          "\n  Total aportes parafiscales: " +
+            _vm._s(_vm.miles(_vm.tap)) +
+            "\n  "
+        ),
         _vm._v(" "),
         _c("h3", { staticClass: "titulo-seccion" }, [
           _vm._v("Prestaciones sociales")
@@ -99619,13 +99781,13 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.cesantias))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.cesantias)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.isc))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.isc)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.prima))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.prima)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.vacaciones))])
+                  _c("td", [_vm._v(_vm._s(_vm.miles(_vm.vacaciones)))])
                 ])
               ])
             ]
@@ -99634,14 +99796,18 @@ var render = function() {
         _vm._v(" "),
         _c("hr"),
         _vm._v(
-          "\n  Total prestaciones sociales: " + _vm._s(_vm.tps) + "\n    "
+          "\n  Total prestaciones sociales: " +
+            _vm._s(_vm.miles(_vm.tps)) +
+            "\n    "
         ),
         _c("h4", { staticClass: "titulo-seccion" }, [
-          _vm._v("Total apropiaciones: " + _vm._s(_vm.totalapropiaciones))
+          _vm._v(
+            "Total apropiaciones: " + _vm._s(_vm.miles(_vm.totalapropiaciones))
+          )
         ]),
         _vm._v(" "),
         _c("h3", { staticClass: "titulo-seccion" }, [
-          _vm._v("Total nomina: " + _vm._s(_vm.totalnomina))
+          _vm._v("Total nomina: " + _vm._s(_vm.miles(_vm.totalnomina)))
         ])
       ]),
       _vm._v(" "),
@@ -100144,9 +100310,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(producto["nombre"]))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(producto["precioproveedor"]))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.miles(producto["precioproveedor"])))
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(producto["precioventa"]))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.miles(producto["precioventa"])))
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(producto["cantidad"]))]),
                   _vm._v(" "),
@@ -100358,6 +100528,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.precioproveedor },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput("precioproveedor")
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -100394,6 +100567,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.precioventa },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput("precioventa")
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -100598,6 +100774,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.precioproveedor },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput("precioproveedor")
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -100634,6 +100813,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.precioventa },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput("precioventa")
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -101171,7 +101353,11 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "tarjetaInformacion" }, [
-                        _c("b", [_vm._v("Saldo: " + _vm._s(tarjeta["saldo"]))]),
+                        _c("b", [
+                          _vm._v(
+                            "Saldo: " + _vm._s(_vm.miles(tarjeta["saldo"]))
+                          )
+                        ]),
                         _c("br"),
                         _vm._v(" "),
                         _c("b", [
@@ -101280,7 +101466,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(tarjeta["idcliente"]))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(tarjeta["saldo"]))]),
+                  _c("td", [_vm._v(_vm._s(_vm.miles(tarjeta["saldo"])))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(tarjeta["puntos"]))]),
                   _vm._v(" "),
@@ -101490,6 +101676,9 @@ var render = function() {
                             },
                             domProps: { value: _vm.saldo },
                             on: {
+                              keyup: function($event) {
+                                return _vm.milesInput()
+                              },
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -101661,6 +101850,7 @@ var render = function() {
                     _c("div", { staticClass: "carritoCompra barra" }, [
                       _c(
                         "table",
+                        { staticClass: "factura" },
                         [
                           _c("tr", [
                             _c("th", [_vm._v("ID producto")]),
@@ -101680,14 +101870,18 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item["nombre"]))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item["valorUnitario"]))]),
+                              _c("td", [
+                                _vm._v(_vm._s(_vm.miles(item["valorUnitario"])))
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item["cantidad"]))]),
                               _vm._v(" "),
                               _c("td", [
                                 _vm._v(
                                   _vm._s(
-                                    item["valorUnitario"] * item["cantidad"]
+                                    _vm.miles(
+                                      item["valorUnitario"] * item["cantidad"]
+                                    )
                                   )
                                 )
                               ])

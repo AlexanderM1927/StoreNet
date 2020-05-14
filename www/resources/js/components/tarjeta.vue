@@ -18,7 +18,7 @@
             <div class="creadorForm">
                 <h3 class="title">Datos de tu tarjeta</h3>
                 <div class="tarjetaInformacion">
-                    <b>Saldo: {{tarjeta['saldo']}}</b><br>
+                    <b>Saldo: {{miles(tarjeta['saldo'])}}</b><br>
                     <b>Puntos: {{tarjeta['puntos']}}</b>
                     <hr>
                     Los puntos te pueden hacer acreedor de premios increíbles.<br>
@@ -67,6 +67,15 @@ export default {
         }
       }
       return numero;
+    },
+    miles(input)
+    {
+    var num = input;
+    if(!isNaN(num)){
+      num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+      num = num.split('').reverse().join('').replace(/^[\.]/,'');
+      return num;
+      }
     }
   }
 };

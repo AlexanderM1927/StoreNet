@@ -13,6 +13,10 @@
     <?php
             if(!empty($usuario))
             {
+            function money($val)
+            {
+                return number_format($val, 2);
+            }
         ?>
         <div class="informe">
         <h1>Informe - <?=$balance['nombre']?></h1>
@@ -30,18 +34,18 @@
         </tr>
         <tr>
             <td>Ventas realizadas</td>
-            <td><?=$balance['ventas']?></td>
-            <td><?=$balance['costosv']?></td>
-            <td><?=$balance['utilidades']?></td>
+            <td><?=money($balance['ventas'])?></td>
+            <td><?=money($balance['costosv'])?></td>
+            <td><?=money($balance['utilidades'])?></td>
         </tr>
         <tr>
             <td>Pagos por nomina</td>
             <td>0</td>
-            <td><?=$balance['nominas']?></td>
-            <td><?=$balance['nominas']?></td>
+            <td><?=money($balance['nominas'])?></td>
+            <td><?=money($balance['nominas'])?></td>
         </tr>
         <?php
-        $total = $balance['utilidades']-$balance['nominas'];
+        $total = money($balance['utilidades']-$balance['nominas']);
         ?>
         <tr>
             <th colspan="3">Total</th>

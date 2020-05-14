@@ -50,10 +50,10 @@
                 <td>{{nomina['horasextras']}}</td>
                 <td>{{nomina['recargonocturno']}}</td>
                 <td>{{nomina['horasdyf']}}</td>
-                <td>{{nomina['deducciones']}}</td>
-                <td>{{nomina['totaldevengado']}}</td>
-                <td>{{nomina['totaldeducido']}}</td>
-                <td>{{nomina['totalpago']}}</td>
+                <td>{{miles(nomina['deducciones'])}}</td>
+                <td>{{miles(nomina['totaldevengado'])}}</td>
+                <td>{{miles(nomina['totaldeducido'])}}</td>
+                <td>{{miles(nomina['totalpago'])}}</td>
             </tr>
         </tbody>
     </table>
@@ -110,7 +110,16 @@ export default {
             }else{
                 swal("Filtros","Por favor, selecciona una fecha valida", "error")
             }
+        },
+        miles(input)
+        {
+            var num = input;
+            if(!isNaN(num)){
+            num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            num = num.split('').reverse().join('').replace(/^[\.]/,'');
+            return num;
         }
+    }
     }
 }
 </script>
