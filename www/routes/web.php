@@ -35,6 +35,7 @@ Route::get('/nominas', 'WebsiteController@nominas');
 Route::get('/visorfacturas', 'WebsiteController@visorfacturas');
 Route::get('/balance/{idafiliado}/{desde}/{hasta}', 'WebsiteController@balance');
 Route::get('/reportes', 'WebsiteController@reportes');
+Route::get('/sorteo', 'WebsiteController@sorteo');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/procesarProductos/{type}/{params?}/{data?}/{idafiliado?}', 'ActionController@procesaProductos');
 Route::get('/procesarClientes/{type}/{params?}/{data?}', 'ActionController@procesaClientes');

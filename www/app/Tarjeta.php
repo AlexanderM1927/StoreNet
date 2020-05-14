@@ -8,7 +8,7 @@ class Tarjeta
 {
 
     public function listarTarjetas(){
-        $arrayTarjetas = DB::select("SELECT * FROM tarjeta LIMIT 10");
+        $arrayTarjetas = DB::select("SELECT * FROM tarjeta ORDER BY puntos DESC LIMIT 10");
         return json_encode($arrayTarjetas);
     }
 

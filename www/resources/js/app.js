@@ -18,6 +18,7 @@ Vue.component('visorfacturas', require('./components/visorfacturas.vue').default
 Vue.component('nominas', require('./components/nominas.vue').default);
 Vue.component('nomina', require('./components/nomina.vue').default);
 Vue.component('reportes', require('./components/reportes.vue').default);
+Vue.component('sorteo', require('./components/sorteo.vue').default);
 const app = new Vue({
   el: '#v-app',
 });

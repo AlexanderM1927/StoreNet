@@ -132,4 +132,9 @@ class WebsiteController extends Controller
         return view('reportes')->with('usuario',session('usuario'));
     }
 
+    public function sorteo()
+    {
+        return view('sorteo')->with('usuario',session('usuario'));
+    }
+
 }

@@ -110,7 +110,7 @@ class Compra
                             DB::insert('INSERT INTO venta(idafiliado,idfactura,idproducto,cantidad) VALUES (?,?,?,?)',[ $item->idafiliado,$idfactura,$item->id,$cantidad ]);
                             DB::update('UPDATE producto SET cantidad = cantidad - ? WHERE id = ? AND idafiliado = ?', [ $producto['cantidad'],$item->id,$item->idafiliado ]);
                             $valortotal=$cantidad*$item->precioventa;
-                            DB::update('UPDATE tarjeta SET saldo = saldo - ? WHERE idcliente = ?', [ $valortotal,$idcliente ]);
+                            DB::update('UPDATE tarjeta SET saldo = saldo - ?, puntos = puntos + 1 WHERE idcliente = ?', [ $valortotal,$idcliente ]);
                             $respuesta = 0;
                         }else{
                             $respuesta = 2;

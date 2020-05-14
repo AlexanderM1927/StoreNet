@@ -68,6 +68,9 @@
         <?php if($usuario->getRango()!=0){ ?>
         <li><a href="nomina"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Mi nomina</a></li>
         <?php } ?>
+        <?php if($usuario->getRango()==0){ ?>
+        <li><a href="sorteo"><span class="uk-margin-small-right" uk-icon="icon: play-circle"></span> Revisar sorteo<b class="new uk-animation-shake">NEW</b></a></li>
+        <?php } ?>
         <li class="uk-nav-divider"></li>
         <li><a href="logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Cerrar sesión</a></li>
     </ul>

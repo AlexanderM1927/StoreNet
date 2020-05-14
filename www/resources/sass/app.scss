@@ -503,3 +503,21 @@ html, body {
   pre{
       border:none;
   }
+
+  .new {
+      color: #DF7401;
+      font-size: 8px;
+      margin-top: 5px;
+      float: right;
+  }
+  
+  .new:hover {
+      background: #DF7401;
+      color: #FFF;
+      cursor: pointer;
+  }
+
+  #v-app .progreso {
+      border-top: 1px solid #000;
+      width: 100%;
+  }
