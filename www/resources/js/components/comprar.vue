@@ -7,7 +7,7 @@
                 </div><span class="results" ref="results">{{results}}</span>
                 </div></center>
     <ul class="productos">
-      <li class="producto" v-for="producto in productos">
+      <li class="producto" v-for="producto in productos" v-bind:key="producto.id">
         <a href="#" @click="agregar(producto)">
         <center>
         <div class="comprar">
@@ -17,7 +17,7 @@
           <img v-bind:src="producto['imgurl']"><br>
         </div>
         <span class="precio">${{miles(producto['precioventa'])}}</span><br>
-        <b>{{producto['nombre']}}</b><br>
+        {{producto['nombre'].substr(0,15)}}<br>
         </center>
         </a>
       </li>
@@ -26,7 +26,7 @@
       <center>
         <h4>Carrito</h4>
       <ul class="productosCarrito">
-          <li v-for="producto in myProductos" class="productoCarrito">
+          <li v-for="producto in myProductos" class="productoCarrito" v-bind:key="producto.id">
               <img v-bind:src="producto['imgurl']" class="cuadritoImg">
               <center><a href="#" @click="eliminar(producto)"><span uk-icon="icon: trash"></span></a></center>
           </li>
@@ -51,7 +51,7 @@
               <th>Precio</th>
               <th>Cantidad</th>
             </tr>
-            <tr v-for="item in factura">
+            <tr v-for="item in factura" v-bind:key="item.id">
               <td>{{item.producto['nombre']}}</td>
               <td>{{miles(item.producto['precioventa'])}}</td>
               <td>{{item.cantidad}}</td>

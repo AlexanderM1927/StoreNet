@@ -96832,7 +96832,7 @@ var render = function() {
         "ul",
         { staticClass: "productos" },
         _vm._l(_vm.productos, function(producto) {
-          return _c("li", { staticClass: "producto" }, [
+          return _c("li", { key: producto.id, staticClass: "producto" }, [
             _c(
               "a",
               {
@@ -96858,8 +96858,7 @@ var render = function() {
                     _vm._v("$" + _vm._s(_vm.miles(producto["precioventa"])))
                   ]),
                   _c("br"),
-                  _vm._v(" "),
-                  _c("b", [_vm._v(_vm._s(producto["nombre"]))]),
+                  _vm._v("\n      " + _vm._s(producto["nombre"].substr(0, 15))),
                   _c("br")
                 ])
               ],
@@ -96883,7 +96882,7 @@ var render = function() {
               _vm._l(_vm.myProductos, function(producto) {
                 return _c(
                   "li",
-                  { staticClass: "productoCarrito" },
+                  { key: producto.id, staticClass: "productoCarrito" },
                   [
                     _c("img", {
                       staticClass: "cuadritoImg",
@@ -96954,7 +96953,7 @@ var render = function() {
                     _vm._m(1),
                     _vm._v(" "),
                     _vm._l(_vm.factura, function(item) {
-                      return _c("tr", [
+                      return _c("tr", { key: item.id }, [
                         _c("td", [_vm._v(_vm._s(item.producto["nombre"]))]),
                         _vm._v(" "),
                         _c("td", [
