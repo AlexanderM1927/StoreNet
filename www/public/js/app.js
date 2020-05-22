@@ -96846,7 +96846,7 @@ var render = function() {
               [
                 _c("center", [
                   _c("div", { staticClass: "comprar" }, [
-                    _vm._v("\n        Agregar al carrito\n      ")
+                    _c("img", { attrs: { src: "img/cart.png" } })
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "producto-i" }, [

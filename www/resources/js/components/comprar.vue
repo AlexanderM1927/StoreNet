@@ -11,7 +11,7 @@
         <a href="#" @click="agregar(producto)">
         <center>
         <div class="comprar">
-          Agregar al carrito
+          <img src="img/cart.png">
         </div>
         <div class="producto-i">
           <img v-bind:src="producto['imgurl']"><br>
