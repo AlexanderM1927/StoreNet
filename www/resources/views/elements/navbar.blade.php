@@ -133,6 +133,8 @@ function enviar()
         UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Reporte enviado correctamente',pos: 'top-right',status:'success'})
         report()
         limpiar()
+    }else{
+        UIkit.notification({message: '<span uk-icon=\'icon: error\'></span> Se ha presentado un fallo al enviar',pos: 'top-right',status:'success'})
     }
     };
     xhttp.open("POST", "procesarReportes/1", true);
