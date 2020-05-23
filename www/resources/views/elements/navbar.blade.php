@@ -128,18 +128,19 @@ function enviar()
     var xhttp = new XMLHttpRequest();
     var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     xhttp.withCredentials = true;
+    let envio = false
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Reporte enviado correctamente',pos: 'top-right',status:'success'})
         report()
         limpiar()
-    }else{
-        UIkit.notification({message: '<span uk-icon=\'icon: error\'></span> Se ha presentado un fallo al enviar',pos: 'top-right',status:'success'})
+        envio = true
     }
     };
     xhttp.open("POST", "procesarReportes/1", true);
     xhttp.setRequestHeader('x-csrf-token', csrfToken);
     xhttp.send(JSON.stringify({correo: mail,titulo: title, contenido: content}));
+    if(envio === false) UIkit.notification({message: '<span uk-icon=\'icon: error\'></span> Se ha presentado un fallo al enviar',pos: 'top-right',status:'error'})
 }
 </script>
 <?php

@@ -198,7 +198,7 @@ CREATE TABLE `reporte` (
   `titulo` varchar(255) DEFAULT NULL,
   `contenido` varchar(600) NOT NULL,
   `estado` int(11) NOT NULL,
-  `mail` varchar(35) NOT NULL,
+  `mail` varchar(100) NOT NULL,
   `fecha` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
