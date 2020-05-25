@@ -2191,7 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
         telefono: this.usuario['telefono']
       }).then(function (response) {
         _this2.usuario = response.data;
-        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Empleado modificado", "", "success");
+        sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Cuenta modificada", "", "success");
       })["catch"](function (e) {
         sweetalert__WEBPACK_IMPORTED_MODULE_1___default()("Error", "Por favor comunicarte a través de un reporte", "error");
       });
