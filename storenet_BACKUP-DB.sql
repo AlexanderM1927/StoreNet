@@ -202,16 +202,6 @@ CREATE TABLE `reporte` (
   `fecha` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `reporte`
---
-
-INSERT INTO `reporte` (`id`, `titulo`, `contenido`, `estado`, `mail`, `fecha`) VALUES
-(1, 'adm', 'adm', 1, 'adm@softcorp.com', '2020-04-23'),
-(2, 'Error al crear', 'Hola mundo', 0, 'jhon71937@gmail.com', '2020-04-25'),
-(3, 'Error al crear', 'Hola mundo', 0, 'jhon71937@gmail.com', '2020-04-25'),
-(4, 'Error al crear', 'Hola mundo', 0, 'jhon71937@gmail.com', '2020-04-25');
-
 -- --------------------------------------------------------
 
 --
